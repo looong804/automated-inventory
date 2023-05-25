@@ -1,7 +1,6 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
-#include "store.h"
 #include <vector>
 #include <string>
 #include <iostream>
@@ -13,20 +12,8 @@ class Command
 public:
 	// does the parsing of the command and assigns to the data members
 	Command(string command);
-
-	// return command type
-	char getCommandType() const;
-	// return if failure happened
-	bool failure() const;
-	// set failure
-	void setFailure(bool);
 	// print out the correct error message based on the error type put int
 	void printErrorMessage(string errorType);
-	// cerr << this->errorType << endl;
-
-	//stream overloads
-	// display all the needed info
-	friend ostream& operator<< (ostream& stream, const Command& command);
 
 private:
 	// vector of strings to store the command after parsing at commas
@@ -34,8 +21,6 @@ private:
 	// letter indicating the command type
 	// borrow is default if not changed by constructor
 	char commandType = 'B';
-	// bool to show if their was an error with the command
-	bool failed = false;
 
 	// all error messages to be eccountered when reading in a command
 	// error message for: command type failure - non existant
