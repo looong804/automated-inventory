@@ -33,22 +33,24 @@ Command::Command(string command)
 				parsedCommand[0] = command;
 			}
 		}
-
 		// check if commandType is one of the vaild ones in the vectors holding 
 		// movie creation command types
-		if (commandType == "F" || commandType == "D" || commandType == "C")
+		for (int i = 0; i < commandTypes.size(); i++)
 		{
-			// put command object into the stock vector
-			Store::stock.push_back(*this);
-		}
-		// action command types
-		else if (commandType == "B" || commandType == "R" || commandType == "H" || commandType == "I")
-		{
-			// put command object into the actions vector
-			Store::actions.push_back(*this);
+			if (commandTypes[i] == commandType)
+			{
+				// put command object into the stock vector
+				Store::stock.push_back(*this);
+			}
+			// action command types
+			else if (commandTypes[i] == commandType)
+			{
+				// put command object into the actions vector
+				Store::actions.push_back(*this);
+			}
 		}
 	}
-	else
+	else if (isdigit(command.at(0)))
 	{
 		// check if the first 4 index spots are ints
 		if (isdigit(command.at(0)) && isdigit(command.at(1)) && isdigit(command.at(2)) && isdigit(command.at(3)))
