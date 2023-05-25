@@ -23,8 +23,6 @@ public:
 	void insert(int hashIndex, int accountID, Account* account); 
 	//returns a pointer because the customer object needs to be edited
 	Account* search(int index);
-	//deletes the object with the given key from the hash
-	Account remove(int accountID); 
 	
 private:
 	// vector holding the linked lists of accounts
