@@ -79,3 +79,9 @@ vector<string> Command::getVector()
 {
 	return parsedCommand; 
 }
+
+// return the string at the given index in the vector
+string Command::getVector(int index)
+{
+	return parsedCommand[index]; 
+}
