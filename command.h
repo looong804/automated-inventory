@@ -22,9 +22,6 @@ public:
 private:
 	// vector of strings to store the command after parsing at commas
 	vector<string> parsedCommand;
-	// letter indicating the command type
-	// borrow is default if not changed by constructor
-	char commandType = 'B';
 
 	// all error messages to be eccountered when reading in a command
 	// error message for: command type failure - non existant
