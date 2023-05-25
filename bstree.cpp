@@ -168,11 +168,6 @@ Node* BSTree::search(Item* target) const
 	return nullptr;
 }
 
-// for future improvement -- not needed
-void BSTree::remove(Node* target, Node& item)
-{
-}
-
 void BSTree::deleteTree(Node* node)
 {
 	// check if node is nullptr
