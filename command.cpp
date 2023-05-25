@@ -58,11 +58,11 @@ Command::Command(string command)
 			// put the rest of the command into the vector
 			parsedCommand[1] = command;
 		}
-	}
-	// if it gets here its not a vaild command with a vaild commandType/starting characters
-	else
-	{
-		
+		else
+		{
+			 printErrorMessage(error1);
+			cerr << command << endl;
+		}
 	}
 }
 
@@ -70,5 +70,12 @@ Command::Command(string command)
 // enables lots of error printing without changing the function just adding error messages
 void Command::printErrorMessage(string errorType)
 {
+	// print out the error message that was passed in
 	cerr << errorType;
+}
+
+// getter for the vector storing the parsed command
+vector<string> Command::getVector()
+{
+	return parsedCommand; 
 }
