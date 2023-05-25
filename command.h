@@ -16,6 +16,7 @@ public:
 	void printErrorMessage(string errorType);
 	// getter for the vector storing the parsed command
 	vector<string>& getVector() const;
+	// getter for the string at the given index in the vector
 	string& Command::getVector(int index) const;
 
 private:
