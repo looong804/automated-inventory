@@ -26,6 +26,22 @@ Store::~Store() {
 //Setters
 //
 void Store::setStock(){
+    //read out of vector<commands> Stock
+    
+    //for (each command object in Stock) 
+    /*
+        if (command.getVector(0) == 'F') 
+        {
+            comedyDvd = new Comedy(command);
+            
+            if (comedyDVD is already in BSTree) {
+                add comedyDVD
+            }
+        
+        }
+        
+    
+    */
 
 }//close setStock
 
