@@ -35,10 +35,15 @@ void Store::setStock(){
             comedyDvd = new Comedy(command);
             
             if (comedyDVD is already in BSTree) {
-                add comedyDVD
+                //add comedyDVD stock to the dvd already in the tree
+                *node->dvd.setStock(*node->dvd.getStock() + comedyDVD.getStock()); 
+            else 
+            {
+                insert comedyDVD
             }
-        
         }
+        
+     }
         
     
     */
