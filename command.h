@@ -15,7 +15,8 @@ public:
 	// print out the correct error message based on the error type put int
 	void printErrorMessage(string errorType);
 	// getter for the vector storing the parsed command
-	vector<string> getVector();
+	vector<string>& getVector() const;
+	string& Command::getVector(int index) const;
 
 private:
 	// vector of strings to store the command after parsing at commas
