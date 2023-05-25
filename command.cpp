@@ -37,16 +37,10 @@ Command::Command(string command)
 		// movie creation command types
 		for (int i = 0; i < commandTypes.size(); i++)
 		{
-			if (commandTypes[i] == commandType)
+			if (commandTypes[i] != commandType)
 			{
-				// put command object into the stock vector
-				Store::stock.push_back(*this);
-			}
-			// action command types
-			else if (commandTypes[i] == commandType)
-			{
-				// put command object into the actions vector
-				Store::actions.push_back(*this);
+			 	printErrorMessage(error1);
+				cerr << command << endl;
 			}
 		}
 	}
@@ -64,8 +58,7 @@ Command::Command(string command)
 	// if it gets here its not a vaild command with a vaild commandType/starting characters
 	else
 	{
-		printErrorMessage(error1);
-		cerr << command << endl;
+		
 	}
 }
 
