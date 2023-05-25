@@ -60,7 +60,7 @@ Command::Command(string command)
 		}
 		else
 		{
-			 printErrorMessage(error1);
+			printErrorMessage(error1);
 			cerr << command << endl;
 		}
 	}
