@@ -24,16 +24,16 @@ void HashMap::insert(int hashIndex, Account account)
 }
 
 //returns a pointer because the customer object needs to be edited
-Account* HashMap::search(int accountID)
+Account* HashMap::search(int hashIndex, int accountID)
 {
 	return nullptr;
 }
 
 //deletes the object with the given key from the hash
-Account HashMap::remove(int accountID)
+Account HashMap::remove(int hashIndex, int accountID)
 {
-	// if empty list
-	if (head_ == nullptr)
+	// check if the account id is a vaild 4 digit int
+	if (accountID = 0 || accountID < 1000)
 	{
 		return false;
 	}
