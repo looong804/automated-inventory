@@ -9,21 +9,22 @@ HashMap::~HashMap()
 }
 
 // call some other premade hashFunction
-int HashMap::hashFunction(int customerID)
+// to hash the id
+int HashMap::hashFunction(Account account)
 {
 	
 }
 
-void HashMap::insert(int hashIndex, int customerID, Account* account)
+void HashMap::insert(int hashIndex, Account account)
 {
 }
 
-Account* HashMap::search(int index)
+Account* HashMap::search(int accountID)
 {
 	return nullptr;
 }
 
-Account HashMap::remove(int customerID)
+Account HashMap::remove(int accountID)
 {
 	// if empty list
 	if (head_ == nullptr)
