@@ -7,6 +7,18 @@ Command::Command(string command)
 	{
 		// parse off the Letter indicating the command
 		commandType = command.at(0);
+		
+		// check if commandType is one of the vaild ones in the vectors holding 
+		// movie creation command types
+		for (int i = 0; i < commandTypes.size(); i++)
+		{
+			if (commandTypes[i] != commandType)
+			{
+			 	printErrorMessage(error1);
+				cerr << command << endl;
+			}
+		}
+		
 		// cut off the commandType from command string
 		command = command.substr(2, command.length());
 
@@ -21,25 +33,15 @@ Command::Command(string command)
 			if (end != -1)
 			{
 				// parse command string to the next comma and store in vector
-				parsedCommand[i] = command.substr(0, end);
+				parsedCommand[index] = command.substr(0, end);
 				// fix command - erase piece just parsed 
-				command = command.substr((end + 1), (command.length() - 1));
-				i++;
+				command = command.substr((end + 1), (command.length()));
+				index++;
 			}
 			// put whole command string into the vector index 0
 			else
 			{
 				parsedCommand[0] = command;
-			}
-		}
-		// check if commandType is one of the vaild ones in the vectors holding 
-		// movie creation command types
-		for (int i = 0; i < commandTypes.size(); i++)
-		{
-			if (commandTypes[i] != commandType)
-			{
-			 	printErrorMessage(error1);
-				cerr << command << endl;
 			}
 		}
 	}
@@ -48,10 +50,12 @@ Command::Command(string command)
 		// check if the first 4 index spots are ints
 		if (isdigit(command.at(0)) && isdigit(command.at(1)) && isdigit(command.at(2)) && isdigit(command.at(3)))
 		{
+			// turn the 4 digit id into an int
+			int id = stoi(command.substr(0, 4));
+			// fix command - erase piece just parsed 
+			command = command.substr((4), (command.length()));
 			// put whole command string in the vector
 			parsedCommand[0] = command;
-			// put the command in the accounts making vector
-			Store::accounts.push_back(*this);
 		}
 	}
 	// if it gets here its not a vaild command with a vaild commandType/starting characters
@@ -59,24 +63,6 @@ Command::Command(string command)
 	{
 		
 	}
-}
-
-// return the commandType
-char Command::getCommandType() const
-{
-	return commandType;
-}
-
-// return the failure bool to reflect commandType acceptance
-bool Command::failure() const
-{
-	return failed;
-}
-
-// set the failure based on if the commandType is acceptable
-void Command::setFailure(bool status)
-{
-	failed = status;
 }
 
 // pass in the error message wanted
