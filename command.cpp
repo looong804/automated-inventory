@@ -1,5 +1,4 @@
 #include "command.h"
-#include "store.h"
 
 Command::Command(string command)
 {
