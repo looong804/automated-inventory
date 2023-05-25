@@ -25,8 +25,6 @@ public:
     void insert(Item* item);
     // find an item and return a pointer to it
     Node* search(Item* target) const; 
-    // remove an item from the tree -- EXTENSION
-    void remove(Item* target, Node& item);
     // return the root of the tree
     Node* getRoot() const;
     // return the size
