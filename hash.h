@@ -1,8 +1,6 @@
 #ifndef HASH_H
 #define HASH_H
 
-using namespace std;
-
 #include <string>
 #include <vector>
 #include "DVD.h"
@@ -33,12 +31,8 @@ public:
 	//returns a pointer because the customer object needs to be edited
 	Customer* search(int index); //returns the customer, does not remove it from the heap
 	Customer remove(int customerID); //deletes the object with the given key from the hash
-
-	int getSize(); 
 	
 private:
-
 	vector<NodeData> DVDs; 
-	int size;
 };
 #endif //HASH_H
