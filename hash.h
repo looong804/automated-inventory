@@ -1,38 +1,33 @@
 #ifndef HASH_H
 #define HASH_H
 
-#include <string>
-#include <vector>
-#include "DVD.h"
-#include "customer.h"
-//#include <hash>
-
-using namespace std;
+#include "account.h"
 
 class HashMap
 {
 	struct NodeData 
 	{
-		DVD *item;
-		DVD *next;
+		Dvd* movie;
+		Dvd* next; 
 	};
 
-
-
 public:
+	// set the vector size to the default
 	HashMap();
+	// delete the customer account in each slot in the vector by deleting each node in the linked list
 	~HashMap();
 
-	int hashFunction(int customerID); //this class is just for the class ID storage, returns the index for the hash
-
-
-	void insert(int hashIndex, int customerID, Customer *account); //using the hash index, insert key and value into the hashed vector
-
+	// returns the index for the hash
+	int hashFunction(int accountID); 
+	//using the hash index, insert key and value into the hashed vector
+	void insert(int hashIndex, int accountID, Account* account); 
 	//returns a pointer because the customer object needs to be edited
-	Customer* search(int index); //returns the customer, does not remove it from the heap
-	Customer remove(int customerID); //deletes the object with the given key from the hash
+	Account* search(int index);
+	//deletes the object with the given key from the hash
+	Account remove(int accountID); 
 	
 private:
-	vector<NodeData> DVDs; 
+	// vector holding the linked lists of accounts
+	vector<NodeData> DVDs[20]; 
 };
-#endif //HASH_H
+#endif
