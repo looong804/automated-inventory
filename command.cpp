@@ -75,13 +75,13 @@ void Command::printErrorMessage(string errorType)
 }
 
 // getter for the vector storing the parsed command
-vector<string> Command::getVector()
+vector<string>& Command::getVector() const
 {
 	return parsedCommand; 
 }
 
 // return the string at the given index in the vector
-string Command::getVector(int index)
+string& Command::getVector(int index) const
 {
 	return parsedCommand[index]; 
 }
