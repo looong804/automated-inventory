@@ -22,7 +22,7 @@ public:
     // traverse the tree in order and print out each item
     void inOrderTraversal(Node* look) const;
     // inserts a new item into the tree
-    void insert(Node* item);
+    void insert(Item* item);
     // find an item and return a pointer to it
     Node* search(Node* target) const; 
     // remove an item from the tree -- EXTENSION
