@@ -81,7 +81,7 @@ private:
 	// parsed info of the customers to be added
 	vector<Command> customers; 
 	// parsed info of the commands to be executed (borrow, return, etc.)
-	vector<Command> commands; 
+	vector<Command> actions; 
 	// contains all the customer accounts
 	HashMap accounts;
 	// contains all the items
