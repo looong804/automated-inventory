@@ -6,7 +6,7 @@
 
 struct Node
 {
-    DVD* movie;
+    Item* item;
     Node* right;
     Node* left;
 };
