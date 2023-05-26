@@ -7,8 +7,8 @@ class HashMap
 {
 	struct NodeData 
 	{
-		Dvd* movie;
-		Dvd* next; 
+		Account* acc;
+		NodeData* next; 
 	};
 
 public:
@@ -18,14 +18,14 @@ public:
 	~HashMap();
 
 	// returns the index for the hash
-	int hashFunction(int accountID); 
+	int hashFunction(Account* account); 
 	//using the hash index, insert key and value into the hashed vector
 	void insert(int hashIndex, int accountID, Account* account); 
 	//returns a pointer because the customer object needs to be edited
-	Account* search(int index);
+	Account* search(int hashIndex, int index);
 	
 private:
 	// vector holding the linked lists of accounts
-	vector<NodeData> DVDs[20]; 
+	vector<NodeData> accounts[20]; 
 };
 #endif
