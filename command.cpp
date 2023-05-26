@@ -30,8 +30,6 @@ Command::Command(string command)
 		// cut off the commandType from command string
 		command = command.substr(2, command.length());
 
-		// index for the vector storing command info
-		int index = 0;
 		// finish parsing the command string and storing in vector
 		while (!command.empty())
 		{
@@ -41,10 +39,9 @@ Command::Command(string command)
 			if (end != -1)
 			{
 				// parse command string to the next comma and store in vector
-				parsedCommand[index] = command.substr(0, end);
+				parsedCommand.push_back(command.substr(0, end));
 				// fix command - erase piece just parsed 
 				command = command.substr((end + 1), (command.length()) - 1);
-				index++;
 			}
 			// put whole command string into the vector index 0
 			else
