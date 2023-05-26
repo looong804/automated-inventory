@@ -32,18 +32,48 @@ void Store::setStock(){
     /*
         if (command.getVector(0) == 'F') 
         {
-            comedyDvd = new Comedy(command);
+            Comedy comedyDvd = new Comedy(command);
             
             if (comedyDVD is already in BSTree) {
                 //add comedyDVD stock to the dvd already in the tree
                 *node->dvd.setStock(*node->dvd.getStock() + comedyDVD.getStock()); 
             else 
             {
-                insert comedyDVD
+                ComedyBST.insert(comedyDVD); 
             }
         }
+        else if (command.getVector(0) == 'D') 
+        { 
+      
+            Drama dramaDvd = new Drama(command);
+            
+            if (dramaDVD is already in BSTree) {
+                //add dramaDVD stock to the dvd already in the tree
+                *node->dvd += dramaDvd; //adds together the stocks
+            else 
+            {
+                dramaBST.insert(comedyDVD); 
+            }
+            
         
-     }
+        } else if (command.getVector(0) == 'C') 
+        {
+            Classic classicDvd = new Classic(command);
+            
+            if (classicDVD is already in BSTree) //doesn't compare actors
+            {
+                *node->dvd += classicDvd; //will add the actors if needed
+            } else 
+            {
+                classicBST.insert(classicDvd); 
+            }
+            
+            
+            
+            //Classic needs a 'compare actors method' to run through the vectors to see if it's in the same object or not. 
+            
+            //add functions check if the actors are the same, if they're not adds to the vector as well as the stock
+        }
         
     
     */
