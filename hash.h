@@ -24,6 +24,10 @@ public:
 	//returns a pointer because the customer object needs to be edited
 	Account* search(int hashIndex, int index);
 	
+protected:
+	// number of objects in the hashTable
+	size = 0;
+	
 private:
 	// vector holding the linked lists of accounts
 	vector<NodeData> accounts[20]; 
