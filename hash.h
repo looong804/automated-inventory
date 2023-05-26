@@ -3,14 +3,14 @@
 
 #include "account.h"
 
-class HashMap
+class HashAccounts
 {
-	struct NodeData 
+	template <typename T>
+	struct NodeData
 	{
-		Account* acc;
-		NodeData* next; 
+		T* data;
+		Node* next = nullptr;
 	};
-
 public:
 	// currently does nothing
 	HashMap();
