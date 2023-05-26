@@ -76,6 +76,11 @@
         }
     }
 
+	void increasePopularity()
+	{
+		popularity++;
+	}
+
 	// addition overloads (combines the stock for most DVDs, except for classic also )
 	int Dvd::operator+ (const int& rhs) const 
     {
