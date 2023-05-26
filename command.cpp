@@ -41,7 +41,7 @@ Command::Command(string command)
 				// parse command string to the next comma and store in vector
 				parsedCommand.push_back(command.substr(0, end));
 				// fix command - erase piece just parsed 
-				command = command.substr((end + 1), (command.length()) - 1);
+				command = command.substr((end + 1), (command.length()));
 			}
 			// put whole command string into the vector index 0
 			else
