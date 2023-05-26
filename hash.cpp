@@ -25,5 +25,5 @@ void HashMap::insert(int hashIndex, Account account)
 //returns a pointer because the customer object needs to be edited
 Account* HashMap::search(int hashIndex, int accountID)
 {
-	return nullptr;
+		
 }
