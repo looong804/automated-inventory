@@ -8,15 +8,23 @@ Command::Command(string command)
 		// parse off the Letter indicating the command
 		commandType = command.at(0);
 		
+		// bool to mark if command is vaild
+		bool vaild = false;
 		// check if commandType is one of the vaild ones in the vectors holding 
 		// movie creation command types
 		for (int i = 0; i < commandTypes.size(); i++)
 		{
-			if (commandTypes[i] != commandType)
+			// if command is found in vaild command mark it as vaild
+			if (commandTypes[i] == commandType)
 			{
-			 	printErrorMessage(error1);
-				cerr << command << endl;
+				vaild = true;
 			}
+		}
+		// if not vaild command print error
+		if (!vaild)
+		{
+			printErrorMessage(error1);
+			cerr << command << endl;	
 		}
 		
 		// cut off the commandType from command string
