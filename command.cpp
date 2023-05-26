@@ -18,6 +18,7 @@ Command::Command(string command)
 			if (commandTypes[i] == commandType)
 			{
 				vaild = true;
+				break;
 			}
 		}
 		// if not vaild command print error
