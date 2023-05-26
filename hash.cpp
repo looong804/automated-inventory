@@ -1,29 +1,29 @@
 #include "hash.h"
 
 // currently does nothing
-HashMap::HashMap()
+HashAccounts::HashAccounts()
 {
 }
 
 // delete the customer account in each slot in the vector by deleting each node in the linked list
-HashMap::~HashMap()
+HashAccounts::~HashAccounts()
 {
 }
 
 // uses the accountID to create the hash
 // call some other premade hashFunction that returns the hashIndex
-int HashMap::hashFunction(Account account)
+int HashAccounts::hashFunction(Account account)
 {
 	
 }
 
 //using the hash index, insert key and value into the hashed vector
-void HashMap::insert(int hashIndex, Account account)
+void HashAccounts::insert(int hashIndex, Account account)
 {
 }
 
 //returns a pointer because the customer object needs to be edited
-Account* HashMap::search(int hashIndex, int accountID)
+Account* HashAccounts::search(int hashIndex, int accountID)
 {
 	bool found = false;
 	NodeData* looky = accounts[hashIndex];
@@ -40,5 +40,4 @@ Account* HashMap::search(int hashIndex, int accountID)
 		}
 	}
 }
-
 // add a size for the number of accounts
