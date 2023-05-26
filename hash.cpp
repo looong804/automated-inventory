@@ -1,6 +1,6 @@
 #include "hash.h"
 
-// set the vector size to the default
+// currently does nothing
 HashMap::HashMap()
 {
 }
@@ -10,9 +10,8 @@ HashMap::~HashMap()
 {
 }
 
-// call some other premade hashFunction
-// to hash the id
-// returns the index for the hash
+// uses the accountID to create the hash
+// call some other premade hashFunction that returns the hashIndex
 int HashMap::hashFunction(Account account)
 {
 	
