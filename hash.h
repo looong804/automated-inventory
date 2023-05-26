@@ -3,6 +3,7 @@
 
 #include "account.h"
 
+// this class and all its children are using hash chaining
 class HashAccounts
 {
 	template <typename T>
