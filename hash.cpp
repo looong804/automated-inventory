@@ -25,5 +25,20 @@ void HashMap::insert(int hashIndex, Account account)
 //returns a pointer because the customer object needs to be edited
 Account* HashMap::search(int hashIndex, int accountID)
 {
-		
+	bool found = false;
+	NodeData* looky = accounts[hashIndex];
+	while (!found)
+	{
+		// check if the account id matches the one 
+		if (looky->account.getID() != accountID)
+		{
+		 	looky = looky->next;
+		}
+		else
+		{
+			
+		}
+	}
 }
+
+// add a size for the number of accounts
