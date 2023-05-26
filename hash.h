@@ -12,7 +12,7 @@ class HashMap
 	};
 
 public:
-	// set the vector size to the default
+	// currently does nothing
 	HashMap();
 	// delete the customer account in each slot in the vector by deleting each node in the linked list
 	~HashMap();
