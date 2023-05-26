@@ -17,7 +17,7 @@ public:
 	// getter for the vector storing the parsed command
 	vector<string> getVector();
 	// getter for the string at the given index in the vector
-	string Command::getVector(int index);
+	string getVector(int index);
 
 private:
 	// vector of strings to store the command after parsing at commas
