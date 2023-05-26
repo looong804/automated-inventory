@@ -14,9 +14,9 @@ class HashAccounts
 	};
 public:
 	// currently does nothing
-	HashMap();
+	HashAccounts();
 	// delete the customer account in each slot in the vector by deleting each node in the linked list
-	~HashMap();
+	~HashAccounts();
 
 	// returns the index for the hash
 	int hashFunction(Account* account); 
