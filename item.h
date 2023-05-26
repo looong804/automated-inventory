@@ -28,6 +28,9 @@ class Item
         void upStock();
         // down the stock by one
         void downStock();
+	
+	//increases the popularity by 1
+	void increasePopularity();
 
         // addition overloads
         int operator+ (const int& rhs) const;
@@ -36,6 +39,7 @@ class Item
     private: 
         int stock = 0;
         string title = "";
+	int popularity = 0; 
 };
 
 #endif
