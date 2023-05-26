@@ -1,5 +1,5 @@
-#ifndef HASH_H
-#define HASH_H
+#ifndef HASHACCS_H
+#define HASHACCS_H
 
 #include "account.h"
 
