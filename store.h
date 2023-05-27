@@ -78,7 +78,11 @@ private:
 	// parsed info of the commands to be executed (borrow, return, etc.)
 	vector<Command> actions; 
 	// contains all the customer accounts
-	HashMap accounts;
+	HashAccounts accounts;
+	// contains all the most requested items
+	HashPopular popularItems;
+	// contains all the borrow commands that failed due to no avaliable stock
+	HashWaitlist waitlist;
 	// contains all the items
 	Inventory inventory();
 	// total number of all items
