@@ -11,8 +11,6 @@
 #include "command.h"
 #include "account.h"
 
-using namespace std;
-
 // - could create a chain class that holds stores and has the num of stores, and 
 // you can create a chain by reading in a folder that contains a folder for 
 // each store that has the three files needed to make a store
