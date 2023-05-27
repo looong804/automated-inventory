@@ -4,19 +4,14 @@
 #include "command.h"
 #include <iostream>
 
-using namespace std;
-
-
 class Item 
 {
     public: 
-
         Item();
         ~Item();
 
-
         // return the title of the Item
-	    string getTitle() const;
+	string getTitle() const;
 
         // set the title of the Item
         string setTitle(string newTitle);
