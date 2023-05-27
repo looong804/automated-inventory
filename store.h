@@ -63,12 +63,6 @@ public:
 	bool openAccount(Command action);
 	// take in a vector to read all files in the vector
 	void readFiles();
-	// return a borrowed item
-	bool returnItem(Command action);
-	// borrow an item
-	bool borrowItem(Command action);
-	// print out account history given the id number
-	void accountHistory(int id) const;
 	// return number of customer accounts
 	int numCustomers() const;
 
