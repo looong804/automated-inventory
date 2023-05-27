@@ -21,9 +21,6 @@ public:
 	Item* search(Item* item);
 	// won't work using hashing but you can just use linear searching won't be bad since its only 10 slots
 	void swap(Item* newitem, Item* olditem);
-	// check if the passed in item is in the popular vector
-	// call the hashFunction on item and check if its in the slot thats given 
-	bool isPopular(Item* item);
 
 protected:
 	int size = 10;
