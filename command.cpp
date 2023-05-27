@@ -8,22 +8,29 @@ Command::Command(string command)
 		// parse off the Letter indicating the command
 		commandType = command.at(0);
 		
+		// bool to mark if command is vaild
+		bool vaild = false;
 		// check if commandType is one of the vaild ones in the vectors holding 
 		// movie creation command types
 		for (int i = 0; i < commandTypes.size(); i++)
 		{
-			if (commandTypes[i] != commandType)
+			// if command is found in vaild command mark it as vaild
+			if (commandTypes[i] == commandType)
 			{
-			 	printErrorMessage(error1);
-				cerr << command << endl;
+				vaild = true;
+				break;
 			}
+		}
+		// if not vaild command print error
+		if (!vaild)
+		{
+			printErrorMessage(error1);
+			cerr << command << endl;	
 		}
 		
 		// cut off the commandType from command string
 		command = command.substr(2, command.length());
 
-		// index for the vector storing command info
-		int index = 0;
 		// finish parsing the command string and storing in vector
 		while (!command.empty())
 		{
@@ -33,10 +40,9 @@ Command::Command(string command)
 			if (end != -1)
 			{
 				// parse command string to the next comma and store in vector
-				parsedCommand[index] = command.substr(0, end);
+				parsedCommand.push_back(command.substr(0, end));
 				// fix command - erase piece just parsed 
 				command = command.substr((end + 1), (command.length()));
-				index++;
 			}
 			// put whole command string into the vector index 0
 			else
@@ -45,23 +51,24 @@ Command::Command(string command)
 			}
 		}
 	}
+	// check is first character is an index
 	else if (isdigit(command.at(0)))
 	{
 		// check if the first 4 index spots are ints
 		if (isdigit(command.at(0)) && isdigit(command.at(1)) && isdigit(command.at(2)) && isdigit(command.at(3)))
 		{
-			// turn the 4 digit id into an int
-			int id = stoi(command.substr(0, 4));
-			// fix command - erase piece just parsed 
-			command = command.substr((4), (command.length()));
-			// put whole command string in the vector
-			parsedCommand[0] = command;
+			// create a new commandType K for customer accounts
+			char createCustomer = 'K';
+			// put the newly created commandType into index 0 of the vector
+			parsedCommand[0] = createCustomer;
+			// put the rest of the command into the vector
+			parsedCommand[1] = command;
 		}
-	}
-	// if it gets here its not a vaild command with a vaild commandType/starting characters
-	else
-	{
-		
+		else
+		{
+			printErrorMessage(error1);
+			cerr << command << endl;
+		}
 	}
 }
 
@@ -69,5 +76,18 @@ Command::Command(string command)
 // enables lots of error printing without changing the function just adding error messages
 void Command::printErrorMessage(string errorType)
 {
+	// print out the error message that was passed in
 	cerr << errorType;
+}
+
+// getter for the vector storing the parsed command
+vector<string>& Command::getVector() const
+{
+	return parsedCommand; 
+}
+
+// return the string at the given index in the vector
+string& Command::getVector(int index) const
+{
+	return parsedCommand[index]; 
 }
