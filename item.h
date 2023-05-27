@@ -32,5 +32,4 @@ class Item
         int stock = 0;
         string title = "";
 };
-
 #endif
