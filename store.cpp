@@ -3,6 +3,7 @@
 
 #include "store.h"
 #include <fstream>
+#include <string>
 
 //constructors
 //default -- unused at the moment
@@ -17,7 +18,7 @@ Store::Store(vector<string> files){
 }//close files constructor
 
 //destructor
-Store::~Store() {
+Store::~Store(){
 
 }//close destructor
 
@@ -35,7 +36,7 @@ void Store::setAccounts() {
 }//close setAccounts
 
 //
-void Store::executeCommands() {
+void Store::executeActions() {
 
 }//close executeCommands
 
@@ -43,71 +44,49 @@ void Store::executeCommands() {
 //Functions
 //read all files in the files vector
 void Store::readFiles(){
-    int index = 0;
-
     //iterate through file names
-    //TODO: check if names should be in order; assumes files are in order
-    while(index != filesNames.size()){
-        //items file
-        if(index == 0){
-            ifstream itemFile(filesNames[index]);
+    for(auto &filesName : filesNames){
+        ifstream file(filesName);
 
-            //insert items
-            while(!itemFile.eof()){
-                string line;
+        //insert items
+        while(!file.eof()){
+            string line;
 
-                while(getline(itemFile, line)){
-                    stock.push_back(Command(line));
-                }//close insert items
-            }//close last line check
+            while(getline(file, line)){
+                Command tempCom(line);
+                string letter = tempCom.getVector().at(0);
 
-            index++;
-            continue;
-        }//close items file check
-
-        //accounts file
-        if(index == 1){
-            ifstream accountFile(filesNames[index]);
-
-            //insert accounts
-            while(!accountFile.eof()){
-                string line;
-
-                while(getline(accountFile,line)){
-                    customers.push_back(Command(line));
-                }//close insert accounts
-            }//close last line check
-
-            index++;
-            continue;
-        }//close accounts file check
-
-        //commands file
-        if(index == 2){
-            ifstream commandFile(filesNames[index]);
-
-            //insert commands
-            while(!commandFile.eof()){
-                string line;
-
-                while(getline(commandFile,line)){
-                    commands.push_back(Command(line));
-                }//close insert commands
-            }//close last line check
-
-            index++;
-            continue;
-        }//close commands file check
+                //checks if this is a movie command
+                if(letter == "F" || letter == "D" || letter == "C"){
+                    stock.push_back(tempCom);
+                //checks if this is a customer command
+                }else if(letter == "K"){
+                    customers.push_back(tempCom);
+                //checks if this is a command
+                }else if(letter == "B" || letter == "R"
+                    || letter == "I" || letter == "H"){
+                    actions.push_back(tempCom);
+                //not a recognized command
+                }//close command check
+            }//close insert items
+        }//close last line check
     }//close num files check
 }//close files
 
 // open an account
 bool Store::openAccount(Command action){
-    return false;
+    //TODO: check hashmap for existing account
+    //if(customers[0] == hash in accounts)
+    //return false
+    //account already exists
+
+    //Account newAcct;
+
+    return true;
 }//close openAccount
 
 //
-Customer* Store::findAccount(int id) const{
+Account* Store::findAccount(int id) const{
     return nullptr;
 }//close findAccount
 
@@ -121,7 +100,7 @@ DVD* Store::findComedy(Comedy& dvd) const{
     return nullptr;
 }//close findComedy
 
-// find a classic dvd and verify that it exsits
+// find a classic dvd and verify that it exists
 DVD* Store::findClassic(Classic& dvd) const{
     return nullptr;
 }//close findClassic
@@ -142,8 +121,8 @@ void Store::accountHistory(int id) const{
 
 }//close accountHistory
 
-// return number of customer accounts
-int Store::numCustomers() const{
+// return number of accounts
+int Store::numAccounts() const{
     return 0;
 }//close numCustomers
 
