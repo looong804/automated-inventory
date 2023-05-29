@@ -1,8 +1,6 @@
 #ifndef DVD_H
 #define DVD_H
 
-#include "command.h"
-
 class DVD : public Item
 {
 public:
