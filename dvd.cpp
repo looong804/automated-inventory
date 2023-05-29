@@ -74,7 +74,7 @@
 	}
 
 	// addition overloads (combines the stock for most DVDs, except for classic also )
-	int Dvd::operator+ (const int& rhs) const 
+	Dvd Dvd::operator+ (const Dvd& rhs) const 
     {
         //int temp = rhs;
         return rhs + getStock();
@@ -82,7 +82,7 @@
         //this.stock += rhs;
     }
 
-	int Dvd::operator+= (const int& rhs) 
+	Dvd Dvd::operator+= (const Dvd& rhs) 
     {
         setStock(getStock() + rhs);
     }
