@@ -129,6 +129,27 @@ vector<string> Command::spaceParser(string stringToSplit)
 	return parsed;
 }
 
+// use the passed in index to get the string in the parsedCommand vector
+vector<string> Command::spaceParser(int index)
+{
+	// string stream set equal to the passed string
+	stringstream stringStream(parsedCommand[index]);
+	// create a vector to return
+	vector<string> parsed;
+	// while the stringstream isn't empty
+	while (stringStream.rdbuf()->in_avail() != 0)
+	{
+		// string to hold the individual strings from stringStream
+		string temp = "";
+		// put the first string into temp
+		stringStream >> temp;
+		// put temp into the vector
+		parsed.push_back(temp);
+	}
+	// return the vector 
+	return parsed;
+}
+
 // compare all values in the parsed command
 bool Command::operator==(const Command& rhs) const
 {
