@@ -6,48 +6,55 @@ Command::Command(string command)
 	if (!isdigit(command.at(0)))
 	{
 		// parse off the Letter indicating the command
-		commandType = command.at(0);
+		char commandType = command.at(0);
 		
 		// bool to mark if command is vaild
-		bool vaild = false;
+		bool valid = false;
 		// check if commandType is one of the vaild ones in the vectors holding 
 		// movie creation command types
-		for (int i = 0; i < commandTypes.size(); i++)
+		for (int i = 0; i < getCommandTypes().size(); i++)
 		{
 			// if command is found in vaild command mark it as vaild
-			if (commandTypes[i] == commandType)
+			if (getCommandTypes().at(i) == commandType)
 			{
-				vaild = true;
+				valid = true;
+				string letter = "";
+				letter += commandType;
+				parsedCommand.push_back(letter);
 				break;
 			}
 		}
 		// if not vaild command print error
-		if (!vaild)
+		if (!valid)
 		{
 			printErrorMessage(error1);
 			cerr << command << endl;	
 		}
-		
-		// cut off the commandType from command string
-		command = command.substr(2, command.length());
-
-		// finish parsing the command string and storing in vector
-		while (!command.empty())
+		else if (valid)
 		{
-			// find next comma index
-			int end = command.find(",");
-			// check if a comma was found
-			if (end != -1)
+			// cut off the commandType from command string
+			command = command.substr(2, command.length());
+
+			// finish parsing the command string and storing in vector
+			while (!command.empty())
 			{
-				// parse command string to the next comma and store in vector
-				parsedCommand.push_back(command.substr(0, end));
-				// fix command - erase piece just parsed 
-				command = command.substr((end + 1), (command.length()));
-			}
-			// put whole command string into the vector index 0
-			else
-			{
-				parsedCommand[0] = command;
+				// find next comma index
+				int end = command.find(",");
+				// check if a comma was found
+				if (end != -1)
+				{
+					// parse command string to the next comma and store in vector
+					parsedCommand.push_back(command.substr(0 + 1, end));
+					// fix command - erase piece just parsed 
+					command = command.substr((end + 2), (command.length()));
+				}
+				// put whole command string into the vector
+				else
+				{
+					parsedCommand.push_back(command);
+					// empty the command ok
+					command.clear();
+				}
 			}
 		}
 	}
@@ -58,11 +65,11 @@ Command::Command(string command)
 		if (isdigit(command.at(0)) && isdigit(command.at(1)) && isdigit(command.at(2)) && isdigit(command.at(3)))
 		{
 			// create a new commandType K for customer accounts
-			char createCustomer = 'K';
+			string createCustomer = "k";
 			// put the newly created commandType into index 0 of the vector
-			parsedCommand[0] = createCustomer;
+			parsedCommand.push_back(createCustomer);
 			// put the rest of the command into the vector
-			parsedCommand[1] = command;
+			parsedCommand.push_back(command);
 		}
 		else
 		{
@@ -81,13 +88,79 @@ void Command::printErrorMessage(string errorType)
 }
 
 // getter for the vector storing the parsed command
-vector<string>& Command::getVector() const
+vector<string> Command::getVector()
 {
 	return parsedCommand; 
 }
 
 // return the string at the given index in the vector
-string& Command::getVector(int index) const
+string Command::getVector(int index)
 {
 	return parsedCommand[index]; 
+}
+
+// parse the passed in string by spaces
+stringstream Command::convertToStringstream(string stringToSplit)
+{
+	// string stream set equal to the passed string
+	stringstream stringStream (stringToSplit);
+	// return the stringstream 
+	return stringStream;
+}
+
+// parse the passed in string by spaces
+vector<string> Command::spaceParser(string stringToSplit)
+{
+	// string stream set equal to the passed string
+	stringstream stringStream(stringToSplit);
+	// create a vector to return
+	vector<string> parsed;
+	// whole the stringstream isn't empty
+	while (stringStream.rdbuf()->in_avail() != 0)
+	{
+		// string to hold the individual strings from stringStream
+		string temp = "";
+		// put the first string into temp
+		stringStream >> temp;
+		// put temp into the vector
+		parsed.push_back(temp);
+	}
+	// return the vector 
+	return parsed;
+}
+
+// compare all values in the parsed command
+bool Command::operator==(const Command& rhs) const
+{
+	// compare the vector sizes first
+	if (this->parsedCommand.size() != rhs.parsedCommand.size())
+	{
+		return false;
+	}
+	// go through the vectors
+	else
+	{
+		for (int i = 0; i < this->parsedCommand.size(); i++)
+		{
+			// if any value is not equal
+			if (this->parsedCommand.at(i) != rhs.parsedCommand.at(i))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+}
+
+// compare all values in the parsed command
+bool Command::operator!=(const Command& rhs) const
+{
+	if (!(*this == rhs))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
