@@ -2,6 +2,7 @@
 #define ITEM_H
 
 #include "command.h"
+#include "bstree.h"
 
 class Item 
 {
