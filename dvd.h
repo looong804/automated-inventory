@@ -6,9 +6,11 @@
 class DVD : public Item
 {
 public:
+	// not needed
 	DVD();
 	// passes in a command object that contains all the needed data to create a DVD object
 	DVD(Command command);
+	// not needed
 	~DVD();
 
 	// return the director of the movie
@@ -43,6 +45,5 @@ private:
 	int stock = 0;
 	int year = 0;
 	char genre = 'D';
-	
 };
 #endif //DVD_H
