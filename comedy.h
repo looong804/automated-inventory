@@ -2,7 +2,6 @@
 #define COMEDY_H
 
 #include "dvd.h"
-#include "bstree.h"
 
 class Comedy : public DVD
 {
@@ -25,8 +24,5 @@ public:
 	friend ostream& operator<< (ostream& stream, const Comedy& comedy);
 
 private:
-
-
-
 };
 #endif //COMEDY_H
