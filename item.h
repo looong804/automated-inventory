@@ -7,6 +7,7 @@ class Item
 {
     public: 
         Item();
+	// not needed
         ~Item();
 
         // return the title of the Item
