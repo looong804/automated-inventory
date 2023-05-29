@@ -2,7 +2,6 @@
 #define ITEM_H
 
 #include "command.h"
-#include <iostream>
 
 class Item 
 {
