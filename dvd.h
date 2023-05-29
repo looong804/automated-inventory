@@ -3,7 +3,7 @@
 
 #include "command.h"
 
-class DVD
+class DVD : public Item
 {
 public:
 	DVD();
