@@ -11,7 +11,6 @@ class Item
 
         // return the title of the Item
 	string getTitle() const;
-
         // set the title of the Item
         string setTitle(string newTitle);
 	// get the stock
