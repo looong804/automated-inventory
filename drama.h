@@ -24,6 +24,5 @@ public:
 	friend ostream& operator<< (ostream& stream, const Drama& drama);
 
 private:
-
 };
 #endif
