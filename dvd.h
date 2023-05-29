@@ -32,11 +32,6 @@ public:
 	Dvd operator+ (const Dvd& rhs) const;
 	Dvd operator+= (const Dvd& rhs);
 
-	//stream overloads -- should this just be in the genre class or 
-	// should we just create another for the classics where you alos put in a genre parameter
-	// output the title 
-	friend ostream& operator<< (ostream& stream, DVD& dvd);
-
 private:
 	string title = "";
 	string director = "";
