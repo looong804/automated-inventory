@@ -3,8 +3,6 @@
 
 */
 #include "dvd.h"
-#include "command.h"
-
 
 	Dvd::Dvd()
     {
