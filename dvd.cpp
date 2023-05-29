@@ -9,12 +9,6 @@
 
     }
 
-	// passes in a command object that contains all the needed data to create a DVD object
-	Dvd::Dvd(Command command) 
-    {
-        // does nothing, not relevent for an abstract class
-    }
-
 	Dvd::~Dvd() 
     {
 
