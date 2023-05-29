@@ -2,7 +2,6 @@
 #define DRAMA_H
 
 #include "dvd.h"
-#include "bstree.h"
 
 class Drama : public DVD
 {
