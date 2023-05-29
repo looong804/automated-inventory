@@ -4,6 +4,7 @@
 #include "classic.h"
 #include "comedy.h"
 #include "drama.h"
+#include "hashAccounts.h"
 #include "hashWaitlist.h"
 #include "hashPopular.h"
 #include "inventory.h"
