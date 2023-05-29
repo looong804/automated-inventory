@@ -7,17 +7,15 @@
 class Item 
 {
     public: 
-
         Item();
         ~Item();
 
-
         // return the title of the Item
-	    string getTitle() const;
+	string getTitle() const;
 
         // set the title of the Item
         string setTitle(string newTitle);
-
+	// get the stock
         int getStock() const;
         // set the stock
         void SetStock(int amount);
@@ -38,5 +36,4 @@ class Item
         string title = "";
 	int popularity = 0; 
 };
-
 #endif
