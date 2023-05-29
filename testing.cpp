@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
 		// testing for hashAccounts
 		// testing for hashPopular
 		// testing for hashWaitlist
-
+	
 	// end of all testing
 	//cout << "This testing is now done:" << endl;
 	//cout << "This program can be improved in the following ways:" << endl;
@@ -46,5 +46,22 @@ int main(int argc, char* argv[])
 	//cout << "All users are free to use and add to these test cases, with the condition that they continue to pass them down to future students with improvements and an updated list on what can be improved." << endl;
 	//cout << "P.S. it can always be improved!" << endl;
 	
+	// to be added above
+		// - could create a chain class that holds stores and has the num of stores, and 
+		// you can create a chain by reading in a folder that contains a folder for 
+		// each store that has the three files needed to make a store
+		// - could create an item class to be the parent of the dvd class, 
+		// which enables quick adds of new items in stock
+		// - could add an accounts class to be the parent class of all account type classes
+		// such as customer account, IT account, employe account, manager account
+		// - could create another level of catagorizing with classes like video, audio, games
+		// these would then be parent classes of things like; For video: tvs, cables, movies, players
+		// For Audio: speakers, music, players, For games: video games, controls, game systems
+		// 
+		// - could add a time to return things by and for each day after the return time charge more
+		// - could add a charge system/ tab system or make customers store money on their account
+		// - could add prices to all the items in the inventoy
+		// - could add discounting functions that will discount all the prices of items 
+		// depending on their catagories and types, and after a certain time return them to full price
 	return 0;
 }
