@@ -8,6 +8,23 @@ int main(int argc, char* argv[])
 	// cout << "To help with sequential testing and enabling the functions that help you test the others it is recommend to implement the functions in the following order that they are tested in." << endl;
 	// cout << "The functions of the Inventory System are tested in the following order: " << endl;
 
+	// types of errors to be checking for:
+	//// error message for: stock amount failure - no negatives
+	//string error2 = "Error: Stock amount failure - no negatives";
+	//// error message for: account id failure - no negatives, non existant
+	//string error3 = "Error: Account id failure - no negatives, non existant";
+	//// error message for: returning a movie - never borrowed
+	//string error4 = "Error: returning a movie - never borrowed";
+	//// error message for: movie not in stock - stock is 0
+	//string error5 = "Error: movie not in stock - stock is 0";
+	//// error message for: not all fields filled **** is this needed? **************
+	//string error6 = "Error: ";
+	//// error message for: movie genre - non existant
+	//string error7 = "Error: movie genre - non existant";
+	//// error message for: movie data - non existant title/year/month/actor/director
+	//string error8 = "Error: movie data - non existant title/year/month/actor/director";
+	
+	
 	// should probably add just a couple text files to contain the input commands to test everything
 	// create a store using given input files
 	Store stuff(givenFile1, givenFile2, givenFile3);
