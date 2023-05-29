@@ -4,6 +4,8 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <sstream>
+#include "store.h"
 
 using namespace std;
 
@@ -18,6 +20,14 @@ public:
 	vector<string> getVector();
 	// getter for the string at the given index in the vector
 	string getVector(int index);
+	// converts the passed in string to a stringstream
+	stringstream convertToStringstream(string stringToSplit);
+	// returns a vector holding the passed in string parsed by spaces
+	vector<string> spaceParser(string stringToSplit);
+
+	//comparison overloads - checks for identical command objects
+	bool operator==(const Command& rhs) const;
+	bool operator!=(const Command& rhs) const;
 
 private:
 	// vector of strings to store the command after parsing at commas
