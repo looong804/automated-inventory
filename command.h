@@ -24,6 +24,8 @@ public:
 	stringstream convertToStringstream(string stringToSplit);
 	// returns a vector holding the passed in string parsed by spaces
 	vector<string> spaceParser(string stringToSplit);
+	// returns a vector holding a parsed string, by spaces
+	vector<string> spaceParser(int index);
 
 	//comparison overloads - checks for identical command objects
 	bool operator==(const Command& rhs) const;
