@@ -1,7 +1,4 @@
-#include "dvd.h"
-#include "bstree.h"
 #include "comedy.h"
-
 
 /*
 char type = 'D'; // Dvd is default if not changed by contructor
