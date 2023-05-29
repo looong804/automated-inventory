@@ -86,20 +86,3 @@
     {
         setStock(getStock() + rhs);
     }
-
-	//stream overloads -- should this just be in the genre class or 
-	// should we just create another for the classics where you alos put in a genre parameter
-	// output the title 
-	ostream& operator<< (ostream& stream, Dvd& dvd) 
-    {
-        // not relevent for an abstract class.
-    }
-
-	/*
-    string title = "";
-	string director = "";
-	int stock = 0;
-	int year = 0;
-	char genre = 'D';
-    */
-	
