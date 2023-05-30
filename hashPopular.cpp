@@ -1,6 +1,5 @@
 #include "hashPopular.h"
 
-
 HashPopular::HashPopular()
 {
 }
