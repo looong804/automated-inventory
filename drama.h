@@ -4,7 +4,7 @@
 #include "dvd.h"
 #include "bstree.h"
 
-class Drama : public DVD
+class Drama : public Dvd
 {
 public:
 	Drama();
@@ -12,13 +12,19 @@ public:
 	Drama(Command command);
 	~Drama();
 
+	//void setTitle(string title);
+
+
 	//comparison overloads - sorted by director then title
 	bool operator==(const Drama& rhs) const;
 	bool operator!=(const Drama& rhs) const;
-	bool operator>=(const Drama& rhs) const;
-	bool operator<=(const Drama& rhs) const;
 	bool operator>(const Drama& rhs) const;
 	bool operator<(const Drama& rhs) const;
+
+	Drama operator+ (const Drama& rhs) const; 
+    Drama& operator+= (const Drama& rhs); 
+	Drama& operator=(const Drama& rhs);
+
 
 	//stream overloads
 	// display all the info 
