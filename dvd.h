@@ -2,47 +2,47 @@
 #define DVD_H
 
 #include "command.h"
+#include "item.h"
 
-class DVD
+class Dvd : public Item
 {
 public:
-	DVD();
+	Dvd();
 	// passes in a command object that contains all the needed data to create a DVD object
-	DVD(Command command);
-	~DVD();
+	Dvd(Command command);
+	~Dvd();
 
+	// /char getItemType() const; 
+	
 	// return the director of the movie
 	string getDirector() const;
-	// return the title of the DVD
-	string getTitle() const;
+
+	void setDirector(string director);
 	// return the genre
 	char getGenre() const;
+
+	void setGenre(const char genre); 
+
 	// return the year
 	int getYear() const;
-	// return the stock of the DVD
-	int getStock() const;
-	// set the stock
-	void SetStock(int amount);
-	// up the stock by one
-	void upStock();
-	// down the stock by one
-	void downStock();
 
-	// addition overloads
-	int operator+ (const int& rhs) const;
-	int operator+= (const int& rhs);
+	void setYear(int newYear);
+	// return the stock of the DVD
+
+        // addition overloads
+    Dvd operator+ (const Dvd& rhs) const;
+    Dvd& operator+= (const Dvd& rhs); 
+	
 
 	//stream overloads -- should this just be in the genre class or 
 	// should we just create another for the classics where you alos put in a genre parameter
 	// output the title 
-	friend ostream& operator<< (ostream& stream, DVD& dvd);
+	friend ostream& operator<< (ostream& stream, Dvd& dvd);
 
 private:
-	string title = "";
 	string director = "";
-	int stock = 0;
 	int year = 0;
 	char genre = 'D';
 	
 };
-#endif //DVD_H
+#endif
