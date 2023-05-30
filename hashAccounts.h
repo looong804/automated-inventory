@@ -16,13 +16,19 @@ public:
 	void insert(Account* account);
 	//returns a pointer because the account needs to be edited
 	Account* search(Account* account);
+	//returns a pointer because the account needs to be edited
+	Account* search(int id);
 	// check if the passed account already exists
 	bool isAccount(int id);
+	// check if the passed account already exists
+	bool isAccount(Account* account);
 	
 	// calls an actual hash function listed below that was taken from online sources
 	// to avoid importing a hash class which is the only way we could find to import hash functions
 	// returns the index for the hash; Key: account ID; Value: account 
 	int hashFunction(Account* account);
+	// returns the index for the hash; Key: account ID; Value: account 
+	int hashFunction(int id);
 
 private:
 	// vector holding the linked lists of accounts
