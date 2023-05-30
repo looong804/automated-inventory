@@ -231,3 +231,16 @@ bool HashAccounts::isAccount(int id)
 		return false;
 	}
 }
+
+// check if the passed account exists 
+bool HashAccounts::isAccount(Account* account)
+{
+	if (search(account) != nullptr)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
