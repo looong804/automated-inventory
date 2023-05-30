@@ -4,7 +4,7 @@
 #include "dvd.h"
 #include "bstree.h"
 
-class Comedy : public DVD
+class Comedy : public Dvd
 {
 public:
 	Comedy();
@@ -15,10 +15,13 @@ public:
 	//comparison overloads - sorted by title then year
 	bool operator==(const Comedy& rhs) const;
 	bool operator!=(const Comedy& rhs) const;
-	bool operator>=(const Comedy& rhs) const;
-	bool operator<=(const Comedy& rhs) const;
 	bool operator>(const Comedy& rhs) const;
 	bool operator<(const Comedy& rhs) const;
+
+
+	Comedy Comedy::operator+ (const Comedy& rhs) const;
+	Comedy& Comedy::operator+= (const Comedy& rhs);
+	
 
 	//stream overloads
 	// display all the info 
@@ -29,4 +32,4 @@ private:
 
 
 };
-#endif //COMEDY_H
+#endif COMEDY_H
