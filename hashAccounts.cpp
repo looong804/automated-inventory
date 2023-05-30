@@ -62,6 +62,19 @@ int HashAccounts::hashFunction(Account* account)
 	return hashMidSquare(ID, accounts->size());
 }
 
+// uses the accountID to create the hash
+// call some other premade hashFunction that returns the hashIndex
+int HashAccounts::hashFunction(int id)
+{
+	// check if the id is too small
+	if (id < 1000)
+	{
+		return -1;
+	}
+	// call and return the hashMidSqaure on the id
+	return hashMidSquare(id, accounts->size());
+}
+
 //using the hash index, insert key and value into the hashed vector
 void HashAccounts::insert(Account* account)
 {
