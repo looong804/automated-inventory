@@ -12,8 +12,9 @@ BSTree::~BSTree()
 	deleteTree(root);
 }
 
-void BSTree::inOrderTraversal(Node* look) const
+void BSTree::inOrderTraversal() const
 {
+	Node* look = root;
 	if (look != nullptr)
 	{
 		// call inorder again but going to the left
