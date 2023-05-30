@@ -10,6 +10,8 @@
 #include "item.h"
 #include "command.h"
 #include "account.h"
+#include <fstream>
+#include <string>
 
 // - could create a chain class that holds stores and has the num of stores, and 
 // you can create a chain by reading in a folder that contains a folder for 
