@@ -161,10 +161,55 @@ Account* HashAccounts::search(Account* account)
 	}
 }
 
+// returns a pointer because the account object needs to be edited
+// returns nullptr if not found
+Account* HashAccounts::search(int id)
+{
+	// check if the id is too small
+	if (id < 1000) 
+	{
+		return nullptr;
+	}
+
+	// nodeData equal to the first node in the linked list 
+	NodeData<Account> start = accounts->at(hashFunction(id));
+
+	// check if its the first node
+	if (start.data.getID() == id)
+	{
+		return start.data.getID();
+	}
+	// go through the whole list
+	else
+	{
+		// nodeData pointer to traverse the list starting at the second node
+		NodeData<Account>* looky = start.next;
+
+		// while the account isn't found
+		while (true)
+		{
+			// check if the account ID matches the one being looked for  
+			if (looky->data.getID() == id && looky->data != nullptr)
+			{
+				// return the found account
+				return looky->data;
+			}
+			else if(looky->next != nullptr)
+			{
+				looky = looky->next;
+			}
+			else
+			{
+				return nullptr;
+			}
+		}
+	}
+}
+
 // check if the passed account exists 
 bool HashAccounts::isAccount(int id)
 {
-	if (search(account) != nullptr)
+	if (search(id) != nullptr)
 	{
 		return true;
 	}
