@@ -17,7 +17,7 @@ public:
 	//returns a pointer because the account needs to be edited
 	Account* search(Account* account);
 	// check if the passed account already exists
-	bool isAccount(Account* account);
+	bool isAccount(int id);
 	
 	// calls an actual hash function listed below that was taken from online sources
 	// to avoid importing a hash class which is the only way we could find to import hash functions
