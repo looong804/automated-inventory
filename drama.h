@@ -22,7 +22,7 @@ public:
 	bool operator<(const Drama& rhs) const;
 
 	Drama operator+ (const Drama& rhs) const; 
-    Drama& operator+= (const Drama& rhs); 
+    	Drama& operator+= (const Drama& rhs); 
 	Drama& operator=(const Drama& rhs);
 
 
