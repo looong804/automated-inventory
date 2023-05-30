@@ -3,6 +3,13 @@
 
 #include "item.h"
 
+
+
+
+//make the cpp for this
+
+
+
         Item::Item() 
         {
             setStock(0);
@@ -56,6 +63,12 @@
                 cout << "Error: movie not in stock - stock is 0" << endl;
             }
         }
+
+        void Item::increasePopularity() 
+        {
+            popularity++;
+        }
+
 
         // addition overloads
         Item Item::operator+ (const Item& rhs) const 
