@@ -12,8 +12,9 @@ BSTree::~BSTree()
 	deleteTree(root);
 }
 
-void BSTree::inOrderTraversal(Node* look) const
+void BSTree::inOrderTraversal() const
 {
+	Node* look = root;
 	if (look != nullptr)
 	{
 		// call inorder again but going to the left
@@ -29,7 +30,7 @@ void BSTree::inOrderTraversal(Node* look) const
 	}
 }
 
-void BSTree::insert(Dvd* item)
+void BSTree::insert(Item* item)
 {
 	// if the tree is empty
 	if (this->root == nullptr)
@@ -102,7 +103,7 @@ void BSTree::insert(Dvd* item)
 	return;
 }
 
-Node* BSTree::search(Dvd* target) const
+Node* BSTree::search(Item* target) const
 {
 	//cout << root->movie;
 	// if empty tree
@@ -166,11 +167,6 @@ Node* BSTree::search(Dvd* target) const
 	}
 	// should never get here but if it does return nullptr
 	return nullptr;
-}
-
-// for future improvement -- not needed
-void BSTree::remove(Node* target, Node& item)
-{
 }
 
 void BSTree::deleteTree(Node* node)
