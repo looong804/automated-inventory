@@ -162,7 +162,7 @@ Account* HashAccounts::search(Account* account)
 }
 
 // check if the passed account exists 
-bool HashAccounts::isAccount(Account* account)
+bool HashAccounts::isAccount(int id)
 {
 	if (search(account) != nullptr)
 	{
