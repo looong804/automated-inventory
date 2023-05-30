@@ -2,8 +2,6 @@
 #define STORE_CPP
 
 #include "store.h"
-#include <fstream>
-#include <string>
 
 //constructors
 //default -- unused at the moment
