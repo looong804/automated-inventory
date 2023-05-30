@@ -42,11 +42,6 @@ char type = 'D'; // Dvd is default if not changed by contructor
         setGenre('F');
 
     }
-
-	Comedy::~Comedy() 
-    {
-
-    }
 	
 	//comparison overloads - sorted by title then year
 	bool Comedy::operator==(const Comedy& rhs) const 
@@ -90,9 +85,36 @@ char type = 'D'; // Dvd is default if not changed by contructor
         }
     }
 
+    Comedy Comedy::operator+ (const Comedy& rhs) const
+    {
+        Comedy comedy; 
+        comedy = *this;
+        comedy.setStock(getStock() + rhs.getStock());
+        return comedy;
+    
+    }
+
+    Comedy& Comedy::operator+= (const Comedy& rhs) 
+    {
+        setStock(getStock() + rhs.getStock());
+        return *this;
+    }
+
+    Comedy& Comedy::operator=(const Comedy& rhs) 
+    {
+        //string title = "title";
+        setTitle(rhs.getTitle());
+        setDirector(rhs.getDirector());
+        setStock(rhs.getStock());
+        setYear(rhs.getYear());
+        setGenre(rhs.getGenre());
+
+        return *this;
+    }
+
 	//stream overloads
 	// display all the info 
 	ostream& operator<< (ostream& stream, const Comedy& comedy) 
     {
-        cout << comedy.getGenre() << ", " << comedy.getStock() << ", " << comedy.getTitle() << ", " << comedy.getYear();
+        cout << comedy.getGenre() << ", " << comedy.getStock() << ", " <<comedy.getDirector() << ", " << comedy.getTitle() << ", " << comedy.getYear();
     }
