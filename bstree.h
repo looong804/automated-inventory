@@ -6,7 +6,7 @@
 
 struct Node
 {
-    DVD* movie;
+    Item* item;
     Node* right;
     Node* left;
 };
@@ -20,13 +20,11 @@ public:
     ~BSTree(); 
 
     // traverse the tree in order and print out each item
-    void inOrderTraversal(Node* look) const;
+    void inOrderTraversal() const;
     // inserts a new item into the tree
-    void insert(Node* item);
+    void insert(Item* item);
     // find an item and return a pointer to it
-    Node* search(Node* target) const; 
-    // remove an item from the tree -- EXTENSION
-    void remove(Node* target, Node& item);
+    Node* search(Item* target) const; 
     // return the root of the tree
     Node* getRoot() const;
     // return the size
