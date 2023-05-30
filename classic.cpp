@@ -21,8 +21,8 @@
         //setYear(command.getVector(4));
         setGenre('D');
 
-        //vector<string> actorAndDate = command.spaceSplitter(command.getVector(4));
-        vector<string> actorAndDate = command.spaceSplitter(4);
+        vector<string> actorAndDate = command.spaceSplitter(command.getVector(4));
+        //vector<string> actorAndDate = command.spaceSplitter(4);
         string temp = actorAndDate[0] + " " + actorAndDate[1]; 
         addMajorActor(temp); 
         int month = (stoi(actorAndDate[3]));
