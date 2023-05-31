@@ -4,13 +4,15 @@
 #include "customer.h"
 #include "dvd.h"
 
+template <class T>
 struct Node
 {
-    Item* item;
+    T* item;
     Node* right;
     Node* left;
 };
 
+template<class M>
 class BSTree
 {
 public:
@@ -22,20 +24,20 @@ public:
     // traverse the tree in order and print out each item
     void inOrderTraversal() const;
     // inserts a new item into the tree
-    void insert(Item* item);
+    void insert(M* item);
     // find an item and return a pointer to it
-    Node* search(Item* target) const; 
+    Node<T>* search(M* target) const; 
     // return the root of the tree
-    Node* getRoot() const;
+    Node<T>* getRoot() const;
     // return the size
     int getSize() const;
 
 private:
     // start of the tree
-    Node* root = nullptr;
+    Node<T>* root = nullptr;
     // number of items in the tree
     int size = 0;
     // recursive helper function for the destructor
-    void deleteTree(Node* node);
+    void deleteTree(Node<T>* node);
 };
 #endif
