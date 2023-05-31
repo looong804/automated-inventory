@@ -184,6 +184,20 @@ Command HashWaitlist::remove(Command* command)
 	}
 }
 
+// check if the passed in command is in the waitlist
+bool HashPopular::isInWaitlist(Command* command)
+{
+	// search the hash and return true if the command is found
+	if (search(command) != nullptr)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 // is dependent on the genre type
 int HashWaitlist::hashFunction(Command* command)
 {
