@@ -2,7 +2,6 @@
 #define INVEN_H
 
 #include "bstree.h"
-#include <vector>
 
 class Inventory 
 { 
@@ -13,13 +12,20 @@ public:
     //destructor
     ~Inventory();
 
+    // returns the roots to their respective trees
+    Node<Classic>* getClassicTree();
+    Node<Comedy>* getComedyTree();
+    Node<Drama>* getDramaTree();
+    
     //stream overloads
     // output the whole inventory by going through the vector
     // print out the comedy, then drama, then classic
     friend ostream& operator<< (ostream& stream, Inventory& inven);
 
 private:
-    // vector to hold the BSTree
-    vector<BSTree> inventory;
+    // all the initially needed BSTs
+    BSTree<Classic> classicTree;
+    BSTree<Comedy> comedyTree;
+    BSTree<Drama> dramaTree;
 };
 #endif
