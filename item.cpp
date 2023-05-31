@@ -69,6 +69,11 @@
             popularity++;
         }
 
+	int Item::getPopularity() 
+        {
+            return popularity;
+        }
+
 
         // addition overloads
         Item Item::operator+ (const Item& rhs) const 
