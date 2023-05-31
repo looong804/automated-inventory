@@ -29,10 +29,10 @@ Inventory::Node<Drama>* getDramaTree();
 // output the whole inventory by going through the vector
 // print out the comedy, then drama, then classic
 // the above order is how they are stored in the vector
-ostream& operator<<(ostream& stream, Inventory& inventor)
+ostream& operator<<(ostream& stream, Inventory& inventory)
 {
 	// call the inordertraversal on all the trees in inventory
-	classicTree.inorderTraversal();
-	comedyTree.inorderTraversal();
-	dramaTree.inorderTraversal();
+	classicTree.inOrderTraversal();
+	comedyTree.inOrderTraversal();
+	dramaTree.inOrderTraversal();
 }
