@@ -1,7 +1,7 @@
 #ifndef HASHPOP_H
 #define HASHPOP_H
 
-#include "hashAccounts.h"
+#include "hash.h"
 #include "item.h"
 
 // this class uses open addressing and stores a pointer to the item
