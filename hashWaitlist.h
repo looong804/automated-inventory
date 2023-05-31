@@ -1,7 +1,8 @@
 #ifndef HASHWAIT_H
 #define HASHWAIT_H
 
-#include "hashAccounts.h"
+#include "hash.h"
+#include "inventory.h"
 
 // this class uses hash chaining
 class HashWaitlist : public Hash
