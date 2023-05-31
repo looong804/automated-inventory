@@ -1,39 +1,47 @@
 #ifndef HASH_H
 #define HASH_H
 
-#include <string>
-#include <vector>
-#include "DVD.h"
-#include "customer.h"
+#include "account.h"
+#include "item.h"
+#include <stdlib.h>
 
-using namespace std;
-
-class HashMap
+// this is the basic abstract hash class that is the parent for all hash classes
+// contains premade hash functions, basic functions and data members
+class Hash
 {
 public:
-	HashMap();
-	~HashMap();
+	// currently does nothing
+	Hash();
+	// empty the slots of the hash table
+	~Hash();
 
-	//this class is just for the class ID storage, returns the index for the hash
-	int hashFunction(int customerID); 
+	// insert key and value into the hashed vector after hasing the key
+	void insert();
+	//returns a pointer because the item needs to be edited
+	Item* search(Item* item);
+	// get the number of items being stored
+	int getSize() const;
 
-	//using the hash index, insert key and value into the hashed vector
-	void insert(int hashIndex, int customerID, Customer *account); 
-
-	//returns a pointer because the customer object needs to be edited
-	Customer* search(int index); 
-	//deletes the object with the given key from the hash
-	Customer remove(int customerID); 
-	// return the hash size
-	int getSize(); 
-	
-	struct NodeData 
+	template <typename T>
+	struct NodeData
 	{
-		Item* item;
-		NodeData* next;
+		T* data = nullptr;
+		NodeData* next = nullptr;
 	};
-	
-private:
-	int size;
+
+protected:
+	// number of objects in the hashTable
+	int size = 0;
+
+	// calls an actual hash function listed below that was taken from online sources
+	// to avoid importing a hash class which is the only way we could find to import hash functions
+	// returns the index for the hash; Key: account ID; Value: account 
+	int hashFunction(Item* item);
+
+	// premade hash functions to be used in this hash class and its children
+	// hash function using folding on a string, summed 4 bytes at a time
+	int hashStringFold(string key, int tableSize);
+	// hash function using mid square method for ints
+	int hashMidSquare(int key, int tableSize);
 };
-#endif //HASH_H
+#endif
