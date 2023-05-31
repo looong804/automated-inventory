@@ -144,3 +144,17 @@ bool HashPopular::isFull()
 		return false;
 	}
 }
+
+// check if the passed in item is in the hash
+bool HashPopular::isPopular(Item* item)
+{
+	// search the hash and return true if item is found
+	if (search(item) != nullptr)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
