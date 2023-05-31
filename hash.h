@@ -10,32 +10,30 @@ using namespace std;
 
 class HashMap
 {
-	struct NodeData 
-	{
-		DVD *item;
-		DVD *next;
-	};
-
-
-
 public:
 	HashMap();
 	~HashMap();
 
-	int hashFunction(int customerID); //this class is just for the class ID storage, returns the index for the hash
+	//this class is just for the class ID storage, returns the index for the hash
+	int hashFunction(int customerID); 
 
-
-	void insert(int hashIndex, int customerID, Customer *account); //using the hash index, insert key and value into the hashed vector
+	//using the hash index, insert key and value into the hashed vector
+	void insert(int hashIndex, int customerID, Customer *account); 
 
 	//returns a pointer because the customer object needs to be edited
-	Customer* search(int index); //returns the customer, does not remove it from the heap
-	Customer remove(int customerID); //deletes the object with the given key from the hash
-
+	Customer* search(int index); 
+	//deletes the object with the given key from the hash
+	Customer remove(int customerID); 
+	// return the hash size
 	int getSize(); 
 	
+	struct NodeData 
+	{
+		Item* item;
+		NodeData* next;
+	};
+	
 private:
-
-	vector<NodeData> DVDs; 
 	int size;
 };
 #endif //HASH_H
