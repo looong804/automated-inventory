@@ -1,66 +1,61 @@
 #include "hash.h"
 
-HashMap::HashMap()
+Hash::Hash()
 {
 }
 
-HashMap::~HashMap()
+Hash::~Hash()
 {
 }
 
-// call some other premade hashFunction
-int HashMap::hashFunction(int customerID)
-{
-	
-}
-
-void HashMap::insert(int hashIndex, int customerID, Account* account)
+void Hash::insert()
 {
 }
 
-Account* HashMap::search(int index)
+Item* Hash::search(Item* item)
 {
 	return nullptr;
 }
 
-Account HashMap::remove(int customerID)
+int Hash::getSize() const
 {
-	// if empty list
-	if (head_ == nullptr)
-	{
-		return false;
+	return size;
+}
+
+int Hash::hashFunction(Item* item)
+{
+	return -2;
+}
+
+// hash function using folding on a string, summed 4 bytes at a time
+int Hash::hashStringFold(string key, int tableSize)
+{
+	long sum = 0, mul = 1;
+	for (int i = 0; i < key.length(); i++) {
+		mul = (i % 4 == 0) ? 1 : mul * 256;
+		sum += key.at(i) * mul;
 	}
-	// if head is greater than the target
-	if (*(head_->data) > target)
-	{
-		return false;
-	}
-	// first in line
-	if (*(head_->data) == target)
-	{
-		Node<T>* temp = head_;
-		head_ = head_->next;
-		size_--;
-		delete (temp->data);
-		delete temp;
-		temp = nullptr;
-		result = *(head_->data);
-		return true;
-	}
-	// for all others
-	Node<T>* p_node = head_;
-	while ((p_node->next != nullptr) && (*(p_node->next->data) < target))
-	{
-		p_node = p_node->next;
-	}
-	if ((p_node->next != nullptr) && ((*p_node->next->data) == target))
-	{
-		Node<T>* temp = p_node->next;
-		p_node->next = temp->next;
-		size_--;
-		result = *(temp->data);
-		delete temp;
-		return true;
-	}
-	return false;
+	return (int)(abs(sum) % tableSize);
+}
+
+// hash function using mid square method for ints
+int Hash::hashMidSquare(int key, int tableSize)
+{
+    // Square the key
+    int squared = key * key;
+
+    // Convert the squared value to a string
+    std::string squaredStr = std::to_string(squared);
+
+    // Calculate the number of middle digits to extract
+    int middleDigits = static_cast<int>(std::log10(squared)) / 2;
+
+    // Extract the middle digits as a substring
+    std::string middleStr = squaredStr.substr(squaredStr.length() / 2 - middleDigits, middleDigits);
+
+    // Convert the middle string back to an integer
+    int hashValue = std::stoi(middleStr);
+
+    // Calculate the actual hash value within the table size
+    return hashValue % tableSize;
 }
