@@ -18,6 +18,8 @@ public:
 	Command* search(Command* command);
 	// using the value, hash the key stored in the value, then search the given slot for the value 
 	Command remove(Command* command);
+	// check if the passed in command is in the waitlist
+	bool isInWaitlist(Command* command);
 
 private:
 	// returns the index for the hash; Key: item title; Value: command
