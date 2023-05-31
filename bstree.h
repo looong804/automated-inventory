@@ -71,6 +71,7 @@ void BSTree::inOrderTraversal() const
 	}
 }
 
+template<class M>
 void BSTree::insert(M* item)
 {
 	// if the tree is empty
@@ -144,6 +145,7 @@ void BSTree::insert(M* item)
 	return;
 }
 
+template<class M>
 Node<T>* BSTree::search(M* target) const
 {
 	//cout << root->movie;
@@ -210,6 +212,7 @@ Node<T>* BSTree::search(M* target) const
 	return nullptr;
 }
 
+template<class M>
 void BSTree::deleteTree(Node<T>* node)
 {
 	// check if node is nullptr
@@ -226,12 +229,14 @@ void BSTree::deleteTree(Node<T>* node)
 	}
 }
 
+template<class M>
 Node<T>* BSTree::getRoot() const
 {
 	//	cout << "in tree root getter" << endl;
 	return this->root;
 }
 
+template<class M>
 int BSTree::getSize() const
 {
 	return size;
