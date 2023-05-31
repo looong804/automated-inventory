@@ -22,7 +22,7 @@ public:
 	// check if all slots are taken
 	bool isFull();
 	// check if the passed in item is in the hash
-	bool isPopular();
+	bool isPopular(Item* item);
 	
 private:
 	// returns the index for the hash; Key: item title; Value: item 
