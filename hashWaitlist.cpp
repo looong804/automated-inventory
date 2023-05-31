@@ -170,9 +170,10 @@ Customer* HashWaitlist::remove(Command* command)
 			// if the command is at the start
 			if (command == start.data)
 			{
-				// create a new command object equal to the start
-				Command removed = *start.data;
-				// insert starts next into the slot in the vector
+				// get the id from the command
+				int id = command.spaceParser(1).at(0);
+				
+				// insert start's next into the slot in the vector
 				waitlist->at(hashIndex) = *start.next;
 				// delete the start data
 				delete start.data;
@@ -180,8 +181,10 @@ Customer* HashWaitlist::remove(Command* command)
 				start.data = nullptr;
 				// set the start next to nullptr
 				start.next = nullptr;
-				// return the removed command
-				return removed;
+				
+				// search for the account using the id
+				// and return the pointer to the account
+				return hashAccounts::search(id);
 			}
 			// if the command is not at the start
 			else
@@ -189,8 +192,9 @@ Customer* HashWaitlist::remove(Command* command)
 				// if command is at temp
 				if (command == temp->data)
 				{
-					// create a new command object equal to temp
-					Command removed = *temp->data;
+					// get the id from the command
+					int id = command.spaceParser(1).at(0);
+					
 					// have start point to temps next
 					start.next = temp->next;
 					// delete the temp data
@@ -199,8 +203,10 @@ Customer* HashWaitlist::remove(Command* command)
 					temp->data = nullptr;
 					// set temps next to nullptr
 					temp->next = nullptr;
-					// return the removed command
-					return removed;
+					
+					// search for the account using the id
+					// and return the pointer to the account
+					return hashAccounts::search(id);
 				}
 				// if temp is not empty and not command
 				else if (temp != nullptr && command != temp->data)
@@ -211,8 +217,9 @@ Customer* HashWaitlist::remove(Command* command)
 						// move temp to the next node
 						temp = temp->next;
 					}
-					// create a new command object equal to temp next
-					Command removed = *temp->next->data;
+					// get the id from the command
+					int id = command.spaceParser(1).at(0);
+					
 					// delete the temp next data
 					delete temp->next->data;
 					// set temp next data to nullptr
@@ -221,8 +228,10 @@ Customer* HashWaitlist::remove(Command* command)
 					temp->next = temp->next->next;
 					// set temps next to nullptr
 					temp->next = nullptr;
-					// return the removed command
-					return removed;
+					
+					// search for the account using the id
+					// and return the pointer to the account
+					return hashAccounts::search(id);
 				}
 			}
 		}
