@@ -15,8 +15,16 @@ Inventory::Node<Classic>* getClassicTree()
 {
 	return classicTree.getRoot();	
 }
+
 Inventory::Node<Comedy>* getComedyTree();
+{
+	return comedyTree.getRoot();	
+}
+
 Inventory::Node<Drama>* getDramaTree();
+{
+	return dramaTree.getRoot();	
+}
 
 // output the whole inventory by going through the vector
 // print out the comedy, then drama, then classic
