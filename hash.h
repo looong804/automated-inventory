@@ -1,13 +1,10 @@
 #ifndef HASH_H
 #define HASH_H
 
-using namespace std;
-
 #include <string>
 #include <vector>
 #include "DVD.h"
 #include "customer.h"
-//#include <hash>
 
 using namespace std;
 
