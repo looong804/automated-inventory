@@ -62,6 +62,9 @@ public:
 	// if the commands are borrows or returns put into customer history else delete them after reading/executing
 	void executeActions();
 
+    //increase the total stock in the store
+    void increaseTotal();
+
     //Creation Functions
     // open an account
     bool openAccount(Command action);
@@ -104,7 +107,7 @@ private:
     // contains all the borrow requests placed on hold due to unavailable stock
     HashWaitlist waitlist;
 	// contains all the items
-	Inventory inventory();
+	Inventory inventory;
 	// total number of all items
     int totalStock = 0;
 	// vector of strings storing all the file names
