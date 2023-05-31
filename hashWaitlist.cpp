@@ -121,8 +121,11 @@ Customer* HashWaitlist::searchGiveCustomer(Command* command)
 	// check if its the first node
 	if (start.data == command)
 	{
-		(start.data);
-		Customer* 
+		// get the id from the command
+		int id = start.data.spaceParser(1).at(0);
+		// search for the account using the id
+		// and return the pointer to the account
+		return hashAccounts::search(id);
 	}
 	// go through the whole list
 	else
@@ -136,8 +139,11 @@ Customer* HashWaitlist::searchGiveCustomer(Command* command)
 			// check if the command matches the one being looked for  
 			if (looky->data == command && looky->data != nullptr)
 			{
-				// return the found command
-				return looky->data;
+				// get the id from the command
+				int id = start.data.spaceParser(1).at(0);
+				// search for the account using the id
+				// and return the pointer to the account
+				return hashAccounts::search(id);
 			}
 			else if (looky->next != nullptr)
 			{
