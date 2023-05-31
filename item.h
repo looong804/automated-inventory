@@ -35,6 +35,8 @@ class Item
         // down the stock by one
         void downStock();
 
+	int getPopularity();
+	
         void increasePopularity();
 
         // addition overloads
