@@ -106,6 +106,51 @@ Command* HashWaitlist::search(Command* command)
 	}
 }
 
+// return a pointer to customer
+Customer* HashWaitlist::searchGiveCustomer(Command* command)
+{
+	// check if the command pointer is empty
+	if (command == nullptr)
+	{
+		return nullptr;
+	}
+
+	// nodeData equal to the first node in the linked list 
+	NodeData<Command> start = waitlist->at(hashFunction(command));
+
+	// check if its the first node
+	if (start.data == command)
+	{
+		(start.data);
+		Customer* 
+	}
+	// go through the whole list
+	else
+	{
+		// nodeData pointer to traverse the list starting at the second node
+		NodeData<Command>* looky = start.next;
+
+		// while the account isn't found
+		while (true)
+		{
+			// check if the command matches the one being looked for  
+			if (looky->data == command && looky->data != nullptr)
+			{
+				// return the found command
+				return looky->data;
+			}
+			else if (looky->next != nullptr)
+			{
+				looky = looky->next;
+			}
+			else
+			{
+				return nullptr;
+			}
+		}
+	}
+}
+
 // remove the command from the linked list
 Command HashWaitlist::remove(Command* command)
 {
