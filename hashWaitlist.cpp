@@ -152,7 +152,7 @@ Customer* HashWaitlist::searchGiveCustomer(Command* command)
 }
 
 // remove the command from the linked list
-Command HashWaitlist::remove(Command* command)
+Customer* HashWaitlist::remove(Command* command)
 {
 	// check if the command pointer is empty
 	if (command != nullptr)
