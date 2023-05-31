@@ -18,6 +18,9 @@ public:
 	// check the popular vector for the item using the hashIndex for the item title
 	Item* search(Item* item);
 	// won't work using hashing but you can just use linear searching won't be bad since its only 10 slots
+	// pass in an old item and if its in the popular hash then the new item that you passed in will replace it. 
+	// they can't be equal and they can't be empty
+	// only works if the hash slots are full
 	void swap(Item* newitem, Item* olditem);
 	// check if all slots are taken
 	bool isFull();
