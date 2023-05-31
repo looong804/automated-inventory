@@ -24,7 +24,7 @@ public:
 	stringstream convertToStringstream(string stringToSplit);
 	// returns a vector holding the passed in string parsed by spaces
 	vector<string> spaceParser(string stringToSplit);
-	// returns a vector holding a parsed string, by spaces
+	// returns a vector holding a parsed string, by spaces; give it an index from the parsedCommand vector
 	vector<string> spaceParser(int index);
 
 	//comparison overloads - checks for identical command objects
