@@ -118,14 +118,17 @@ int HashPopular::searchForSwap(Item* item)
 // swap out an old popular item with a new one
 void HashPopular::swap(Item* oldItem, Item* newItem)
 {
-	// make sure both items are not empty
-	if (newItem != nullptr && oldItem != nullptr)
+	if (isFull())
 	{
-		int index = searchForSwap(oldItem);
-		// check if the oldItem is in the popular vector
-		if (index != -1)
+		// make sure both items are not empty
+		if (newItem != nullptr && oldItem != nullptr)
 		{
-			popular->at(index) = newItem;
+			int index = searchForSwap(oldItem);
+			// check if the oldItem is in the popular vector
+			if (index != -1)
+			{
+				popular->at(index) = newItem;
+			}
 		}
 	}
 }
