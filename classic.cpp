@@ -10,6 +10,8 @@
 /*----------------------------------------------------------
 Classic(): default constructor, sets the genre to 'C'
 but nothing else is filled out.
+
+params: none
 */
 
 	Classic::Classic() 
@@ -18,6 +20,13 @@ but nothing else is filled out.
     }
 
 	// passes in a command that contains all the needed data to create a Classic object
+
+/*----------------------------------------------------------
+Classic(Command command): given the command object it pulls
+out all the needed data and inserts into the Classic object.
+
+params: Command command
+*/
 	Classic::Classic(Command command) 
     {
         setTitle(command.getVector(3));
@@ -34,10 +43,6 @@ but nothing else is filled out.
         setMonth(month);
         int year = stoi(actorAndDate[4]);
         setYear(year);
-
-        
-
-
     }
 
     /*void spaceSplitter(vector<string> &splitString, string stringToSplit) 
@@ -51,13 +56,39 @@ but nothing else is filled out.
         }
     }*/
 
-    void Classic::setMonth(int const newMonth) 
+
+
+/*----------------------------------------------------------
+setMonth(const int newMonth):
+
+sets the month to the given integer as long as that number
+is betweeen 1 and 12, else the month will be defaulted to 
+12 and an error message will be printed. 
+
+params: const int newMonth;
+
+returns: none
+
+*/
+    void Classic::setMonth(const int newMonth) 
     {
-        month = newMonth;
+	if (newMonth > 12 || new Month < 1) 
+	{
+		month = 12;
+		cout << "Month given was not between 1 and 12, the month has been defaulted to 12") << endl;
+	} else {
+        	month = newMonth;
+	}
     }
 
+/*----------------------------------------------------------
+int getMonth(): 
+returns the month of the classic object
 
-	// return the month
+params: none
+
+returns: int month
+*/
 	int Classic::getMonth() const 
     {
         return month;
@@ -83,6 +114,17 @@ but nothing else is filled out.
         }
     }
 
+
+/*----------------------------------------------------------
+int getNumberOfActors() const:
+returns the number of actors that the classic objects has
+(this is also the index of the next open spot in the vector
+that holds the major actors)
+
+params: none
+
+returns: int numOfActors
+*/
     int Classic::getNumberOfActors() const
     {
         return nextActorIndex;
