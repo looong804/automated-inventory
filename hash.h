@@ -15,10 +15,6 @@ public:
 	// empty the slots of the hash table
 	~Hash();
 
-	// insert key and value into the hashed vector after hasing the key
-	void insert();
-	//returns a pointer because the item needs to be edited
-	Item* search(Item* item);
 	// get the number of items being stored
 	int getSize() const;
 
@@ -32,11 +28,6 @@ public:
 protected:
 	// number of objects in the hashTable
 	int size = 0;
-
-	// calls an actual hash function listed below that was taken from online sources
-	// to avoid importing a hash class which is the only way we could find to import hash functions
-	// returns the index for the hash; Key: account ID; Value: account 
-	int hashFunction(Item* item);
 
 	// premade hash functions to be used in this hash class and its children
 	// hash function using folding on a string, summed 4 bytes at a time
