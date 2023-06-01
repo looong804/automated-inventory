@@ -11,6 +11,7 @@
 #include "hashAccounts.h"
 #include "hashPopular.h"
 #include "hashWaitlist.h"
+#include <vector>
 
 using namespace std;
 
@@ -73,13 +74,13 @@ public:
 
     //Search Functions
 	// find customer account and verify it exists
-	Account* findAccount(int id) const;
+	Customer* findAccount(int id);
 	// find a drama dvd and verify that it exists
-	DVD* findDrama(Drama& dvd) const;
+	Drama* findDrama(Drama& dramaDvd) const;
 	// find a comedy dvd and verify that it exists
-	DVD* findComedy(Comedy& dvd) const;
+	Comedy* findComedy(Comedy& comedyDvd) const;
 	// find a classic dvd and verify that it exists
-	DVD* findClassic(Classic& dvd) const;
+	Classic* findClassic(Classic& classicDvd) const;
 
     //Command Functions
 	// return a borrowed item
@@ -87,11 +88,11 @@ public:
 	// borrow an item
 	bool borrowItem(Command action);
 	// print out account history given the id number
-	void accountHistory(int id) const;
+	void accountHistory(int id);
 
 	//stream overloads
 	// prints out the inventory object using <<
-	friend ostream& operator<< (ostream& stream, Store& store);
+	//friend ostream& operator<< (ostream& stream, Store& store);
 	
 private:
 	// parsed info of the stock to be added
@@ -115,15 +116,15 @@ private:
 	// chars for their indicated command type
 
     char createComedy = 'F';
-	char createDrama = 'D';
-	char createClassic = 'C';
-	char showInventory = 'I';
-	char showCustomerHistory = 'H';
-	char checkoutItem = 'B';
-	char givebackItem = 'R';
+    char createDrama = 'D';
+    char createClassic = 'C';
+    char showInventory = 'I';
+    char showCustomerHistory = 'H';
+    char checkoutItem = 'B';
+    char givebackItem = 'R';
 	// vector that stores all accepted command types
 	vector<char> commandTypes {createComedy, createDrama, createClassic,
-		showInventory, showCustomerHistory, checkoutItem, givebackItem};
+                                      showInventory, showCustomerHistory, checkoutItem, givebackItem};
 };
 
 #endif

@@ -39,8 +39,8 @@ void Store::setStock(){
         if(temp.getVector(0) == "F"){
             Item newItem;
 
-            if(newItem.getTitle() == comedyTree.search(newItem).getTitle()){
-                newItem.setStock(comedyTree.search(newItem).getStock() + temp.getVector(1));
+            if(newItem.getTitle() == inventory.comedyTree.search(newItem).getTitle()){
+                newItem.setStock(inventory.comedyTree.search(newItem).getStock() + temp.getVector(1));
             }else{
                 newItem.setTitle(temp.getVector(3));
                 newItem.setStock(stoi(temp.getVector(1)));
@@ -50,8 +50,8 @@ void Store::setStock(){
         }else if(temp.getVector(0) == "D"){
             Item newItem;
 
-            if(newItem.getTitle() == dramaTree.search(newItem).getTitle()){
-                newItem.setStock(dramaTree.search(newItem).getStock() + temp.getVector(1));
+            if(newItem.getTitle() == inventory.dramaTree.search(newItem).getTitle()){
+                newItem.setStock(inventory.dramaTree.search(newItem).getStock() + temp.getVector(1));
             }else{
                 newItem.setTitle(temp.getVector(3));
                 newItem.setStock(stoi(temp.getVector(1)));
@@ -61,8 +61,8 @@ void Store::setStock(){
         }else if(temp.getVector(0) == "C"){
             Item newItem;
 
-            if(newItem.getTitle() == classicTree.search(newItem).getTitle()){
-                newItem.setStock(classicTree.search(newItem).getStock() + temp.getVector(1));
+            if(newItem.getTitle() == inventory.classicTree.search(newItem).getTitle()){
+                newItem.setStock(inventory.classicTree.search(newItem).getStock() + temp.getVector(1));
             }else{
                 newItem.setTitle(temp.getVector(3));
                 newItem.setStock(stoi(temp.getVector(1)));
@@ -83,12 +83,12 @@ void Store::setAccounts() {
         if(temp.getVector(0) == "K"){
             Customer newCustomer;
 
-            if(!accounts.isAccount(newCustomer)){
+            if(!accounts.isAccount(&newCustomer)){
                 newCustomer.setID(stoi(temp.spaceParser(1)[0])); //TODO: check
                 newCustomer.setLast(temp.spaceParser(1)[1]); //TODO: check
                 newCustomer.setFirst(temp.spaceParser(1)[2]); //TODO: check
 
-                accounts.insert(newCustomer);
+                accounts.insert(&newCustomer);
             }
         }
 
@@ -119,6 +119,7 @@ void Store::executeActions() {
 void Store::increaseTotal(){
     this -> totalStock++;
 }//close increaseTotal
+
 
 
 //Getters
@@ -171,38 +172,38 @@ bool Store::openAccount(Command action){
     Customer newAcct(action);
 
     //if account already exists
-    if(customers[0] == accounts.isAccount(newAcct))
+    if(newAcct == *accounts.search(&newAcct))
         return false;
 
     //insert account into hashtable, providing ID as key
-    accounts.insert(newAcct);
+    accounts.insert(&newAcct);
 
     return true;
 }//close openAccount
 
 //
-Account* Store::findAccount(int id) const{
+Customer* Store::findAccount(int id){
     //calls hashAccount's search function
     return accounts.search(id);
 }//close findAccount
 
 //
-DVD* Store::findDrama(Drama& dvd) const{
+Drama* Store::findDrama(Drama& dramaDvd) const{
     //checks that the first index is D
     //parse through binary tree for dvd
     //search via director then title
-    return inventory.getInventory()[1].search(dvd) -> movie;
+    return inventory.getInventory()[1].search(dramaDvd) -> movie;
 }//close findDrama
 
 //
-DVD* Store::findComedy(Comedy& dvd) const{
+Comedy* Store::findComedy(Comedy& dvd) const{
     //parse through binary tree for dvd
     //search via title then year released
     return inventory.getInventory()[0].search(dvd) -> movie;
 }//close findComedy
 
 // find a classic dvd and verify that it exists
-DVD* Store::findClassic(Classic& dvd) const{
+Classic* Store::findClassic(Classic& dvd) const{
     //parse through binary tree for dvd
     //search via release date then major actor
 
@@ -233,7 +234,7 @@ bool Store::returnItem(Command action){
         return false;
     }
 
-    Customer tempCustomer = accounts.search(stoi(fields[1]));
+    Customer tempCustomer = *accounts.search(stoi(fields[1]));
     bool borrowed = false;
 
     //checks if command requests DVD
@@ -271,9 +272,9 @@ bool Store::returnItem(Command action){
 
         //checks if there is a waitlist for Item
         //TODO: bool function to check if item is on the waitlist or not
-        if(waitlist.isWaitlisted(&action)){
+        if(waitlist.isInWaitlist(&action)){
             tempCustomer.returnItem(requestedItem);
-            Customer waitCustomer = waitlist.remove(&action);
+            Customer waitCustomer = *waitlist.remove(&action);
             waitCustomer.borrow(requestedItem);
 
             return true;
@@ -312,9 +313,9 @@ bool Store::returnItem(Command action){
 
         //checks if there is a waitlist for Item
         //TODO: bool function to check if item is on the waitlist or not
-        if(waitlist.isWaitlisted(&action)){
+        if(waitlist.isInWaitlist(&action)){
             tempCustomer.returnItem(requestedItem);
-            Customer waitCustomer = waitlist.remove(&action);
+            Customer waitCustomer = *waitlist.remove(&action);
             waitCustomer.borrow(requestedItem);
 
             return true;
@@ -349,13 +350,13 @@ bool Store::returnItem(Command action){
             return false;
         }
 
-        Classic requestedItem = findClassic(tempClassic);
+        Classic requestedItem = *findClassic(tempClassic);
 
         //checks if there is a waitlist for Item
         //TODO: bool function to check if item is on the waitlist or not
-        if(waitlist.isWaitlisted(&action)){
+        if(waitlist.isInWaitlist(&action)){
             tempCustomer.returnItem(requestedItem);
-            Customer waitCustomer = waitlist.remove(&action);
+            Customer waitCustomer = *waitlist.remove(&action);
             waitCustomer.borrow(requestedItem);
 
             return true;
@@ -395,7 +396,7 @@ bool Store::borrowItem(Command action){
         return false;
     }
 
-    Customer tempCustomer = accounts.search(stoi(fields[1]));
+    Customer tempCustomer = *accounts.search(stoi(fields[1]));
 
     //checks if command requests DVD
     if(fields[2] != "D"){
@@ -442,9 +443,8 @@ bool Store::borrowItem(Command action){
                 for(int i = 0; i < popularItems.getSize(); i++){
                     //TODO: getter for num requests for each item
                     //TODO: getter for item in the list
-                    if(requestedItem.getRequests() > popularItems.itemInList().getStock()){
-                        //TODO: algorithm to swap items?
-                        popularItems.swap();
+                    if(requestedItem.getPopularity() > popularItems.getLowestPopular() -> getPopularity()){
+                        popularItems.swap(requestedItem, popularItems.getLowestPopular());
                     }
                 }
             }
@@ -495,9 +495,8 @@ bool Store::borrowItem(Command action){
                 for(int i = 0; i < popularItems.getSize(); i++){
                     //TODO: getter for num requests for each item
                     //TODO: getter for item in the list
-                    if(requestedItem.getRequests() > popularItems.itemInList().getStock()){
-                        //TODO: algorithm to swap items?
-                        popularItems.swap();
+                    if(requestedItem.getPopularity() > popularItems.getLowestPopular() -> getPopularity()){
+                        popularItems.swap(requestedItem, popularItems.getLowestPopular());
                     }
                 }
             }
@@ -527,11 +526,11 @@ bool Store::borrowItem(Command action){
             }
         }
 
-        Classic requestedItem = findClassic(tempClassic);
+        Classic requestedItem = *findClassic(tempClassic);
 
         //checks if the Item is available
         if(requestedItem.getStock() > 0){
-            tempCustomer.borrow(requestedItem);
+            tempCustomer.borrow(requestedItem, action);
             requestedItem.downStock();
             requestedItem.increasePopularity();
 
@@ -548,9 +547,8 @@ bool Store::borrowItem(Command action){
                 for(int i = 0; i < popularItems.getSize(); i++){
                     //TODO: getter for popularity for each item
                     //TODO: getter for item in the list
-                    if(requestedItem.getRequests() > popularItems.itemInList().getStock()){
-                        //TODO: algorithm to swap items?
-                        popularItems.swap();
+                    if(requestedItem.getPopularity() > popularItems.getLowestPopular() -> getPopularity()){
+                        popularItems.swap(requestedItem, popularItems.getLowestPopular());
                     }
                 }
             }
@@ -569,7 +567,7 @@ bool Store::borrowItem(Command action){
 }//close borrowItem
 
 // print out account history given the id number
-void Store::accountHistory(int id) const{
+void Store::accountHistory(int id){
     //use id to find account in hash table
     //retrieve account
     //use account showHistory
