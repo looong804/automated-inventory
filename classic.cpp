@@ -7,6 +7,11 @@
 #include <sstream>
 
 
+/*----------------------------------------------------------
+Classic(): default constructor, sets the genre to 'C'
+but nothing else is filled out.
+*/
+
 	Classic::Classic() 
     {
         setGenre('C');
