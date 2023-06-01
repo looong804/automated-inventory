@@ -13,25 +13,25 @@ public:
 	~HashAccounts();
 
 	// insert key and value into the hashed vector after hasing the key
-	void insert(Account* account);
+	void insert(Customer* account);
 	//returns a pointer because the account needs to be edited
-	Account* search(Account* account);
+	Customer* search(Customer* account);
 	//returns a pointer because the account needs to be edited
-	Account* search(int id);
+	Customer* search(int id);
 	// check if the passed account already exists
 	bool isAccount(int id);
 	// check if the passed account already exists
-	bool isAccount(Account* account);
+	bool isAccount(Customer* account);
 	
 	// calls an actual hash function listed below that was taken from online sources
 	// to avoid importing a hash class which is the only way we could find to import hash functions
 	// returns the index for the hash; Key: account ID; Value: account 
-	int hashFunction(Account* account);
+	int hashFunction(Customer* account);
 	// returns the index for the hash; Key: account ID; Value: account 
 	int hashFunction(int id);
 
 private:
 	// vector holding the linked lists of accounts
-	vector<NodeData<Account>> accounts[20]; 
+	vector<NodeData<Customer>> accounts[20];
 };
 #endif
