@@ -74,11 +74,11 @@ public:
 	// find customer account and verify it exists
 	Customer* findAccount(int id);
 	// find a drama dvd and verify that it exists
-	Drama* findDrama(Drama& dramaDvd) const;
+	Drama* findDrama(Drama& dramaDvd);
 	// find a comedy dvd and verify that it exists
-	Comedy* findComedy(Comedy& comedyDvd) const;
+	Comedy* findComedy(Comedy& comedyDvd);
 	// find a classic dvd and verify that it exists
-	Classic* findClassic(Classic& classicDvd) const;
+	Classic* findClassic(Classic& classicDvd);
 
     //Command Functions
 	// return a borrowed item

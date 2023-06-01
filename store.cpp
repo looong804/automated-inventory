@@ -34,40 +34,40 @@ void Store::setStock(){
     //
     while(!stock.empty()){
         //Retrieve first item
-        Command temp = stock.at(0);
+        Command tempCommand = stock.at(0);
 
-        if(temp.getVector(0) == "F"){
-            Comedy newComedy;
+        if(tempCommand.getVector(0) == "F"){
+            Comedy newComedy = Comedy(tempCommand);
 
-            if(newComedy.getTitle() == inventory.getComedyTree().search(&newComedy).getTitle()){
-                newComedy.setStock(inventory.getComedyTree().search(&newComedy).getStock() + temp.getVector(1));
-            }else{
-                newComedy.setTitle(temp.getVector(3));
-                newComedy.setStock(stoi(temp.getVector(1)));
+            if(findComedy(newComedy) == nullptr){
                 inventory.getComedyTree().insert(&newComedy); //TODO: insert in right index
                 increaseTotal();
-            }
-        }else if(temp.getVector(0) == "D"){
-            Drama newDrama;
-
-            if(newDrama.getTitle() == inventory.getDramaTree().search(&newDrama).getTitle()){
-                newDrama.setStock(inventory.getDramaTree().search(&newDrama).getStock() + temp.getVector(1));
             }else{
-                newDrama.setTitle(temp.getVector(3));
-                newDrama.setStock(stoi(temp.getVector(1)));
+                if(newComedy == *findComedy(newComedy)){
+                    *findComedy(newComedy) += newComedy;
+                }
+            }
+        }else if(tempCommand.getVector(0) == "D"){
+            Drama newDrama = Drama(tempCommand);
+
+            if(findDrama(newDrama) == nullptr){
                 inventory.getDramaTree().insert(&newDrama); //TODO: insert in right index
                 increaseTotal();
-            }
-        }else if(temp.getVector(0) == "C"){
-            Classic newClassic;
-
-            if(newClassic.getTitle() == inventory.getClassicTree().search(&newClassic).getTitle()){
-                newClassic.setStock(inventory.getClassicTree().search(&newClassic).getStock() + temp.getVector(1));
             }else{
-                newClassic.setTitle(temp.getVector(3));
-                newClassic.setStock(stoi(temp.getVector(1)));
-                inventory.getClassicTree().insert(&newClassic); //TODO: insert in the right index
+                if(newDrama == *findDrama(newDrama)){
+                    *findDrama(newDrama) += newDrama;
+                }
+            }
+        }else if(tempCommand.getVector(0) == "C"){
+            Classic newClassic = Classic(tempCommand);
+
+            if(findClassic(newClassic) == nullptr){
+                inventory.getClassicTree().insert(&newClassic); //TODO: insert in right index
                 increaseTotal();
+            }else{
+                if(newClassic == *findClassic(newClassic)){
+                    *findClassic(newClassic) += newClassic;
+                }
             }
         }
 
@@ -78,16 +78,12 @@ void Store::setStock(){
 //
 void Store::setAccounts() {
     while(!customers.empty()){
-        Command temp = customers.at(0);
+        Command tempCommand = customers.at(0);
 
-        if(temp.getVector(0) == "K"){
-            Customer newCustomer;
+        if(tempCommand.getVector(0) == "K"){
+            Customer newCustomer = Customer(tempCommand);
 
             if(!accounts.isAccount(&newCustomer)){
-                newCustomer.setID(stoi(temp.spaceParser(1)[0])); //TODO: check
-                newCustomer.setLast(temp.spaceParser(1)[1]); //TODO: check
-                newCustomer.setFirst(temp.spaceParser(1)[2]); //TODO: check
-
                 accounts.insert(&newCustomer);
             }
         }
@@ -99,16 +95,16 @@ void Store::setAccounts() {
 //
 void Store::executeActions() {
     while(!actions.empty()){
-        Command temp = actions.at(0);
+        Command tempCommand = actions.at(0);
 
-        if(temp.getVector(0) == "B"){
-            borrowItem(temp);
-        }else if(temp.getVector(0) == "R"){
-            returnItem(temp);
-        }else if(temp.getVector(0) == "I"){
+        if(tempCommand.getVector(0) == "B"){
+            borrowItem(tempCommand);
+        }else if(tempCommand.getVector(0) == "R"){
+            returnItem(tempCommand);
+        }else if(tempCommand.getVector(0) == "I"){
             cout << inventory;
-        }else if(temp.getVector(0) == "H"){
-            accountHistory(stoi(temp.getVector(1)));
+        }else if(tempCommand.getVector(0) == "H"){
+            accountHistory(stoi(tempCommand.getVector(1)));
         }
 
         actions.erase(actions.begin());
@@ -183,26 +179,26 @@ Customer* Store::findAccount(int id){
 }//close findAccount
 
 //
-Drama* Store::findDrama(Drama& dramaDvd) const{
+Drama* Store::findDrama(Drama& dramaDvd){
     //checks that the first index is D
     //parse through binary tree for dvd
     //search via director then title
-    return inventory.getDramaTree().search(&dramaDvd) -> movie;
+    return inventory.getDramaTree().search(&dramaDvd) -> item;
 }//close findDrama
 
 //
-Comedy* Store::findComedy(Comedy& comedyDvd) const{
+Comedy* Store::findComedy(Comedy& comedyDvd){
     //parse through binary tree for dvd
     //search via title then year released
-    return inventory.getComedyTree().search(&comedyDvd) -> movie;
+    return inventory.getComedyTree().search(&comedyDvd) -> item;
 }//close findComedy
 
 // find a classic dvd and verify that it exists
-Classic* Store::findClassic(Classic& classicDvd) const{
+Classic* Store::findClassic(Classic& classicDvd){
     //parse through binary tree for dvd
     //search via release date then major actor
 
-    return inventory.getClassicTree().search(&classicDvd) -> movie;
+    return inventory.getClassicTree().search(&classicDvd) -> item;
 }//close findClassic
 
 
@@ -251,7 +247,7 @@ bool Store::returnItem(Command action){
 
         //checks if Customer has this Item borrowed
         for(int i = 0; i < tempCustomer.getItemsOut().size(); i++){
-            if(tempComedy == tempCustomer.getItemsOut()[i]){
+            if(action.getVector(1) == tempCustomer.getItemsOut(i)){
                 borrowed = true;
                 break;
             }
@@ -263,19 +259,19 @@ bool Store::returnItem(Command action){
             return false;
         }
 
-        Comedy requestedItem = findComedy(tempComedy);
+        Comedy requestedItem = *findComedy(tempComedy);
 
         //checks if there is a waitlist for Item
         //TODO: bool function to check if item is on the waitlist or not
         if(waitlist.isInWaitlist(&action)){
-            tempCustomer.returnItem(requestedItem);
+            tempCustomer.returnItem(action);
             Customer waitCustomer = *waitlist.remove(&action);
-            waitCustomer.borrow(requestedItem);
+            waitCustomer.borrow(action);
 
             return true;
         //no waitlist for Item
         }else{
-            tempCustomer.returnItem(requestedItem);
+            tempCustomer.returnItem(action);
             requestedItem.upStock();
 
             return true;
@@ -292,7 +288,7 @@ bool Store::returnItem(Command action){
 
         //checks if Customer has this Item borrowed
         for(int i = 0; i < tempCustomer.getItemsOut().size(); i++){
-            if(tempDrama == tempCustomer.getItemsOut()[i]){
+            if(action.getVector(1) == tempCustomer.getItemsOut(i)){
                 borrowed = true;
                 break;
             }
@@ -304,19 +300,19 @@ bool Store::returnItem(Command action){
             return false;
         }
 
-        Drama requestedItem = findDrama(tempDrama);
+        Drama requestedItem = *findDrama(tempDrama);
 
         //checks if there is a waitlist for Item
         //TODO: bool function to check if item is on the waitlist or not
         if(waitlist.isInWaitlist(&action)){
-            tempCustomer.returnItem(requestedItem);
+            tempCustomer.returnItem(action);
             Customer waitCustomer = *waitlist.remove(&action);
-            waitCustomer.borrow(requestedItem);
+            waitCustomer.borrow(action);
 
             return true;
             //no waitlist for Item
         }else{
-            tempCustomer.returnItem(requestedItem);
+            tempCustomer.returnItem(action);
             requestedItem.upStock();
 
             return true;
@@ -333,7 +329,7 @@ bool Store::returnItem(Command action){
 
         //checks if Customer has this Item borrowed
         for(int i = 0; i < tempCustomer.getItemsOut().size(); i++){
-            if(tempClassic == tempCustomer.getItemsOut()[i]){
+            if(action.getVector(1) == tempCustomer.getItemsOut(i)){
                 borrowed = true;
                 break;
             }
@@ -350,14 +346,14 @@ bool Store::returnItem(Command action){
         //checks if there is a waitlist for Item
         //TODO: bool function to check if item is on the waitlist or not
         if(waitlist.isInWaitlist(&action)){
-            tempCustomer.returnItem(requestedItem, action);
+            tempCustomer.returnItem(action);
             Customer waitCustomer = *waitlist.remove(&action);
-            waitCustomer.borrow(requestedItem, action);
+            waitCustomer.borrow(action);
 
             return true;
             //no waitlist for Item
         }else{
-            tempCustomer.returnItem(requestedItem);
+            tempCustomer.returnItem(action);
             requestedItem.upStock();
 
             return true;
@@ -411,17 +407,17 @@ bool Store::borrowItem(Command action){
 
         //checks if Customer has already borrowed this Item
         for(int i = 0; i < tempCustomer.getItemsOut().size(); i++){
-            if(tempComedy == tempCustomer.getItemsOut()[i]){
+            if(action.getVector(1) == tempCustomer.getItemsOut(i)){
                 cout << "Account has already checked this comedy item out";
                 return false;
             }
         }
 
-        Comedy requestedItem = findComedy(tempComedy);
+        Comedy requestedItem = *findComedy(tempComedy);
 
         //checks if the Item is available
         if(requestedItem.getStock() > 0){
-            tempCustomer.borrow(requestedItem);
+            tempCustomer.borrow(action);
             requestedItem.downStock();
             requestedItem.increasePopularity();
 
@@ -463,17 +459,17 @@ bool Store::borrowItem(Command action){
 
         //checks if Customer has already borrowed this Item
         for(int i = 0; i < tempCustomer.getItemsOut().size(); i++){
-            if(tempDrama == tempCustomer.getItemsOut()[i]){
+            if(action.getVector(1) == tempCustomer.getItemsOut(i)){
                 cout << "Account has already checked this drama item out";
                 return false;
             }
         }
 
-        Drama requestedItem = findDrama(tempDrama);
+        Drama requestedItem = *findDrama(tempDrama);
 
         //checks if the Item is available
         if(requestedItem.getStock() > 0){
-            tempCustomer.borrow(requestedItem);
+            tempCustomer.borrow(action);
             requestedItem.downStock();
             requestedItem.increasePopularity();
 
@@ -515,7 +511,7 @@ bool Store::borrowItem(Command action){
 
         //checks if Customer has already borrowed this Item
         for(int i = 0; i < tempCustomer.getItemsOut().size(); i++){
-            if(tempClassic == tempCustomer.getItemsOut()[i]){
+            if(action.getVector(1) == tempCustomer.getItemsOut(i)){
                 cout << "Account has already checked this classic item out";
                 return false;
             }
@@ -525,7 +521,7 @@ bool Store::borrowItem(Command action){
 
         //checks if the Item is available
         if(requestedItem.getStock() > 0){
-            tempCustomer.borrow(requestedItem, action);
+            tempCustomer.borrow(action);
             requestedItem.downStock();
             requestedItem.increasePopularity();
 

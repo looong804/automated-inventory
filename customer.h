@@ -16,7 +16,8 @@ public:
 	~Customer();
 
     //Getters
-    vector<Item> getItemsOut();
+    vector<string> getItemsOut();
+    string getItemsOut(int index);
     string getFirst() const;
     string getLast() const;
     string getFullName() const;
@@ -24,8 +25,8 @@ public:
 
 	//Functions
 	void showHistory(); //prints the customer's history
-	void borrow(Item item, Command action);
-	void returnItem(Item item, Command action);
+	void borrow(Command action);
+	void returnItem(Command action);
 
 
 	//stream overloads
@@ -36,6 +37,6 @@ public:
 private:
 	// holds the account history
 	vector<Command> history;
-    vector<Item> itemsOut;
+    vector<string> itemsOut;
 };
 #endif //CUSTOMER_H

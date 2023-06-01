@@ -31,10 +31,16 @@ Customer::~Customer(){
 
 
 //Getters
-vector<Item> Customer::getItemsOut()
+//
+vector<string> Customer::getItemsOut()
 {
     return itemsOut;
 }//close getItemsOut
+
+//
+string Customer::getItemsOut(int index){
+    return itemsOut[index];
+}//close getItemsOut index
 
 //
 string Customer::getFirst() const{
@@ -79,8 +85,8 @@ void Customer::showHistory(){
 //Pseudocode
 //if available, checks item out to Customer
 //add to history that customer borrowed item
-void Customer::borrow(Item item, Command action){
-    itemsOut.push_back(item);
+void Customer::borrow(Command action){
+    itemsOut.push_back(action.getVector(1));
     history.push_back(action);
 }//close borrow
 
@@ -90,9 +96,9 @@ void Customer::borrow(Item item, Command action){
 //checks if Customer has the item checked out
 //add to history that customer returned item
 //remove from itemsOut
-void Customer::returnItem(Item item, Command action){ //this should print an error message if it can't be returned, and shouldn't be stored in history if it isn't
+void Customer::returnItem(Command action){
     for(auto it = itemsOut.begin(); it < itemsOut.end(); it++){
-        if(item == *it){
+        if(action.getVector(1) == *it){
             itemsOut.erase(it);
         }
     }
