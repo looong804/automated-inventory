@@ -16,7 +16,7 @@ public:
 
 	void setMonth(const int newMonth);
 
-	bool getMajorActor(int const index, string &actor) const; //grabs a major actor from a certain index in the actor vector
+	bool getMajorActor(const int index, string &actor) const; //grabs a major actor from a certain index in the actor vector
 
 	bool hasMajorActor(string actor) const;
 
