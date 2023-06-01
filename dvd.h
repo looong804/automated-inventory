@@ -8,8 +8,6 @@ class Dvd : public Item
 {
 public:
 	Dvd();
-	// passes in a command object that contains all the needed data to create a DVD object
-	Dvd(Command command);
 	~Dvd();
 
 	// /char getItemType() const; 
