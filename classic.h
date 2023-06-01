@@ -14,7 +14,7 @@ public:
 	// return the month
 	int getMonth() const;
 
-	int setMonth(const int newMonth);
+	void setMonth(const int newMonth);
 
 	bool getMajorActor(int const index, string &actor) const; //grabs a major actor from a certain index in the actor vector
 
