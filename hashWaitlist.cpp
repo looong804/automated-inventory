@@ -107,7 +107,7 @@ Command* HashWaitlist::search(Command* command)
 }
 
 // return a pointer to customer
-Customer* HashWaitlist::searchGiveCustomer(Command* command)
+int HashWaitlist::searchGiveCustomer(Command* command)
 {
 	// check if the command pointer is empty
 	if (command == nullptr)
@@ -122,10 +122,10 @@ Customer* HashWaitlist::searchGiveCustomer(Command* command)
 	if (start.data == command)
 	{
 		// get the id from the command
-		int id = start.data.spaceParser(1).at(0);
+		int id = stoi(start.data->spaceParser(1).at(0));
 		// search for the account using the id
 		// and return the pointer to the account
-		return hashAccounts::search(id);
+		return id;
 	}
 	// go through the whole list
 	else
@@ -143,7 +143,7 @@ Customer* HashWaitlist::searchGiveCustomer(Command* command)
 				int id = start.data.spaceParser(1).at(0);
 				// search for the account using the id
 				// and return the pointer to the account
-				return hashAccounts::search(id);
+				return id;
 			}
 			else if (looky->next != nullptr)
 			{
@@ -151,14 +151,14 @@ Customer* HashWaitlist::searchGiveCustomer(Command* command)
 			}
 			else
 			{
-				return nullptr;
+				return -1;
 			}
 		}
 	}
 }
 
 // remove the command from the linked list
-Customer* HashWaitlist::remove(Command* command)
+int HashWaitlist::remove(Command* command)
 {
 	// check if the command pointer is empty
 	if (command != nullptr)
@@ -177,7 +177,7 @@ Customer* HashWaitlist::remove(Command* command)
 			if (command == start.data)
 			{
 				// get the id from the command
-				int id = command.spaceParser(1).at(0);
+				int id = stoi(command.spaceParser(1).at(0));
 				
 				// insert start's next into the slot in the vector
 				waitlist->at(hashIndex) = *start.next;
@@ -190,7 +190,7 @@ Customer* HashWaitlist::remove(Command* command)
 				
 				// search for the account using the id
 				// and return the pointer to the account
-				return hashAccounts::search(id);
+				return id;
 			}
 			// if the command is not at the start
 			else
@@ -212,7 +212,7 @@ Customer* HashWaitlist::remove(Command* command)
 					
 					// search for the account using the id
 					// and return the pointer to the account
-					return hashAccounts::search(id);
+					return id;
 				}
 				// if temp is not empty and not command
 				else if (temp != nullptr && command != temp->data)
@@ -237,7 +237,7 @@ Customer* HashWaitlist::remove(Command* command)
 					
 					// search for the account using the id
 					// and return the pointer to the account
-					return hashAccounts::search(id);
+					return id;
 				}
 			}
 		}
