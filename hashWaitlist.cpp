@@ -63,12 +63,12 @@ void HashWaitlist::insert(Command* command)
 	}
 }
 
-int HashWaitlist::search(Command* command)
+Command* HashWaitlist::search(Command* command)
 {
 	// check if the command pointer is empty
 	if (command == nullptr)
 	{
-		return -1;
+		return nullptr;
 	}
 
 	// nodeData equal to the first node in the linked list 
@@ -100,7 +100,7 @@ int HashWaitlist::search(Command* command)
 			}
 			else
 			{
-				return -1;
+				return nullptr;
 			}
 		}
 	}
