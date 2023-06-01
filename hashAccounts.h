@@ -2,6 +2,7 @@
 #define HASHACCS_H
 
 #include "hash.h"
+#include "customer.h" 
 
 // this class is using hash chainging
 class HashAccounts : public Hash
