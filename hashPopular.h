@@ -3,6 +3,7 @@
 
 #include "hash.h"
 #include "item.h"
+#include <limits.h>
 
 // this class uses open addressing and stores a pointer to the item
 class HashPopular : public Hash
