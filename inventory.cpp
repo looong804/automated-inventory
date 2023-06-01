@@ -11,21 +11,18 @@ Inventory::~Inventory()
 }
 
 // returns the roots to their respective trees
-BSTree<Classic>* Inventory::getClassicTree()
+Node* Inventory::getClassicTree()
 {
-	BSTree<Classic>* classic = &classicTree;
 	return classicTree;	
 }
 
-BSTree<Comedy>* Inventory::getComedyTree()
+Node* Inventory::getComedyTree();
 {
-	BSTree<Comedy>* comedy = &comedyTree;
 	return comedyTree;	
 }
 
-BSTree<Drama>* Inventory::getDramaTree()
+Node* Inventory::getDramaTree();
 {
-	BSTree<Drama>* drama = &dramaTree;
 	return dramaTree;	
 }
 
@@ -35,7 +32,8 @@ BSTree<Drama>* Inventory::getDramaTree()
 ostream& operator<<(ostream& stream, Inventory& inventory)
 {
 	// call the inordertraversal on all the trees in inventory
-	(inventory.getClassicTree()).inOrderTraversal();
-	inventory.getComedyTree().inOrderTraversal();
-	inventory.getDramaTree().inOrderTraversal();
+  stream << inventory.getClassicTree().inOrderTraversal();
+	stream << inventory.getComedyTree().inOrderTraversal();
+	stream << inventory.getDramaTree().inOrderTraversal();
+ return stream;
 }
