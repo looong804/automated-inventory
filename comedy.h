@@ -28,8 +28,5 @@ public:
 	friend ostream& operator<< (ostream& stream, const Comedy& comedy);
 
 private:
-
-
-
 };
-#endif COMEDY_H
+#endif // COMEDY_H
