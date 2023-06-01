@@ -116,5 +116,7 @@ char type = 'D'; // Dvd is default if not changed by contructor
 	// display all the info 
 	ostream& operator<< (ostream& stream, const Comedy& comedy) 
     {
-        cout << comedy.getGenre() << ", " << comedy.getStock() << ", " <<comedy.getDirector() << ", " << comedy.getTitle() << ", " << comedy.getYear();
+        stream << comedy.getGenre() << ", " << comedy.getStock() << ", " <<comedy.getDirector() << ", " << comedy.getTitle() << ", " << comedy.getYear();
+
+        return stream;
     }
