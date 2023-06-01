@@ -214,6 +214,8 @@ returns: bool
     //sorted by release date and major actor, the first major actor added
 
 /*----------------------------------------------------------
+bool operator>(const Classic& rhs): 
+
 
 */
 	bool Classic::operator>(const Classic& rhs) const 
