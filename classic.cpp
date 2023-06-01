@@ -130,6 +130,17 @@ returns: int numOfActors
         return nextActorIndex;
     }
 
+/*----------------------------------------------------------
+addMajorActor(string actor): 
+
+adds a major actor to the classic object. String must be
+first name and last naem with a space between
+"firstName LastName"
+
+params: string actor
+
+returns: none
+*/
     void Classic::addMajorActor(string actor) 
     {   
         majorActors[nextActorIndex] = actor;
@@ -152,6 +163,22 @@ returns: int numOfActors
 
 	//comparison overloads - sorted by release date then major actor
 	// a classic movie is equal if the director, title and date are the same
+
+/*----------------------------------------------------------
+operator==(const Classic& rhs) const:
+
+checks if two classic obejcts are equal. This is a comparison
+of the director, the title, and the month and year date.
+Does not consider the major actors, as there might
+be two lines for the same classic movie but featuring a
+different major actor.
+
+returns true if equal, returns false if not equal
+
+params: const Classic& rhs
+
+returns: bool
+*/
 	bool Classic::operator==(const Classic& rhs) const 
     {
         if(getDirector() == rhs.getDirector() && getTitle() == rhs.getTitle() && getYear() == rhs.getYear() && getMonth() == rhs.getMonth()) 
@@ -163,12 +190,32 @@ returns: int numOfActors
         }
     }
 
+
+/*----------------------------------------------------------
+operator!=(const Classic& rhs) const:
+
+checks if two classic obejcts are not equal. This is a comparison
+of the director, the title, and the month and year date.
+Does not consider the major actors, as there might
+be two lines for the same classic movie but featuring a
+different major actor.
+
+returns true if not equal, returns false if equal
+
+params: const Classic& rhs
+
+returns: bool
+*/
 	bool Classic::operator!=(const Classic& rhs) const 
     {
         return !(*this == rhs);
     }
 
     //sorted by release date and major actor, the first major actor added
+
+/*----------------------------------------------------------
+
+*/
 	bool Classic::operator>(const Classic& rhs) const 
     {
         string actor1;
