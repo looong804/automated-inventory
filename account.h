@@ -4,27 +4,38 @@
 #include "command.h"
 #include <string>
 
+using namespace std;
+
 class Account{
     public:
+    //Constructors
     Account();
+
+    //Destructors
     ~Account();
 
-    //actions
+    //Setters
+    void setFirst(const string firstName);
+    void setLast(const string lastName);
+    void setID(const int idNum);
+
+    //Getters
     // return the customer's first name
-    string getFirst() const;
+    virtual string getFirst() const;
     // return the customer's last name
-    string getLast() const;
+    virtual string getLast() const;
     // return the customer's full name
-    string getFullName() const;
+    virtual string getFullName() const;
     // return the customer id
-    int getID() const;
+    virtual int getID() const;
 
     private:
     // account holder's first name
-    string first = "";
+    string first;
     // account holder's last name
-    string last = "";
+    string last;
     // account id
-    int id = 0;
-};
+    int id;
+};//close Account
+
 #endif //ACCOUNT_H
