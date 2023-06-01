@@ -115,7 +115,7 @@ private:
 	vector<string> filesNames;
 	// chars for their indicated command type
 
-    char createComedy = 'F';
+    char createComedy = 'F'; //put into three differnet vectors, stockChars, CustomerChars, ActionChars. This will replace the ORs in readFile
     char createDrama = 'D';
     char createClassic = 'C';
     char showInventory = 'I';
