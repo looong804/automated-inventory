@@ -90,7 +90,7 @@ void Customer::borrow(Item item, Command action){
 //checks if Customer has the item checked out
 //add to history that customer returned item
 //remove from itemsOut
-void Customer::returnItem(Item item, Command action){
+void Customer::returnItem(Item item, Command action){ //this should print an error message if it can't be returned, and shouldn't be stored in history if it isn't
     for(auto it = itemsOut.begin(); it < itemsOut.end(); it++){
         if(item == *it){
             itemsOut.erase(it);
