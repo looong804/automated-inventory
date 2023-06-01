@@ -17,12 +17,6 @@
         setItemType('D');
     }
 
-    void Dvd::setYear(int newYear) 
-    {
-        year = newYear;
-    }
-
-
 	// addition overloads (combines the stock for most DVDs, except for classic also )
 	Dvd Dvd::operator+ (const Dvd& rhs) const 
     {
@@ -79,7 +73,9 @@
 	// output the title 
 	ostream& operator<< (ostream& stream, Dvd& dvd) 
     {
-        cout << dvd.getTitle() << " " << dvd.getYear() << endl;
+        stream << dvd.getTitle() << " " << dvd.getYear() << endl;
+
+        return stream;
     }
 
 	/*
