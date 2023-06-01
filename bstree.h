@@ -53,7 +53,7 @@ BSTree<T>::~BSTree()
 }
 
 template <class T>
-void BSTree<T>::inOrderTraversal(Node* look) const
+void BSTree<T>::inOrderTraversal(BSTree<T>::Node* look) const
 {
 	if (look != nullptr)
 	{
@@ -218,7 +218,7 @@ BSTree<T>::Node* BSTree<T>::search(T* target) const
 }
 
 template<class T>
-void BSTree<T>::deleteTree(Node* node)
+void BSTree<T>::deleteTree(BSTree<T>::Node* node)
 {
 	// check if node is nullptr
 	if (node != nullptr)
