@@ -12,9 +12,9 @@ HashAccounts::~HashAccounts()
 	for (int i = 0; i < accounts->size(); i++)
 	{
 		// nodeData equal to the first node in the linked list 
-		NodeData<Account> start = accounts->at(i);
+		NodeData<Customer> start = accounts->at(i);
 		// pointer to traverse the list starting at the 2 node
-		NodeData<Account>* temp = start.next;
+		NodeData<Customer>* temp = start.next;
 
 		// delete start data
 		delete start.data;
@@ -49,7 +49,7 @@ HashAccounts::~HashAccounts()
 
 // uses the accountID to create the hash
 // call some other premade hashFunction that returns the hashIndex
-int HashAccounts::hashFunction(Account* account)
+int HashAccounts::hashFunction(Customer* account)
 {
 	// check if the item pointer is empty
 	if (account == nullptr)
@@ -76,7 +76,7 @@ int HashAccounts::hashFunction(int id)
 }
 
 //using the hash index, insert key and value into the hashed vector
-void HashAccounts::insert(Account* account)
+void HashAccounts::insert(Customer* account)
 {
 	// check if the account pointer is empty
 	if (account != nullptr)
@@ -93,9 +93,9 @@ void HashAccounts::insert(Account* account)
 		else
 		{
 			// create a nodedata equal to the first node in the linked list
-			NodeData<Account> start = accounts->at(hashIndex);
+			NodeData<Customer> start = accounts->at(hashIndex);
 			// create a pointer to traverse the linked list starting at the 2 node
-			NodeData<Account>* temp = start.next;
+			NodeData<Customer>* temp = start.next;
 
 			// if temp is not empty
 			if (temp != nullptr)
@@ -107,7 +107,7 @@ void HashAccounts::insert(Account* account)
 					temp = temp->next;
 				}
 				// add in a new node after temp
-				temp->next = new NodeData<Account>;
+				temp->next = new NodeData<Customer>;
 				// set the new node data to passed account
 				temp->next->data = account;
 				// set the new node's next pointer to nullptr
@@ -117,7 +117,7 @@ void HashAccounts::insert(Account* account)
 			else
 			{
 				// add in a new node to temps current location
-				start.next = new NodeData<Account>;
+				start.next = new NodeData<Customer>;
 				// set the new node data to passed account
 				start.next->data = account;
 				// set the new node's next pointer to nullptr
@@ -131,7 +131,7 @@ void HashAccounts::insert(Account* account)
 
 // returns a pointer because the account object needs to be edited
 // returns nullptr if not found
-Account* HashAccounts::search(Account* account)
+Customer* HashAccounts::search(Customer* account)
 {
 	// check if the account pointer is empty
 	if (account == nullptr) 
@@ -140,7 +140,7 @@ Account* HashAccounts::search(Account* account)
 	}
 
 	// nodeData equal to the first node in the linked list 
-	NodeData<Account> start = accounts->at(hashFunction(account));
+	NodeData<Customer> start = accounts->at(hashFunction(account));
 
 	// check if its the first node
 	if (start.data == account)
@@ -151,7 +151,7 @@ Account* HashAccounts::search(Account* account)
 	else
 	{
 		// nodeData pointer to traverse the list starting at the second node
-		NodeData<Account>* looky = start.next;
+		NodeData<Customer>* looky = start.next;
 
 		// while the account isn't found
 		while (true)
@@ -176,7 +176,7 @@ Account* HashAccounts::search(Account* account)
 
 // returns a pointer because the account object needs to be edited
 // returns nullptr if not found
-Account* HashAccounts::search(int id)
+Customer* HashAccounts::search(int id)
 {
 	// check if the id is too small
 	if (id < 1000) 
@@ -185,24 +185,24 @@ Account* HashAccounts::search(int id)
 	}
 
 	// nodeData equal to the first node in the linked list 
-	NodeData<Account> start = accounts->at(hashFunction(id));
+	NodeData<Customer> start = accounts->at(hashFunction(id));
 
 	// check if its the first node
-	if (start.data.getID() == id)
+	if (start.data -> getID() == id)
 	{
-		return start.data.getID();
+		return start.data;
 	}
 	// go through the whole list
 	else
 	{
 		// nodeData pointer to traverse the list starting at the second node
-		NodeData<Account>* looky = start.next;
+		NodeData<Customer>* looky = start.next;
 
 		// while the account isn't found
 		while (true)
 		{
 			// check if the account ID matches the one being looked for  
-			if (looky->data.getID() == id && looky->data != nullptr)
+			if (looky -> data -> getID() == id && looky->data != nullptr)
 			{
 				// return the found account
 				return looky->data;
@@ -233,7 +233,7 @@ bool HashAccounts::isAccount(int id)
 }
 
 // check if the passed account exists 
-bool HashAccounts::isAccount(Account* account)
+bool HashAccounts::isAccount(Customer* account)
 {
 	if (search(account) != nullptr)
 	{
