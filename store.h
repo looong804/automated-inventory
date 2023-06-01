@@ -111,6 +111,7 @@ private:
     int totalStock = 0;
 	// vector of strings storing all the file names
 	vector<string> filesNames;
+	// chars for their indicated command type
 };
 
 #endif
