@@ -52,4 +52,4 @@ private:
 
 	//BSTree<Classic> bstree(); 
 };
-#endif CLASSIC_H
+#endif // CLASSIC_H
