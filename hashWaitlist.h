@@ -3,6 +3,7 @@
 
 #include "hash.h"
 #include "customer.h"
+#include "command.h"
 
 // this class uses hash chaining
 class HashWaitlist : public Hash
