@@ -11,12 +11,6 @@
         setItemType('D');
     }
 
-	// passes in a command object that contains all the needed data to create a DVD object
-	Dvd::Dvd(Command command) 
-    {
-        setItemType('D');
-    }
-
 	// addition overloads (combines the stock for most DVDs, except for classic also )
 	Dvd Dvd::operator+ (const Dvd& rhs) const 
     {
