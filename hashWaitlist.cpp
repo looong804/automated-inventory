@@ -100,7 +100,7 @@ Command* HashWaitlist::search(Command* command)
 			}
 			else
 			{
-				return nullptr;
+				return -1;
 			}
 		}
 	}
