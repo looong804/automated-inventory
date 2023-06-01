@@ -20,10 +20,10 @@ public:
 	Command* search(Command* command);
 	// check the waitlist using the hashIndex for the item title
 	// return a customer pointer for customer editing
-	Customer* searchGiveCustomer(Command* command);
+	int searchGiveCustomer(Command* command);
 	// using the value, hash the key stored in the value, then search the given slot for the value 
 	// returns a customer pointer for sending the requested item straight to the customer
-	Customer* remove(Command* command);
+	int remove(Command* command);
 	// check if the passed in command is in the waitlist
 	bool isInWaitlist(Command* command);
 
