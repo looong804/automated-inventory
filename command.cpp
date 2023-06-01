@@ -79,6 +79,12 @@ Command::Command(string command)
 	}
 }
 
+//
+vector<char> Command::getCommandTypes()
+{
+    return this->commandTypes;
+}//close getCommand
+
 // pass in the error message wanted
 // enables lots of error printing without changing the function just adding error messages
 void Command::printErrorMessage(string errorType)
