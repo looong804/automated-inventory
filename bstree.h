@@ -5,16 +5,14 @@
 #include "dvd.h"
 
 template <class T>
+class BSTree
+{
 struct Node
 {
     T* item;
     Node* right;
     Node* left;
 };
-
-template<class M>
-class BSTree
-{
 public:
     //default constructor
     BSTree(); 
@@ -26,9 +24,9 @@ public:
     // traverse the tree in order and print out each item
     void inOrderTraversal(Node<T>* look) const;
     // inserts a new item into the tree
-    void insert(M* item);
+    void insert(T* item);
     // find an item and return a pointer to it
-    Node<T>* search(M* target) const; 
+    Node<T>* search(T* target) const; 
     // return the root of the tree
     Node<T>* getRoot() const;
     // return the size
@@ -45,7 +43,6 @@ private:
 #endif
 
 
-
 // this is the implementaion for the above tree
 
 // have it call a helper delete tree function
@@ -55,6 +52,7 @@ BSTree::~BSTree()
 	deleteTree(root);
 }
 
+template<class T>
 void BSTree::inOrderTraversal(Node<T>* look) const
 {
 	if (look != nullptr)
@@ -77,8 +75,8 @@ void BSTree::inOrderTraversal() const
 	inOrderTraversal(root);
 }
 
-template<class M>
-void BSTree::insert(M* item)
+template<class T>
+void BSTree::insert(T* item)
 {
 	// if the tree is empty
 	if (this->root == nullptr)
@@ -151,8 +149,8 @@ void BSTree::insert(M* item)
 	return;
 }
 
-template<class M>
-Node<T>* BSTree::search(M* target) const
+template<class T>
+Node<T>* BSTree::search(T* target) const
 {
 	//cout << root->item;
 	// if empty tree
@@ -218,7 +216,7 @@ Node<T>* BSTree::search(M* target) const
 	return nullptr;
 }
 
-template<class M>
+template<class T>
 void BSTree::deleteTree(Node<T>* node)
 {
 	// check if node is nullptr
@@ -235,14 +233,13 @@ void BSTree::deleteTree(Node<T>* node)
 	}
 }
 
-template<class M>
+template<class T>
 Node<T>* BSTree::getRoot() const
 {
 	//	cout << "in tree root getter" << endl;
 	return this->root;
 }
 
-template<class M>
 int BSTree::getSize() const
 {
 	return size;
