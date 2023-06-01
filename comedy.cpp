@@ -37,8 +37,8 @@ char type = 'D'; // Dvd is default if not changed by contructor
     {
         setTitle(command.getVector(3));
         setDirector(command.getVector(2)); 
-        setStock(command.getVector(1));
-        setYear(command.getVector(4));
+        setStock(stoi(command.getVector(1)));
+        setYear(stoi(command.getVector(4)));
         setGenre('F');
 
     }
