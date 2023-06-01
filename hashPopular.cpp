@@ -167,7 +167,6 @@ Item* HashPopular::getLowestPopular()
 	{
 		return nullptr;
 	}
-	#include <limits.h>
 	int lowest = MAX_INT;
 	int index = 0;
 	// search the whole popular vector for the lowest popular item
