@@ -37,35 +37,35 @@ void Store::setStock(){
         Command temp = stock.at(0);
 
         if(temp.getVector(0) == "F"){
-            Item newItem; //this should be a comedy object, not an item
+            Comedy newComedy;
 
-            if(newItem.getTitle() == inventory.comedyTree.search(newItem).getTitle()){
-                newItem.setStock(inventory.comedyTree.search(newItem).getStock() + temp.getVector(1));
+            if(newComedy.getTitle() == inventory.comedyTree.search(newComedy).getTitle()){
+                newComedy.setStock(inventory.comedyTree.search(newComedy).getStock() + temp.getVector(1));
             }else{
-                newItem.setTitle(temp.getVector(3));
-                newItem.setStock(stoi(temp.getVector(1)));
+                newComedy.setTitle(temp.getVector(3));
+                newComedy.setStock(stoi(temp.getVector(1)));
                 inventory.getInventory()[0].insert(); //TODO: insert in right index
                 increaseTotal();
             }
         }else if(temp.getVector(0) == "D"){
-            Item newItem;
+            Drama newDrama;
 
-            if(newItem.getTitle() == inventory.dramaTree.search(newItem).getTitle()){
-                newItem.setStock(inventory.dramaTree.search(newItem).getStock() + temp.getVector(1));
+            if(newDrama.getTitle() == inventory.dramaTree.search(newDrama).getTitle()){
+                newDrama.setStock(inventory.dramaTree.search(newDrama).getStock() + temp.getVector(1));
             }else{
-                newItem.setTitle(temp.getVector(3));
-                newItem.setStock(stoi(temp.getVector(1)));
+                newDrama.setTitle(temp.getVector(3));
+                newDrama.setStock(stoi(temp.getVector(1)));
                 inventory.getInventory()[1].insert(); //TODO: insert in right index
                 increaseTotal();
             }
         }else if(temp.getVector(0) == "C"){
-            Item newItem;
+            Classic newClassic;
 
-            if(newItem.getTitle() == inventory.classicTree.search(newItem).getTitle()){
-                newItem.setStock(inventory.classicTree.search(newItem).getStock() + temp.getVector(1));
+            if(newClassic.getTitle() == inventory.classicTree.search(newClassic).getTitle()){
+                newClassic.setStock(inventory.classicTree.search(newClassic).getStock() + temp.getVector(1));
             }else{
-                newItem.setTitle(temp.getVector(3));
-                newItem.setStock(stoi(temp.getVector(1)));
+                newClassic.setTitle(temp.getVector(3));
+                newClassic.setStock(stoi(temp.getVector(1)));
                 inventory.getInventory()[2].insert(); //TODO: insert in the right index
                 increaseTotal();
             }
