@@ -140,7 +140,7 @@ int HashWaitlist::searchGiveCustomer(Command* command)
 			if (looky->data == command && looky->data != nullptr)
 			{
 				// get the id from the command
-				int id = start.data->spaceParser(1).at(0);
+				int id = stoi(start.data->spaceParser(1).at(0));
 				// search for the account using the id
 				// and return the pointer to the account
 				return id;
@@ -199,7 +199,7 @@ int HashWaitlist::remove(Command* command)
 				if (command == temp->data)
 				{
 					// get the id from the command
-					int id = command->spaceParser(1).at(0);
+					int id = stoi(command->spaceParser(1).at(0));
 					
 					// have start point to temps next
 					start.next = temp->next;
@@ -224,7 +224,7 @@ int HashWaitlist::remove(Command* command)
 						temp = temp->next;
 					}
 					// get the id from the command
-					int id = command->spaceParser(1).at(0);
+					int id = stoi(command->spaceParser(1).at(0));
 					
 					// delete the temp next data
 					delete temp->next->data;
