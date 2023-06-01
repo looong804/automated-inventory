@@ -11,18 +11,21 @@ Inventory::~Inventory()
 }
 
 // returns the roots to their respective trees
-Node* Inventory::getClassicTree()
+BSTree<Classic>* Inventory::getClassicTree()
 {
+	BSTree<Classic>* classic = &classicTree;
 	return classicTree;	
 }
 
-Node* Inventory::getComedyTree();
+BSTree<Comedy>* Inventory::getComedyTree()
 {
+	BSTree<Comedy>* comedy = &comedyTree;
 	return comedyTree;	
 }
 
-Node* Inventory::getDramaTree();
+BSTree<Drama>* Inventory::getDramaTree()
 {
+	BSTree<Drama>* drama = &dramaTree;
 	return dramaTree;	
 }
 
