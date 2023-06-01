@@ -25,9 +25,9 @@ public:
 	~BSTree();
 
 	// traverse the tree in order and print out each item
-	string inOrderTraversal() const;
+	void inOrderTraversal() const;
 	// traverse the tree in order and print out each item
-	string inOrderTraversal(BSTree<T>::Node* look) const;
+	void inOrderTraversal(BSTree<T>::Node* look) const;
 	// inserts a new item into the tree
 	void insert(T* item);
 	// find an item and return a pointer to it
@@ -57,7 +57,7 @@ BSTree<T>::~BSTree()
 }
 
 template <class T>
-string BSTree<T>::inOrderTraversal(BSTree<T>::Node* look) const
+void BSTree<T>::inOrderTraversal(BSTree<T>::Node* look) const
 {
 	if (look != nullptr)
 	{
@@ -66,21 +66,20 @@ string BSTree<T>::inOrderTraversal(BSTree<T>::Node* look) const
 		// call inorder again but going to the left
 		inOrderTraversal(look->left);
 		// print out the left node movie
-		output << (look->left->item) << endl;
+		cout << (look->left->item) << endl;
 		// print out the current node movie
-		output << (look->item) << endl;
+		cout << (look->item) << endl;
 		// call inorder for the right
 		inOrderTraversal(look->right);
 		// print the movie from the right node
-		output << (look->right->item) << endl;
+		cout << (look->right->item) << endl;
 	}
 }
 
 template <class T>
-string BSTree<T>::inOrderTraversal() const
+void BSTree<T>::inOrderTraversal() const
 {
-	stringstream output;
-  output << inOrderTraversal(root);
+  cout << inOrderTraversal(root);
 }
 
 template<class T>
