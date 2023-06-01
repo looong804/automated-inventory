@@ -7,13 +7,15 @@
 template <class T>
 class BSTree
 {
+public:
+
 	struct Node
 	{
 		T* item;
 		Node* right;
 		Node* left;
 	};
-public:
+ 
 	//default constructor
 	BSTree();
 	//destructor
@@ -22,25 +24,24 @@ public:
 	// traverse the tree in order and print out each item
 	void inOrderTraversal() const;
 	// traverse the tree in order and print out each item
-	void inOrderTraversal(Node* look) const;
+	void inOrderTraversal(BSTree<T>::Node* look) const;
 	// inserts a new item into the tree
 	void insert(T* item);
 	// find an item and return a pointer to it
-	Node* search(T* target) const;
+	BSTree<T>::Node* search(T* target) const;
 	// return the root of the tree
-	Node* getRoot() const;
+	BSTree<T>::Node* getRoot() const;
 	// return the size
 	int getSize() const;
 
 private:
 	// start of the tree
-	Node* root = nullptr;
+	BSTree<T>::Node* root = nullptr;
 	// number of items in the tree
 	int size = 0;
 	// recursive helper function for the destructor
-	void deleteTree(Node* node);
+	void deleteTree(BSTree<T>::Node* node);
 };
-#endif
 
 
 // this is the implementaion for the above tree
@@ -151,7 +152,7 @@ void BSTree<T>::insert(T* item)
 }
 
 template<class T>
-BSTree<T>::Node* BSTree<T>::search(T* target) const
+typename BSTree<T>::Node* BSTree<T>::search(T* target) const
 {
 	//cout << root->item;
 	// if empty tree
@@ -246,3 +247,4 @@ int BSTree<T>::getSize() const
 {
 	return size;
 }
+#endif
