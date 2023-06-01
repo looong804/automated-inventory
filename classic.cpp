@@ -72,10 +72,10 @@ returns: none
 */
     void Classic::setMonth(const int newMonth) 
     {
-	if (newMonth > 12 || new Month < 1) 
+	if (newMonth > 12 || newMonth < 1) 
 	{
 		month = 12;
-		cout << "Month given was not between 1 and 12, the month has been defaulted to 12") << endl;
+		cout << "Month given was not between 1 and 12, the month has been defaulted to 12" << endl;
 	} else {
         	month = newMonth;
 	}
