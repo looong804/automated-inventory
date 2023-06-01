@@ -30,9 +30,9 @@ public:
 	// inserts a new item into the tree
 	void insert(T* item);
 	// find an item and return a pointer to it
-	BSTree<T>::Node* search(T* target) const;
+	Node* search(T* target) const;
 	// return the root of the tree
-	BSTree<T>::Node* getRoot() const;
+	Node* getRoot() const;
 	// return the size
 	int getSize() const;
 
