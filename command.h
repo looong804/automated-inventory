@@ -26,6 +26,8 @@ public:
 	vector<string> spaceParser(string stringToSplit);
 	// returns a vector holding a parsed string, by spaces; give it an index from the parsedCommand vector
 	vector<string> spaceParser(int index);
+     //retrieve the command types
+    vector<char> getCommandTypes();
 
 	//comparison overloads - checks for identical command objects
 	bool operator==(const Command& rhs) const;
@@ -38,5 +40,18 @@ private:
 	// all error messages to be eccountered when reading in a command
 	// error message for: command type failure - non existant
 	string error1 = "ERROR: Command type failure - non-existant command: ";
+ 
+  // chars for their indicated command type
+    char createComedy = 'F';
+    char createDrama = 'D';
+    char createClassic = 'C';
+    char showInventory = 'I';
+    char showCustomerHistory = 'H';
+    char checkoutItem = 'B';
+    char givebackItem = 'R';
+    
+	// vector that stores all accepted command types
+	vector<char> commandTypes {createComedy, createDrama, createClassic,
+                                      showInventory, showCustomerHistory, checkoutItem, givebackItem};
 };
 #endif
