@@ -26,6 +26,8 @@ public:
 	bool isFull();
 	// check if the passed in item is in the hash
 	bool isPopular(Item* item);
+	// returns the item with the lowest popularity thats in the hash
+	Item* getLowestPopular();
 	
 private:
 	// returns the index for the hash; Key: item title; Value: item 
