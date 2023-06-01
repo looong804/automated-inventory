@@ -2,7 +2,9 @@
 #define BSTREE_H
 
 #include "customer.h"
-#include "dvd.h"
+#include "classic.h"
+#include "comedy.h"
+#include "drama.h"
 
 template <class T>
 class BSTree
@@ -236,7 +238,7 @@ void BSTree<T>::deleteTree(BSTree<T>::Node* node)
 }
 
 template<class T>
-BSTree<T>::Node* BSTree<T>::getRoot() const
+typename BSTree<T>::Node* BSTree<T>::getRoot() const
 {
 	//	cout << "in tree root getter" << endl;
 	return this->root;
