@@ -37,7 +37,7 @@ void Store::setStock(){
         Command temp = stock.at(0);
 
         if(temp.getVector(0) == "F"){
-            Item newItem;
+            Item newItem; //this should be a comedy object, not an item
 
             if(newItem.getTitle() == inventory.comedyTree.search(newItem).getTitle()){
                 newItem.setStock(inventory.comedyTree.search(newItem).getStock() + temp.getVector(1));
