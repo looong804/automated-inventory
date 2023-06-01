@@ -5,6 +5,7 @@
 #include "classic.h"
 #include "comedy.h"
 #include "drama.h"
+#include <sstream>
 
 template <class T>
 class BSTree
@@ -24,9 +25,9 @@ public:
 	~BSTree();
 
 	// traverse the tree in order and print out each item
-	void inOrderTraversal() const;
+	string inOrderTraversal() const;
 	// traverse the tree in order and print out each item
-	void inOrderTraversal(BSTree<T>::Node* look) const;
+	string inOrderTraversal(BSTree<T>::Node* look) const;
 	// inserts a new item into the tree
 	void insert(T* item);
 	// find an item and return a pointer to it
@@ -38,7 +39,7 @@ public:
 
 private:
 	// start of the tree
-	BSTree<T>::Node* root = nullptr;
+  Node* root = nullptr;
 	// number of items in the tree
 	int size = 0;
 	// recursive helper function for the destructor
@@ -56,27 +57,30 @@ BSTree<T>::~BSTree()
 }
 
 template <class T>
-void BSTree<T>::inOrderTraversal(BSTree<T>::Node* look) const
+string BSTree<T>::inOrderTraversal(BSTree<T>::Node* look) const
 {
 	if (look != nullptr)
 	{
+     stringstream output;
+     
 		// call inorder again but going to the left
 		inOrderTraversal(look->left);
 		// print out the left node movie
-		cout << (look->left->item) << endl;
+		output << (look->left->item) << endl;
 		// print out the current node movie
-		cout << (look->item) << endl;
+		output << (look->item) << endl;
 		// call inorder for the right
 		inOrderTraversal(look->right);
 		// print the movie from the right node
-		cout << (look->right->item) << endl;
+		output << (look->right->item) << endl;
 	}
 }
 
 template <class T>
-void BSTree<T>::inOrderTraversal() const
+string BSTree<T>::inOrderTraversal() const
 {
-	inOrderTraversal(root);
+	stringstream output;
+  output << inOrderTraversal(root);
 }
 
 template<class T>
