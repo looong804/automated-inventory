@@ -99,7 +99,10 @@
 	// display all the info 
 	ostream& operator<< (ostream& stream, const Drama& drama) 
     {
-        cout << drama.getGenre() << ", " << drama.getStock() << ", " << drama.getDirector() << ", " << drama.getTitle() << ", " << drama.getYear();
+        stream << drama.getGenre() << ", " << drama.getStock() << ", " << drama.getDirector() << ", " << drama.getTitle() << ", " << drama.getYear();
+    
+        return stream;
     }
+
 
 #endif
