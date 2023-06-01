@@ -112,7 +112,7 @@ int HashWaitlist::searchGiveCustomer(Command* command)
 	// check if the command pointer is empty
 	if (command == nullptr)
 	{
-		return nullptr;
+		return -1;
 	}
 
 	// nodeData equal to the first node in the linked list 
