@@ -4,28 +4,11 @@ Hash::Hash()
 {
 }
 
-Hash::~Hash()
-{
-}
-
-void Hash::insert()
-{
-}
-
-Item* Hash::search(Item* item)
-{
-	return nullptr;
-}
-
 int Hash::getSize() const
 {
 	return size;
 }
 
-int Hash::hashFunction(Item* item)
-{
-	return -2;
-}
 
 // hash function using folding on a string, summed 4 bytes at a time
 int Hash::hashStringFold(string key, int tableSize)
