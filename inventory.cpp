@@ -32,7 +32,7 @@ Node* Inventory::getDramaTree();
 ostream& operator<<(ostream& stream, Inventory& inventory)
 {
 	// call the inordertraversal on all the trees in inventory
-	inventory.getClassicTree().inOrderTraversal();
+	(inventory.getClassicTree()).inOrderTraversal();
 	inventory.getComedyTree().inOrderTraversal();
 	inventory.getDramaTree().inOrderTraversal();
 }
