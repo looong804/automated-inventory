@@ -2,6 +2,9 @@
 #define INVEN_H
 
 #include "bstree.h"
+#include "drama.h"
+#include "comedy.h"
+#include "classic.h"
 
 class Inventory 
 { 
@@ -13,9 +16,9 @@ public:
     ~Inventory();
 
     // returns the roots to their respective trees
-    BSTree<Classic>::Node* getClassicTree();
-    BSTree<Comedy>::Node* getComedyTree();
-    BSTree<Drama>::Node* getDramaTree();
+    BSTree<Classic> getClassicTree();
+    BSTree<Comedy> getComedyTree();
+    BSTree<Drama> getDramaTree();
     
     //stream overloads
     // output the whole inventory by going through the vector
