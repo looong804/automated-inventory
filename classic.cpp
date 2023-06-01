@@ -1,3 +1,4 @@
+
 #ifndef CLASSIC_CPP
 #define CLASSIC_CPP
 
@@ -45,7 +46,7 @@
         }
     }*/
 
-    int Classic::setMonth(int const newMonth) 
+    void Classic::setMonth(int const newMonth) 
     {
         month = newMonth;
     }
@@ -214,15 +215,17 @@
     {
         string actor;
 
-        cout << classic.getGenre() << ", " << classic.getStock() << ", " << classic.getDirector() << ", " << classic.getTitle() << ", ";
+        stream << classic.getGenre() << ", " << classic.getStock() << ", " << classic.getDirector() << ", " << classic.getTitle() << ", ";
 
         for (int i = 0; i < classic.getNumberOfActors(); i++) //prints all the actors
         {
             classic.getMajorActor(i, actor);
-            cout << actor << ", ";
+            stream << actor << ", ";
         }
         
-        cout << classic.getMonth() << " " << classic.getYear();
+        stream << classic.getMonth() << " " << classic.getYear();
+
+        return stream;
     }
 
 	// major actor's first name
