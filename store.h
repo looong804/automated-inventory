@@ -47,8 +47,6 @@ public:
 	~Store();
 
 	//Getters
-    //retrieve the command types
-    vector<char> getCommandTypes();
     // return number of customer accounts
     int numAccounts() const;
 
@@ -113,18 +111,6 @@ private:
     int totalStock = 0;
 	// vector of strings storing all the file names
 	vector<string> filesNames;
-	// chars for their indicated command type
-
-    char createComedy = 'F'; //put into three differnet vectors, stockChars, CustomerChars, ActionChars. This will replace the ORs in readFile
-    char createDrama = 'D';
-    char createClassic = 'C';
-    char showInventory = 'I';
-    char showCustomerHistory = 'H';
-    char checkoutItem = 'B';
-    char givebackItem = 'R';
-	// vector that stores all accepted command types
-	vector<char> commandTypes {createComedy, createDrama, createClassic,
-                                      showInventory, showCustomerHistory, checkoutItem, givebackItem};
 };
 
 #endif
