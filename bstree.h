@@ -7,53 +7,53 @@
 template <class T>
 class BSTree
 {
-struct Node
-{
-    T* item;
-    Node* right;
-    Node* left;
-};
+	struct Node
+	{
+		T* item;
+		Node* right;
+		Node* left;
+	};
 public:
-    //default constructor
-    BSTree(); 
-    //destructor
-    ~BSTree(); 
+	//default constructor
+	BSTree();
+	//destructor
+	~BSTree();
 
-    // traverse the tree in order and print out each item
-    void inOrderTraversal() const;
-    // traverse the tree in order and print out each item
-    void inOrderTraversal(Node<T>* look) const;
-    // inserts a new item into the tree
-    void insert(T* item);
-    // find an item and return a pointer to it
-    Node<T>* search(T* target) const; 
-    // return the root of the tree
-    Node<T>* getRoot() const;
-    // return the size
-    int getSize() const;
+	// traverse the tree in order and print out each item
+	void inOrderTraversal() const;
+	// traverse the tree in order and print out each item
+	void inOrderTraversal(Node* look) const;
+	// inserts a new item into the tree
+	void insert(T* item);
+	// find an item and return a pointer to it
+	Node* search(T* target) const;
+	// return the root of the tree
+	Node* getRoot() const;
+	// return the size
+	int getSize() const;
 
 private:
-    // start of the tree
-    Node<T>* root = nullptr;
-    // number of items in the tree
-    int size = 0;
-    // recursive helper function for the destructor
-    void deleteTree(Node<T>* node);
+	// start of the tree
+	Node* root = nullptr;
+	// number of items in the tree
+	int size = 0;
+	// recursive helper function for the destructor
+	void deleteTree(Node* node);
 };
 #endif
 
 
 // this is the implementaion for the above tree
-
+template <class T>
 // have it call a helper delete tree function
-BSTree::~BSTree()
+BSTree<T>::~BSTree()
 {
 	// call deleteTree recurvise helper function on the root
 	deleteTree(root);
 }
 
-template<class T>
-void BSTree::inOrderTraversal(Node<T>* look) const
+template <class T>
+void BSTree<T>::inOrderTraversal(Node* look) const
 {
 	if (look != nullptr)
 	{
@@ -70,19 +70,20 @@ void BSTree::inOrderTraversal(Node<T>* look) const
 	}
 }
 
-void BSTree::inOrderTraversal() const
+template <class T>
+void BSTree<T>::inOrderTraversal() const
 {
 	inOrderTraversal(root);
 }
 
 template<class T>
-void BSTree::insert(T* item)
+void BSTree<T>::insert(T* item)
 {
 	// if the tree is empty
 	if (this->root == nullptr)
 	{
-//		cout << "tree is emtpy so set root to passed in item" << endl;
-		// set root movie to item
+		//		cout << "tree is emtpy so set root to passed in item" << endl;
+				// set root movie to item
 		root->item = item;
 		//increase the tree size
 		size++;
@@ -91,37 +92,37 @@ void BSTree::insert(T* item)
 	// if equal to the root
 	if (root->item == item)
 	{
-//			cerr << "duplicate item" << endl;
+		//			cerr << "duplicate item" << endl;
 		return;
 	}
 	// go through the rest of the tree
 //	cerr << "going through whole tree" << endl;
 	// create node pointer for traversing
-	Node<T>* p_node = root;
-//	cerr << "where is p_node1: " << *p_node->data << endl;
-//	cerr << "what is p_node->next->data1: " << *p_node->next->data << endl;
-//	cerr << "what is data1: " << *data << endl;
-	// while passed item is greater than traveling pointer's item move right
+	Node* p_node = root;
+	//	cerr << "where is p_node1: " << *p_node->data << endl;
+	//	cerr << "what is p_node->next->data1: " << *p_node->next->data << endl;
+	//	cerr << "what is data1: " << *data << endl;
+		// while passed item is greater than traveling pointer's item move right
 	while ((item > p_node->item) && ((p_node->right) != nullptr))
 	{
-//		cout << "inside the move right while loop" << endl;
+		//		cout << "inside the move right while loop" << endl;
 		p_node = p_node->right;
-//		cerr << "where is p_node3: " << *p_node->data << endl; 
+		//		cerr << "where is p_node3: " << *p_node->data << endl; 
 	}
 	// while passed item is smaller than traveling pointer's item move right
 	while ((item < p_node->item) && ((p_node->left) != nullptr))
 	{
-//		cout << "inside the move left while loop" << endl;
+		//		cout << "inside the move left while loop" << endl;
 		p_node = p_node->left;
-//		cerr << "where is p_node3: " << *p_node->data << endl; 
+		//		cerr << "where is p_node3: " << *p_node->data << endl; 
 	}
 	// placing new node in tree
 	// if passed in item is greater
 	if ((item > p_node->item) && (p_node->right) == nullptr)
 	{
-//		cout << "the item is greater than the current node put in right" << endl;
-		// create new node
-		Node<T>* insert_node = new Node;
+		//		cout << "the item is greater than the current node put in right" << endl;
+				// create new node
+		Node* insert_node = new Node;
 		// set item pointer in new node to passed in item
 		(insert_node->item) = item;
 		// have p_node's right point to the new node
@@ -135,7 +136,7 @@ void BSTree::insert(T* item)
 	{
 		//		cout << "the id is smaller than the current node put in the left" << endl;
 		// create new node
-		Node<T>* insert_node = new Node;
+		Node* insert_node = new Node;
 		// set item pointer in new node to passed in item
 		(insert_node->item) = item;
 		// have p_node's right point to the new node
@@ -150,45 +151,45 @@ void BSTree::insert(T* item)
 }
 
 template<class T>
-Node<T>* BSTree::search(T* target) const
+BSTree<T>::Node* BSTree<T>::search(T* target) const
 {
 	//cout << root->item;
 	// if empty tree
 	if (root == nullptr)
 	{
-//		cout << "tree is empty" << endl;
+		//		cout << "tree is empty" << endl;
 		return nullptr;
 	}
 	// first in tree
 	if (root->item == target)
 	{
-//		cout << "is the root " << endl;
-		Node<T>* found = root;
+		//		cout << "is the root " << endl;
+		Node* found = root;
 		return found;
 	}
 	// traverse the rest of the tree
 //	cout << "going through the rest of the tree " << endl;
-	Node<T>* p_node = root;
-//	cout << p_node->item << endl;
-//	cout << target << endl;
-	// while passed item is greater than traveling pointer's item move right
+	Node* p_node = root;
+	//	cout << p_node->item << endl;
+	//	cout << target << endl;
+		// while passed item is greater than traveling pointer's item move right
 	while (((target) > p_node->item) && ((p_node->right) != nullptr))
 	{
-//		cout << "in the moving right while loop in the retrieve function" << endl;
+		//		cout << "in the moving right while loop in the retrieve function" << endl;
 		p_node = p_node->right;
-//		cerr << "where is p_node3: " << *p_node->item << endl; 
+		//		cerr << "where is p_node3: " << *p_node->item << endl; 
 	}
 	// while passed item is smaller than traveling pointer's item move right
 	while ((target < p_node->item) && ((p_node->left) != nullptr))
 	{
-//		cout << "in the moving left while loop in the retrieve function" << endl;
+		//		cout << "in the moving left while loop in the retrieve function" << endl;
 		p_node = p_node->left;
-//		cerr << "where is p_node3: " << *p_node->item << endl; 
+		//		cerr << "where is p_node3: " << *p_node->item << endl; 
 	}
 	// if target is found on the left
 	if (((p_node->left) != nullptr) && target == p_node->left->item)
 	{
-		Node<T>* found = (p_node->left);
+		Node* found = (p_node->left);
 		// set p_node pointer to nullptr
 		p_node = nullptr;
 		// return pointer to item location
@@ -197,7 +198,7 @@ Node<T>* BSTree::search(T* target) const
 	// if the target is found on the right
 	else if (((p_node->right) != nullptr) && target == p_node->right->item)
 	{
-		Node<T>* found = (p_node->right);
+		Node* found = (p_node->right);
 		// set p_node pointer to nullptr
 		p_node = nullptr;
 		// return pointer to item location
@@ -206,7 +207,7 @@ Node<T>* BSTree::search(T* target) const
 	// if the target is found on current node -- if working right should never get here
 	else if (p_node->item == target)
 	{
-		Node<T>* found = (p_node);
+		Node* found = (p_node);
 		// set p_node pointer to nullptr
 		p_node = nullptr;
 		// return pointer to item location
@@ -217,7 +218,7 @@ Node<T>* BSTree::search(T* target) const
 }
 
 template<class T>
-void BSTree::deleteTree(Node<T>* node)
+void BSTree<T>::deleteTree(Node* node)
 {
 	// check if node is nullptr
 	if (node != nullptr)
@@ -234,13 +235,14 @@ void BSTree::deleteTree(Node<T>* node)
 }
 
 template<class T>
-Node<T>* BSTree::getRoot() const
+BSTree<T>::Node* BSTree<T>::getRoot() const
 {
 	//	cout << "in tree root getter" << endl;
 	return this->root;
 }
 
-int BSTree::getSize() const
+template <class T>
+int BSTree<T>::getSize() const
 {
 	return size;
 }
