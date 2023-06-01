@@ -63,7 +63,7 @@ void HashWaitlist::insert(Command* command)
 	}
 }
 
-Command* HashWaitlist::search(Command* command)
+int HashWaitlist::search(Command* command)
 {
 	// check if the command pointer is empty
 	if (command == nullptr)
