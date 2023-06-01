@@ -39,34 +39,34 @@ void Store::setStock(){
         if(temp.getVector(0) == "F"){
             Comedy newComedy;
 
-            if(newComedy.getTitle() == inventory.comedyTree.search(newComedy).getTitle()){
-                newComedy.setStock(inventory.comedyTree.search(newComedy).getStock() + temp.getVector(1));
+            if(newComedy.getTitle() == inventory.getComedyTree().search(&newComedy).getTitle()){
+                newComedy.setStock(inventory.getComedyTree().search(&newComedy).getStock() + temp.getVector(1));
             }else{
                 newComedy.setTitle(temp.getVector(3));
                 newComedy.setStock(stoi(temp.getVector(1)));
-                inventory.getInventory()[0].insert(); //TODO: insert in right index
+                inventory.getComedyTree().insert(&newComedy); //TODO: insert in right index
                 increaseTotal();
             }
         }else if(temp.getVector(0) == "D"){
             Drama newDrama;
 
-            if(newDrama.getTitle() == inventory.dramaTree.search(newDrama).getTitle()){
-                newDrama.setStock(inventory.dramaTree.search(newDrama).getStock() + temp.getVector(1));
+            if(newDrama.getTitle() == inventory.getDramaTree().search(&newDrama).getTitle()){
+                newDrama.setStock(inventory.getDramaTree().search(&newDrama).getStock() + temp.getVector(1));
             }else{
                 newDrama.setTitle(temp.getVector(3));
                 newDrama.setStock(stoi(temp.getVector(1)));
-                inventory.getInventory()[1].insert(); //TODO: insert in right index
+                inventory.getDramaTree().insert(&newDrama); //TODO: insert in right index
                 increaseTotal();
             }
         }else if(temp.getVector(0) == "C"){
             Classic newClassic;
 
-            if(newClassic.getTitle() == inventory.classicTree.search(newClassic).getTitle()){
-                newClassic.setStock(inventory.classicTree.search(newClassic).getStock() + temp.getVector(1));
+            if(newClassic.getTitle() == inventory.getClassicTree().search(&newClassic).getTitle()){
+                newClassic.setStock(inventory.getClassicTree().search(&newClassic).getStock() + temp.getVector(1));
             }else{
                 newClassic.setTitle(temp.getVector(3));
                 newClassic.setStock(stoi(temp.getVector(1)));
-                inventory.getInventory()[2].insert(); //TODO: insert in the right index
+                inventory.getClassicTree().insert(&newClassic); //TODO: insert in the right index
                 increaseTotal();
             }
         }
@@ -106,7 +106,7 @@ void Store::executeActions() {
         }else if(temp.getVector(0) == "R"){
             returnItem(temp);
         }else if(temp.getVector(0) == "I"){
-            //list inventory
+            cout << inventory;
         }else if(temp.getVector(0) == "H"){
             accountHistory(stoi(temp.getVector(1)));
         }
@@ -187,22 +187,22 @@ Drama* Store::findDrama(Drama& dramaDvd) const{
     //checks that the first index is D
     //parse through binary tree for dvd
     //search via director then title
-    return inventory.getInventory()[1].search(dramaDvd) -> movie;
+    return inventory.getDramaTree().search(&dramaDvd) -> movie;
 }//close findDrama
 
 //
-Comedy* Store::findComedy(Comedy& dvd) const{
+Comedy* Store::findComedy(Comedy& comedyDvd) const{
     //parse through binary tree for dvd
     //search via title then year released
-    return inventory.getInventory()[0].search(dvd) -> movie;
+    return inventory.getComedyTree().search(&comedyDvd) -> movie;
 }//close findComedy
 
 // find a classic dvd and verify that it exists
-Classic* Store::findClassic(Classic& dvd) const{
+Classic* Store::findClassic(Classic& classicDvd) const{
     //parse through binary tree for dvd
     //search via release date then major actor
 
-    return inventory.getInventory()[2].search(dvd) -> movie;
+    return inventory.getClassicTree().search(&classicDvd) -> movie;
 }//close findClassic
 
 
