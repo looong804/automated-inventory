@@ -51,10 +51,7 @@ Commands::Commands(string command)
 		}
 		else if (valid)
 		{
-            if(commandType == showInventory){
-                parsedCommand.push_back(command);
-            }else{
-
+            if(commandType != showInventory){
                 // cut off the commandType from command string
                 command = command.substr(2, command.length());
 
