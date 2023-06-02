@@ -9,7 +9,7 @@ This class is meant to keep all the common data members and a library of premade
 
 #include "account.h"
 #include "item.h"
-#include <stdlib.h>
+#include <cmath>
 
 // this is the basic abstract hash class that is the parent for all hash classes
 // contains premade hash functions, basic functions and data members
