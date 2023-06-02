@@ -55,25 +55,28 @@ the above order is how they are stored in the vector
 -------------------------------------------------------------------------------------- */
 ostream& operator<<(ostream& stream, Inventory& inventory)
 {
-	// stringstreams to hold the output of inOrderTraversal
-	stringstream ssclassic;
-	stringstream sscomedy;
-	stringstream ssdrama;
+	// call the inordertraversal on all the trees in inventory
+	//NOT WORKING
 
-	// call the inordertraversal on all the trees in inventory and put into the stringstreams
-	ssclassic = (*inventory.getClassicTree()).inOrderTraversal();
-	sscomedy = (*inventory.getComedyTree()).inOrderTraversal();
-	ssdrama = (*inventory.getDramaTree()).inOrderTraversal();
+	vector<Classic*> classic = ((*inventory.getClassicTree()).inOrderTraversal());
+	for (int i = 0; i < classic.size(); i++) 
+	{
+		stream << *classic[i];
+	}
+	
+	vector<Comedy*> comedy = (*inventory.getComedyTree()).inOrderTraversal();
+	for (int i = 0; i < comedy.size(); i++) 
+	{
+		stream << *comedy[i];
+	}
 
-	// turn all the stringstreams into strings
-	string sclassic = ssclassic.str();
-	string scomedy = sscomedy.str();
-	string sdrama = ssdrama.str();
-
-	// feed all the strings into the stream
-	stream << sclassic;
-	stream << scomedy;
-	stream << sdrama;
-
- return stream;
-}
+	vector<Drama*> drama = (*inventory.getDramaTree()).inOrderTraversal();
+	for (int i = 0; i < drama.size(); i++) 
+	{
+		stream << *drama[i];
+	}
+	//stream << ((*inventory.getClassicTree()).inOrderTraversal()).str();
+	//stream << (*inventory.getComedyTree()).inOrderTraversal();
+	//stream << (*inventory.getDramaTree()).inOrderTraversal();
+ 	return stream;
+} 
