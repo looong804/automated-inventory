@@ -102,7 +102,9 @@ private:
 	// contains all the customer accounts
 	HashAccounts accounts;
     // contains top ten most requested items
-    HashPopular popularItems;
+    HashPopular<Comedy> popularComedy;
+    HashPopular<Drama> popularDrama;
+    HashPopular<Classic> popularClassic;
     // contains all the borrow requests placed on hold due to unavailable stock
     HashWaitlist waitlist;
 	// contains all the items
