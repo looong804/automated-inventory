@@ -1,8 +1,13 @@
+/* ------------------------------------------------hashPopular.h----------------------------
+Steven Wenzel: CSS 343 A Spring 2023
+-----------------------------------------------------------------------------------------
+This is a template class that stores the 10 most popular genre objects in a hash 
+using a modified open addressing that doesn't increase the amount of slots when full
+--------------------------------------------------------------------------------------*/
 #ifndef HASHPOP_H
 #define HASHPOP_H
 
 #include "hash.h"
-#include "item.h"
 #include <limits.h>
 
 // this class uses open addressing and stores a pointer to the item
@@ -42,16 +47,18 @@ private:
 };
 
 
-
-
 // this is the implementation 
 
-// currently does nothing
+/* ------------------------------------HashPopular--------------------------------------
+Description: does nothing
+-------------------------------------------------------------------------------------- */
 HashPopular::HashPopular()
 {
 }
 
-// set all the item pointers in the popular vector to nullptr
+/* ------------------------------------(~HashPopular)--------------------------------------
+Description: set all the item pointers in the popular vector to nullptr
+-------------------------------------------------------------------------------------- */
 template <class T>
 HashPopular<T>::~HashPopular()
 {
@@ -65,6 +72,9 @@ HashPopular<T>::~HashPopular()
 	}
 }
 
+/* ------------------------------------(hashFunction)--------------------------------------
+Description: 
+-------------------------------------------------------------------------------------- */
 template <class T>
 int HashPopular<T>::hashFunction(T* item)
 {
