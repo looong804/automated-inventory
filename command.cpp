@@ -1,13 +1,13 @@
 #include "command.h"
 
-Command::Command(string command)
+Commands::Commands(string command)
 {
 	// check if the first spot is not an int
 	if (!isdigit(command.at(0)))
 	{
 		// parse off the Letter indicating the command
 		char commandType = command.at(0);
-		
+
 		// bool to mark if command is vaild
 		bool valid = false;
 		// check if commandType is one of the vaild ones in the vectors holding 
@@ -28,7 +28,7 @@ Command::Command(string command)
 		if (!valid)
 		{
 			printErrorMessage(error1);
-			cerr << command << endl;	
+			cerr << command << endl;
 		}
 		else if (valid)
 		{
@@ -80,42 +80,42 @@ Command::Command(string command)
 }
 
 //
-vector<char> Command::getCommandTypes()
+vector<char> Commands::getCommandTypes()
 {
-    return this->commandTypes;
+	return this->commandTypes;
 }//close getCommand
 
 // pass in the error message wanted
 // enables lots of error printing without changing the function just adding error messages
-void Command::printErrorMessage(string errorType)
+void Commands::printErrorMessage(string errorType)
 {
 	// print out the error message that was passed in
 	cerr << errorType;
 }
 
 // getter for the vector storing the parsed command
-vector<string> Command::getVector()
+vector<string> Commands::getVector()
 {
-	return parsedCommand; 
+	return parsedCommand;
 }
 
 // return the string at the given index in the vector
-string Command::getVector(int index)
+string Commands::getVector(int index)
 {
-	return parsedCommand[index]; 
+	return parsedCommand[index];
 }
 
 // parse the passed in string by spaces
-stringstream Command::convertToStringstream(string stringToSplit)
+stringstream Commands::convertToStringstream(string stringToSplit)
 {
 	// string stream set equal to the passed string
-	stringstream stringStream (stringToSplit);
+	stringstream stringStream(stringToSplit);
 	// return the stringstream 
 	return stringStream;
 }
 
 // parse the passed in string by spaces
-vector<string> Command::spaceParser(string stringToSplit)
+vector<string> Commands::spaceParser(string stringToSplit)
 {
 	// string stream set equal to the passed string
 	stringstream stringStream(stringToSplit);
@@ -136,7 +136,7 @@ vector<string> Command::spaceParser(string stringToSplit)
 }
 
 // use the passed in index to get the string in the parsedCommand vector
-vector<string> Command::spaceParser(int index)
+vector<string> Commands::spaceParser(int index)
 {
 	// string stream set equal to the passed string
 	stringstream stringStream(parsedCommand[index]);
@@ -157,7 +157,7 @@ vector<string> Command::spaceParser(int index)
 }
 
 // compare all values in the parsed command
-bool Command::operator==(const Command& rhs) const
+bool Commands::operator==(const Commands& rhs) const
 {
 	// compare the vector sizes first
 	if (this->parsedCommand.size() != rhs.parsedCommand.size())
@@ -180,7 +180,7 @@ bool Command::operator==(const Command& rhs) const
 }
 
 // compare all values in the parsed command
-bool Command::operator!=(const Command& rhs) const
+bool Commands::operator!=(const Commands& rhs) const
 {
 	if (!(*this == rhs))
 	{
