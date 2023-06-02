@@ -313,9 +313,22 @@ Classic& operator+= (const Classic& rhs):
 */
     Classic& Classic::operator+= (const Classic& rhs) 
     {
-        Classic classic = *this + rhs; 
-        *this = classic; 
-        return *this;
+        setStock(getStock() + rhs.getStock());
+        
+        string actor;
+        int numOfActors = rhs.getNumberOfActors();
+        for (int i = 0; i < numOfActors; i++) 
+        {
+            rhs.getMajorActor(i, actor);
+
+            if (hasMajorActor(actor) == false) {
+                addMajorActor(actor);
+            }
+        }
+
+        /*Classic classic = *this + rhs; 
+        *this = classic; */
+        return *this;//*/
     }
 
     Classic& Classic::operator=(const Classic& rhs) 
@@ -332,7 +345,9 @@ Classic& operator+= (const Classic& rhs):
         for (int i = 0; i < numOfActors; i++) 
         {
             rhs.getMajorActor(i, actor);
-            addMajorActor(actor);
+            if (hasMajorActor(actor) == false) {
+                addMajorActor(actor);
+            }
         }
 
         return *this;
