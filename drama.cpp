@@ -42,7 +42,7 @@
         //director then Title
         if (getDirector() > rhs.getDirector()) 
         {
-            
+            return true;
         } else if (getDirector() == rhs.getDirector() && getTitle() > rhs.getTitle()) {
             return true;
             
