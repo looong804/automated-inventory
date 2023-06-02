@@ -1,3 +1,9 @@
+/* ------------------------------------------------(hashWaitlist.h)----------------------------
+Steven Wenzel: CSS 343 A Spring 2023
+-----------------------------------------------------------------------------------------
+This is the header file for a hash to store borrow commands on items that are not in stock
+this class represents a waitlist and the hash is accessed often and at the end of the program should be empty
+--------------------------------------------------------------------------------------*/
 #ifndef HASHWAIT_H
 #define HASHWAIT_H
 
