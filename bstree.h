@@ -1,3 +1,10 @@
+/* ------------------------------------------------bstree.cpp----------------------------
+Steven Wenzel: CSS 343 A Spring 2023
+6/1/2023
+6/1/2023
+-----------------------------------------------------------------------------------------
+This is a templatized binary search tree that takes in the child classes of the parent class item
+--------------------------------------------------------------------------------------*/
 #ifndef BSTREE_H
 #define BSTREE_H
 
