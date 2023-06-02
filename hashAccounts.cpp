@@ -19,10 +19,10 @@ Description: set all the account pointers in the vector to nullptr
 HashAccounts::~HashAccounts()
 {
 	// go through each index in the vector
-	for (int i = 0; i < accounts->size(); i++)
+	for (int i = 0; i < AccountsSize; i++)
 	{
 		// nodeData equal to the first node in the linked list 
-		NodeData<Customer> start = accounts->at(i);
+		NodeData<Customer> start = accounts[i];
 		// pointer to traverse the list starting at the 2 node
 		NodeData<Customer>* temp = start.next;
 
@@ -64,10 +64,16 @@ usable types for premade hash functions, mostly for inside use
 -------------------------------------------------------------------------------------- */
 int HashAccounts::hashFunction(Customer* account)
 {
+	// check if the item pointer is empty
+	if (account == nullptr)
+	{
+		return -1;
+	}
 	// get the ID from the account object
 	int ID = account->getID();
 	// call and return the hashMidSqaure on the id
-	return hashMidSquare(ID, accounts->size());
+	//return hashMidSquare(ID, accounts->size());
+	return hashMidSquare(ID, AccountsSize);
 }
 
 /* ------------------------------------(hashFunction)--------------------------------------
@@ -77,8 +83,14 @@ usable types for premade hash functions, mostly for outside use
 -------------------------------------------------------------------------------------- */
 int HashAccounts::hashFunction(int id)
 {
+	// check if the id is too small
+	if (id < 1000)
+	{
+		return -1;
+	}
 	// call and return the hashMidSqaure on the id
-	return hashMidSquare(id, accounts->size());
+	//return hashMidSquare(id, accounts->size());
+	return hashMidSquare(id, AccountsSize);
 }
 
 /* ------------------------------------(insert)--------------------------------------
@@ -92,16 +104,16 @@ void HashAccounts::insert(Customer* account)
 		// get the hashIndex from the hashFunction
 		int hashIndex = hashFunction(account);
 		// if the slot is empty
-		if (accounts->at(hashIndex).data == nullptr)
+		if (accounts[hashIndex].data == nullptr)
 		{
 			// set the data pointer in the NodeData in the accounts vector at the hashIndex
-			accounts->at(hashIndex).data = account;
+			accounts[hashIndex].data = account;
 		}
 		// if the slot is not empty
 		else
 		{
 			// create a nodedata equal to the first node in the linked list
-			NodeData<Customer> start = accounts->at(hashIndex);
+			NodeData<Customer> start = accounts[hashIndex];
 			// create a pointer to traverse the linked list starting at the 2 node
 			NodeData<Customer>* temp = start.next;
 
@@ -151,7 +163,7 @@ Customer* HashAccounts::search(Customer* account)
 	}
 
 	// nodeData equal to the first node in the linked list 
-	NodeData<Customer> start = accounts->at(hashFunction(account));
+	NodeData<Customer> start = accounts[hashFunction(account)];
 
 	// check if its the first node
 	if (start.data == account)
@@ -165,23 +177,26 @@ Customer* HashAccounts::search(Customer* account)
 		NodeData<Customer>* looky = start.next;
 
 		// while the account isn't found
-		while (true)
-		{
-			// check if the account ID matches the one being looked for  
-			if (looky->data == account && looky->data != nullptr)
+		if (looky != nullptr) {
+			while (true)
 			{
-				// return the found account
-				return looky->data;
-			}
-			else if(looky->next != nullptr)
-			{
-				looky = looky->next;
-			}
-			else
-			{
-				return nullptr;
+				// check if the account ID matches the one being looked for  
+				if (looky->data != nullptr && looky->data == account)
+				{
+					// return the found account
+					return looky->data;
+				}
+				else if(looky->next != nullptr)
+				{
+					looky = looky->next;
+				}
+				else
+				{
+					return nullptr;
+				}
 			}
 		}
+		return nullptr;
 	}
 }
 
@@ -192,8 +207,17 @@ returns nullptr if not found, mostly for outside use
 -------------------------------------------------------------------------------------- */
 Customer* HashAccounts::search(int id)
 {
+	// check if the id is too small
+	if (id < 0000 && id > 9999) 
+	{
+		return nullptr;
+	} else if (hashFunction(id) > AccountsSize || hashFunction(id) < AccountsSize) //work on this and the hash function, not in index
+	{
+		return nullptr;
+	}
+
 	// nodeData equal to the first node in the linked list 
-	NodeData<Customer> start = accounts->at(hashFunction(id));
+	NodeData<Customer> start = accounts[hashFunction(id)];
 
 	// check if its the first node
 	if (start.data -> getID() == id)
