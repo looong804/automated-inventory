@@ -51,38 +51,40 @@ Commands::Commands(string command)
 		}
 		else if (valid)
 		{
-			// cut off the commandType from command string
-			command = command.substr(2, command.length());
+            if(commandType == showInventory){
+                parsedCommand.push_back(command);
+            }else{
 
-			// finish parsing the command string and storing in vector
-			while (!command.empty())
-			{
-				// find next comma index
-				int end = command.find(",");
-				// check if a comma was found
-				if (end != -1)
-				{
-					// parse command string to the next comma and store in vector
-					parsedCommand.push_back(command.substr(0 + 1, end - 1));
-					// fix command - erase piece just parsed 
-					command = command.substr((end + 1), (command.length() - 2));
+                // cut off the commandType from command string
+                command = command.substr(2, command.length());
 
-					//removes any potential carriage returns
-					/*if(!command.empty() && command[command.length() - 1] == '\r') 
-					{
-						cout << "Test print" << endl;
-    					command.erase(command.length() - 1);
-					}*/
-				}
-				// put whole command string into the vector
-				else
-				{
-					parsedCommand.push_back(command);
-					
-					// empty the command ok
-					command.clear();
-				}
-			}
+                // finish parsing the command string and storing in vector
+                while (!command.empty()) {
+                    // find next comma index
+                    int end = command.find(",");
+                    // check if a comma was found
+                    if (end != -1) {
+                        // parse command string to the next comma and store in vector
+                        parsedCommand.push_back(command.substr(0 + 1, end - 1));
+                        // fix command - erase piece just parsed
+                        command = command.substr((end + 1), (command.length() - 2));
+
+                        //removes any potential carriage returns
+                        /*if(!command.empty() && command[command.length() - 1] == '\r')
+                        {
+                            cout << "Test print" << endl;
+                            command.erase(command.length() - 1);
+                        }*/
+                    }
+                        // put whole command string into the vector
+                    else {
+                        parsedCommand.push_back(command);
+
+                        // empty the command ok
+                        command.clear();
+                    }
+                }
+            }
 		}
 	}
 	// check is first character is an index
