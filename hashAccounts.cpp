@@ -64,11 +64,6 @@ usable types for premade hash functions, mostly for inside use
 -------------------------------------------------------------------------------------- */
 int HashAccounts::hashFunction(Customer* account)
 {
-	// check if the item pointer is empty
-	if (account == nullptr)
-	{
-		return -1;
-	}
 	// get the ID from the account object
 	int ID = account->getID();
 	// call and return the hashMidSqaure on the id
@@ -82,11 +77,6 @@ usable types for premade hash functions, mostly for outside use
 -------------------------------------------------------------------------------------- */
 int HashAccounts::hashFunction(int id)
 {
-	// check if the id is too small
-	if (id < 1000)
-	{
-		return -1;
-	}
 	// call and return the hashMidSqaure on the id
 	return hashMidSquare(id, accounts->size());
 }
@@ -202,12 +192,6 @@ returns nullptr if not found, mostly for outside use
 -------------------------------------------------------------------------------------- */
 Customer* HashAccounts::search(int id)
 {
-	// check if the id is too small
-	if (id < 1000) 
-	{
-		return nullptr;
-	}
-
 	// nodeData equal to the first node in the linked list 
 	NodeData<Customer> start = accounts->at(hashFunction(id));
 
