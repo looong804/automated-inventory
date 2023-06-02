@@ -103,7 +103,7 @@ void BSTree<T>::inOrderTraversal() const
   inOrderTraversal(root);
 }
 
-/* ------------------------------------(inOrderTraversal)--------------------------------------
+/* ------------------------------------(insert)--------------------------------------
 Description: inserts the passed in genre object into the tree in its correct location and assumes
 that the object being passed in has comparators overloaded
 -------------------------------------------------------------------------------------- */
@@ -183,6 +183,9 @@ void BSTree<T>::insert(T* item)
 	return;
 }
 
+/* ------------------------------------(search)--------------------------------------
+Description: take in a genre type object and find if its in the BST tree and return a pointer to it
+-------------------------------------------------------------------------------------- */
 template<class T>
 typename BSTree<T>::Node* BSTree<T>::search(T* target) const
 {
@@ -250,6 +253,9 @@ typename BSTree<T>::Node* BSTree<T>::search(T* target) const
 	return nullptr;
 }
 
+/* ------------------------------------(deleteTree)--------------------------------------
+Description: recursive helper function for the destructor to delete the tree
+-------------------------------------------------------------------------------------- */
 template<class T>
 void BSTree<T>::deleteTree(BSTree<T>::Node* node)
 {
@@ -267,6 +273,9 @@ void BSTree<T>::deleteTree(BSTree<T>::Node* node)
 	}
 }
 
+/* ------------------------------------(getRoot)--------------------------------------
+Description: returns the root of the tree 
+-------------------------------------------------------------------------------------- */
 template<class T>
 typename BSTree<T>::Node* BSTree<T>::getRoot() const
 {
@@ -274,6 +283,9 @@ typename BSTree<T>::Node* BSTree<T>::getRoot() const
 	return this->root;
 }
 
+/* ------------------------------------(getSize)--------------------------------------
+Description: returns the size of the tree
+-------------------------------------------------------------------------------------- */
 template <class T>
 int BSTree<T>::getSize() const
 {
