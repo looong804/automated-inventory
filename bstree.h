@@ -97,6 +97,10 @@ void BSTree<T>::inOrderTraversal() const
   inOrderTraversal(root);
 }
 
+/* ------------------------------------(inOrderTraversal)--------------------------------------
+Description: inserts the passed in genre object into the tree in its correct location and assumes
+that the object being passed in has comparators overloaded
+-------------------------------------------------------------------------------------- */
 template<class T>
 void BSTree<T>::insert(T* item)
 {
