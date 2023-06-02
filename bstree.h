@@ -77,25 +77,22 @@ Description: Recursive function for traversing the BST and printing out what it 
 uses a node as the passed in parameter, mainly for use in the BST functions
 -------------------------------------------------------------------------------------- */
 template <class T>
-void BSTree<T>::inOrderTraversal(BSTree<T>::Node* look) const
+stringstream BSTree<T>::inOrderTraversal(stringstream& stream, BSTree<T>::Node* look) const
 {
 	if (look != nullptr)
 	{
 		// call inorder again but going to the left
 		inOrderTraversal(look->left);
 		// print out the left node movie
-		if (look->left != nullptr) {
-			cout << (look->left->item) << endl;
-		}
+		stream << (look->left->item) << endl;
 		// print out the current node movie
-		cout << (look->item) << endl;
+		stream << (look->item) << endl;
 		// call inorder for the right
 		inOrderTraversal(look->right);
 		// print the movie from the right node
-		if (look->right != nullptr) {
-			cout << (look->right->item) << endl;
-		}
+		stream << (look->right->item) << endl;
 	}
+	return stream
 }
 
 /* ------------------------------------(inOrderTraversal)--------------------------------------
@@ -103,9 +100,13 @@ Description: Recursive function for traversing the BST and printing out what it 
 , meant for use outside the class.
 -------------------------------------------------------------------------------------- */
 template <class T>
-void BSTree<T>::inOrderTraversal() const
+stringstream BSTree<T>::inOrderTraversal() const
 {
-  inOrderTraversal(root);
+	// make a stringstream
+	stringstream input;
+	stringstream output;
+	output = inOrderTraversal(input);
+	return output;
 }
 
 /* ------------------------------------(insert)--------------------------------------
