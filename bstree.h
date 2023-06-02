@@ -57,6 +57,7 @@ private:
 /* ------------------------(BSTree deafult constructor)--------------------------------------
 Description: does nothing
 -------------------------------------------------------------------------------------- */
+template <class T>
 BSTree<T>::BSTree()
 {
 }
