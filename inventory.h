@@ -1,3 +1,10 @@
+/* ------------------------------------------------(inventory.h)----------------------------
+Steven Wenzel: CSS 343 A Spring 2023
+-----------------------------------------------------------------------------------------
+This is the header file for a inventory object class to contain all the BST 
+that the different types of objects are stored and sorted into, makes for easier printing
+of the whole inventory
+--------------------------------------------------------------------------------------*/
 #ifndef INVEN_H
 #define INVEN_H
 
