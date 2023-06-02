@@ -1,15 +1,28 @@
+/* ------------------------------------------------(hashWaitlist.cpp)----------------------------
+Steven Wenzel: CSS 343 A Spring 2023
+-----------------------------------------------------------------------------------------
+This is the implementation for a hash to store borrow commands on items that are not in stock
+this class represents a waitlist and the hash is accessed often and at the end of the program should be empty
+--------------------------------------------------------------------------------------*/
 #include "hashWaitlist.h"
 
-// not needed
+/* ------------------------------------HashWaitlist--------------------------------------
+Description: does nothing
+-------------------------------------------------------------------------------------- */
 HashWaitlist::HashWaitlist()
 {
 }
 
-// not needed
+/* ------------------------------------(~HashWaitlist)--------------------------------------
+Description: does nothing
+-------------------------------------------------------------------------------------- */
 HashWaitlist::~HashWaitlist()
 {
 }
 
+/* ------------------------------------(insert)--------------------------------------
+Description: using the hash index, insert key and value into the hashed vector
+-------------------------------------------------------------------------------------- */
 void HashWaitlist::insert(Commands* command)
 {
 	// check if the command pointer is empty
@@ -63,6 +76,11 @@ void HashWaitlist::insert(Commands* command)
 	}
 }
 
+/* ------------------------------------(search)--------------------------------------
+Description: searches for the passsed command and 
+returns a pointer because the command object needs to be edited,
+returns nullptr if not found, mostly for inside use
+-------------------------------------------------------------------------------------- */
 Commands* HashWaitlist::search(Commands* command)
 {
 	// check if the command pointer is empty
@@ -106,7 +124,10 @@ Commands* HashWaitlist::search(Commands* command)
 	}
 }
 
-// return a pointer to customer
+/* ------------------------------------(searchGiveCustomer)--------------------------------------
+Description: searches for the passed in command 
+returns an int for easier use for searching for the account that made the request
+-------------------------------------------------------------------------------------- */
 int HashWaitlist::searchGiveCustomer(Commands* command)
 {
 	// check if the command pointer is empty
@@ -157,7 +178,10 @@ int HashWaitlist::searchGiveCustomer(Commands* command)
 	}
 }
 
-// remove the command from the linked list
+/* ------------------------------------(remove)--------------------------------------
+Description: remove the command from the linked list and return an int for easier accessing of
+the customer account that made the request
+-------------------------------------------------------------------------------------- */
 int HashWaitlist::remove(Commands* command)
 {
 	// check if the command pointer is empty
@@ -260,6 +284,9 @@ int HashWaitlist::remove(Commands* command)
 	}
 }
 
+/* ------------------------------------(isInWaitlist)--------------------------------------
+Description: check if the passed in command is in the waitlist, return true if found
+-------------------------------------------------------------------------------------- */
 // check if the passed in command is in the waitlist
 bool HashWaitlist::isInWaitlist(Commands* command)
 {
@@ -274,7 +301,11 @@ bool HashWaitlist::isInWaitlist(Commands* command)
 	}
 }
 
-// is dependent on the genre type
+/* ------------------------------------(hashFunction)--------------------------------------
+Description: uses the one of the names in the command object to create the hash, 
+call some other premade hashFunction that returns the hashIndex, converts used items into
+usable types for premade hash functions, for inside use
+-------------------------------------------------------------------------------------- */
 int HashWaitlist::hashFunction(Commands* command)
 {
 	// check if the command pointer is empty
