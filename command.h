@@ -5,15 +5,14 @@
 #include <string>
 #include <iostream>
 #include <sstream>
-#include "store.h"
 
 using namespace std;
 
-class Command
+class Commands
 {
 public:
 	// does the parsing of the command and assigns to the data members
-	Command(string command);
+	Commands(string command);
 	// print out the correct error message based on the error type put int
 	void printErrorMessage(string errorType);
 	// getter for the vector storing the parsed command
@@ -26,12 +25,12 @@ public:
 	vector<string> spaceParser(string stringToSplit);
 	// returns a vector holding a parsed string, by spaces; give it an index from the parsedCommand vector
 	vector<string> spaceParser(int index);
-     //retrieve the command types
-    vector<char> getCommandTypes();
+	//retrieve the command types
+	vector<char> getCommandTypes();
 
 	//comparison overloads - checks for identical command objects
-	bool operator==(const Command& rhs) const;
-	bool operator!=(const Command& rhs) const;
+	bool operator==(const Commands& rhs) const;
+	bool operator!=(const Commands& rhs) const;
 
 private:
 	// vector of strings to store the command after parsing at commas
@@ -40,18 +39,18 @@ private:
 	// all error messages to be eccountered when reading in a command
 	// error message for: command type failure - non existant
 	string error1 = "ERROR: Command type failure - non-existant command: ";
- 
-  // chars for their indicated command type
-    char createComedy = 'F';
-    char createDrama = 'D';
-    char createClassic = 'C';
-    char showInventory = 'I';
-    char showCustomerHistory = 'H';
-    char checkoutItem = 'B';
-    char givebackItem = 'R';
-    
+
+	// chars for their indicated command type
+	char createComedy = 'F';
+	char createDrama = 'D';
+	char createClassic = 'C';
+	char showInventory = 'I';
+	char showCustomerHistory = 'H';
+	char checkoutItem = 'B';
+	char givebackItem = 'R';
+
 	// vector that stores all accepted command types
-	vector<char> commandTypes {createComedy, createDrama, createClassic,
-                                      showInventory, showCustomerHistory, checkoutItem, givebackItem};
+	vector<char> commandTypes{ createComedy, createDrama, createClassic,
+									  showInventory, showCustomerHistory, checkoutItem, givebackItem };
 };
 #endif
