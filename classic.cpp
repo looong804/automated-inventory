@@ -45,6 +45,11 @@ params: Command command
         setYear(year);
     }
 
+
+Classic::~Classic() 
+{
+    
+}
     /*void spaceSplitter(vector<string> &splitString, string stringToSplit) 
     {
         istringstream string {stringToSplit};
