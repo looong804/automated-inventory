@@ -35,8 +35,8 @@ BSTree<Drama>* Inventory::getDramaTree()
 ostream& operator<<(ostream& stream, Inventory& inventory)
 {
 	// call the inordertraversal on all the trees in inventory
-  stream << inventory.getClassicTree().inOrderTraversal();
-	stream << inventory.getComedyTree().inOrderTraversal();
-	stream << inventory.getDramaTree().inOrderTraversal();
+    (*inventory.getClassicTree()).inOrderTraversal();
+	(*inventory.getComedyTree()).inOrderTraversal();
+	(*inventory.getDramaTree()).inOrderTraversal();
  return stream;
 }
