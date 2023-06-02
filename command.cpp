@@ -1,5 +1,9 @@
 #include "command.h"
 
+Commands::~Commands()
+{
+}
+
 Commands::Commands(string command)
 {
 	// check if the first spot is not an int
