@@ -55,21 +55,24 @@ private:
 
 
 // this is the implementaion for the above tree
+/* ------------------------------------(~BSTree)--------------------------------------
+Description: have it call a helper delete tree function
+-------------------------------------------------------------------------------------- */
 template <class T>
-// have it call a helper delete tree function
 BSTree<T>::~BSTree()
 {
 	// call deleteTree recurvise helper function on the root
 	deleteTree(root);
 }
 
+/* ------------------------------------(inOrderTraversal)--------------------------------------
+Description: Recursive function for traversing the BST and printing out what it contains
+-------------------------------------------------------------------------------------- */
 template <class T>
 void BSTree<T>::inOrderTraversal(BSTree<T>::Node* look) const
 {
 	if (look != nullptr)
 	{
-     stringstream output;
-     
 		// call inorder again but going to the left
 		inOrderTraversal(look->left);
 		// print out the left node movie
