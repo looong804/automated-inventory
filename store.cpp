@@ -37,32 +37,34 @@ void Store::setStock(){
         Commands tempCommand = stock.at(0);
 
         if(tempCommand.getVector(0) == "F"){
-            Comedy newComedy = Comedy(tempCommand);
-            Comedy *newComedyPtr = &newComedy;
+            Comedy *newComedy = new Comedy(tempCommand);
+            //Comedy *newComedyPtr = &newComedy;
 
-            if(findComedy(newComedy) == nullptr){
-                inventory.getComedyTree() -> insert(newComedyPtr);
+            if(findComedy(*newComedy) == nullptr){
+                inventory.getComedyTree() -> insert(newComedy);
                 increaseTotal();
             }else{
-                if(newComedy == *findComedy(newComedy)){
-                    *findComedy(newComedy) += newComedy;
+                if(*newComedy == *findComedy(*newComedy)){
+                    *findComedy(*newComedy) += *newComedy;
                 }
             }
 
-            newComedyPtr = nullptr;
+            newComedy = nullptr;
         }else if(tempCommand.getVector(0) == "D"){
-            Drama newDrama = Drama(tempCommand);
+            Drama *newDrama = new Drama(tempCommand);
 
-            Drama *newDramaPtr = &newDrama;
+            //Drama *newDramaPtr = &newDrama;
 
-            if(findDrama(newDrama) == nullptr){
-                inventory.getDramaTree() -> insert(newDramaPtr);
+            if(findDrama(*newDrama) == nullptr){
+                inventory.getDramaTree() -> insert(newDrama);
                 increaseTotal();
             }else{
-                if(newDrama == *findDrama(newDrama)){
-                    *findDrama(newDrama) += newDrama;
+                if(*newDrama == *findDrama(*newDrama)){
+                    *findDrama(*newDrama) += *newDrama;
                 }
             }
+
+            newDrama = nullptr;
         }else if(tempCommand.getVector(0) == "C"){
             //Classic newClassic = Classic(tempCommand);
 
