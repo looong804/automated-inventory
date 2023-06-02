@@ -139,20 +139,22 @@ void Store::readFiles(){
 
             while(getline(file, line)){
                 Commands tempCom(line);
-                string letter = tempCom.getVector().at(0);
+                if (tempCom.isValid()) {
+                    string letter = tempCom.getVector().at(0);
 
-                //checks if this is a movie command
-                if(letter == "F" || letter == "D" || letter == "C"){
-                    stock.push_back(tempCom);
-                //checks if this is a customer command
-                }else if(letter == "K"){
-                    customers.push_back(tempCom);
-                //checks if this is a command
-                }else if(letter == "B" || letter == "R"
-                    || letter == "I" || letter == "H"){
-                    actions.push_back(tempCom);
-                //not a recognized command
-                }//close command check
+                    //checks if this is a movie command
+                    if(letter == "F" || letter == "D" || letter == "C"){
+                        stock.push_back(tempCom);
+                    //checks if this is a customer command
+                    }else if(letter == "K"){
+                        customers.push_back(tempCom);
+                    //checks if this is a command
+                    }else if(letter == "B" || letter == "R"
+                        || letter == "I" || letter == "H"){
+                        actions.push_back(tempCom);
+                    //not a recognized command
+                    }//close command check
+                }
             }//close insert items
         }//close last line check
     }//close num files check
