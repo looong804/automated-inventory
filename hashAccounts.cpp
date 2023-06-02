@@ -202,7 +202,7 @@ Customer* HashAccounts::search(int id)
 		while (true)
 		{
 			// check if the account ID matches the one being looked for  
-			if (looky -> data -> getID() == id && looky->data != nullptr)
+			if (looky->data != nullptr && looky->data->getID() == id)
 			{
 				// return the found account
 				return looky->data;
