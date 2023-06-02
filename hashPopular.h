@@ -54,7 +54,7 @@ HashPopular<T>::~HashPopular()
 	for (int i = 0; i < popular->size(); i++)
 	{
 		// a temp pointer for traversing the popular vector
-		Item* temp = popular->at(i);
+		T* temp = popular->at(i);
 		// set temp to nullptr
 		temp = nullptr;
 	}
