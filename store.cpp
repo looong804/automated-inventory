@@ -40,7 +40,7 @@ void Store::setStock(){
             Comedy newComedy = Comedy(tempCommand);
 
             if(findComedy(newComedy) == nullptr){
-                inventory.getComedyTree().insert(&newComedy);
+                (*inventory.getComedyTree()).insert(&newComedy);
                 increaseTotal();
             }else{
                 if(newComedy == *findComedy(newComedy)){
@@ -51,7 +51,7 @@ void Store::setStock(){
             Drama newDrama = Drama(tempCommand);
 
             if(findDrama(newDrama) == nullptr){
-                inventory.getDramaTree().insert(&newDrama);
+                (*inventory.getDramaTree()).insert(&newDrama);
                 increaseTotal();
             }else{
                 if(newDrama == *findDrama(newDrama)){
@@ -62,7 +62,7 @@ void Store::setStock(){
             Classic newClassic = Classic(tempCommand);
 
             if(findClassic(newClassic) == nullptr){
-                inventory.getClassicTree().insert(&newClassic);
+                (*inventory.getClassicTree()).insert(&newClassic);
                 increaseTotal();
             }else{
                 if(newClassic == *findClassic(newClassic)){
@@ -183,14 +183,14 @@ Drama* Store::findDrama(Drama& dramaDvd){
     //checks that the first index is D
     //parse through binary tree for dvd
     //search via director then title
-    return inventory.getDramaTree().search(&dramaDvd) -> item;
+    return (*inventory.getDramaTree()).search(&dramaDvd) -> item;
 }//close findDrama
 
 //
 Comedy* Store::findComedy(Comedy& comedyDvd){
     //parse through binary tree for dvd
     //search via title then year released
-    return inventory.getComedyTree().search(&comedyDvd) -> item;
+    return (*inventory.getComedyTree()).search(&comedyDvd) -> item;
 }//close findComedy
 
 // find a classic dvd and verify that it exists
@@ -198,7 +198,7 @@ Classic* Store::findClassic(Classic& classicDvd){
     //parse through binary tree for dvd
     //search via release date then major actor
 
-    return inventory.getClassicTree().search(&classicDvd) -> item;
+    return (*inventory.getClassicTree()).search(&classicDvd) -> item;
 }//close findClassic
 
 
@@ -412,8 +412,8 @@ bool Store::borrowItem(Commands action){
         Comedy requestedComedy;
 
         //retrieve popular item
-        if(popularItems.isPopular(tempComedy)){
-            requestedComedy = popularItems.search(tempComedy);
+        if(popularComedy.isPopular(&tempComedy)){
+            requestedComedy = *popularComedy.search(&tempComedy);
         }else{
             requestedComedy = *findComedy(tempComedy);
         }
@@ -426,15 +426,15 @@ bool Store::borrowItem(Commands action){
 
             //set comedy item in popularity list
             //not full
-            if(!popularItems.isFull()){
+            if(!popularComedy.isFull()){
                 //item is already in list
-                if(requestedComedy != popularItems.search(requestedComedy)){
-                    popularItems.insert(requestedComedy);
+                if(requestedComedy != *popularComedy.search(&requestedComedy)){
+                    popularComedy.insert(&requestedComedy);
                 }
             //full
             }else{
-                if(requestedComedy.getPopularity() > popularItems.getLowestPopular() -> getPopularity()){
-                    popularItems.swap(requestedComedy, popularItems.getLowestPopular());
+                if(requestedComedy.getPopularity() > (popularComedy.getLowestPopular() -> getPopularity())){
+                    popularComedy.swap(&requestedComedy, popularComedy.getLowestPopular());
                 }
             }
 
@@ -466,8 +466,8 @@ bool Store::borrowItem(Commands action){
         Drama requestedDrama;
 
         //retrieve popular item
-        if(popularItems.isPopular(tempDrama)){
-            requestedDrama = popularItems.search(tempDrama);
+        if(popularDrama.isPopular(&tempDrama)){
+            requestedDrama = *popularDrama.search(&tempDrama);
         }else{
             requestedDrama = *findDrama(tempDrama);
         }
@@ -480,15 +480,15 @@ bool Store::borrowItem(Commands action){
 
             //set num of requests for popularity list
             //not full
-            if(!popularItems.isFull()){
+            if(!popularDrama.isFull()){
                 //item is already in list
-                if(requestedDrama != popularItems.search(requestedDrama)){
-                    popularItems.insert(requestedDrama);
+                if(requestedDrama != *popularDrama.search(&requestedDrama)){
+                    popularDrama.insert(&requestedDrama);
                 }
                 //full
             }else{
-                if(requestedDrama.getPopularity() > popularItems.getLowestPopular() -> getPopularity()){
-                    popularItems.swap(requestedDrama, popularItems.getLowestPopular());
+                if(requestedDrama.getPopularity() > popularDrama.getLowestPopular() -> getPopularity()){
+                    popularDrama.swap(&requestedDrama, popularDrama.getLowestPopular());
                 }
             }
 
@@ -520,8 +520,8 @@ bool Store::borrowItem(Commands action){
         Classic requestedClassic;
 
         //retrieve popular item
-        if(popularItems.isPopular(tempClassic)){
-            requestedClassic = popularItems.search(tempClassic);
+        if(popularClassic.isPopular(&tempClassic)){
+            requestedClassic = *popularClassic.search(&tempClassic);
         }else{
             requestedClassic = *findClassic(tempClassic);
         }
@@ -534,15 +534,15 @@ bool Store::borrowItem(Commands action){
 
             //set num of requests for popularity list
             //not full
-            if(!popularItems.isFull()){
+            if(!popularClassic.isFull()){
                 //item is already in list
-                if(requestedClassic != popularItems.search(requestedClassic)){
-                    popularItems.insert(requestedClassic);
+                if(requestedClassic != *popularClassic.search(&requestedClassic)){
+                    popularClassic.insert(&requestedClassic);
                 }
                 //full
             }else{
-                if(requestedClassic.getPopularity() > popularItems.getLowestPopular() -> getPopularity()){
-                    popularItems.swap(requestedClassic, popularItems.getLowestPopular());
+                if(requestedClassic.getPopularity() > popularClassic.getLowestPopular() -> getPopularity()){
+                    popularClassic.swap(&requestedClassic, popularClassic.getLowestPopular());
                 }
             }
 
