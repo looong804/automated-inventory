@@ -55,7 +55,7 @@ int Hash::hashMidSquare(int key, int tableSize)
     std::string squaredStr = std::to_string(squared);
 
     // Calculate the number of middle digits to extract
-    int middleDigits = static_cast<int>((squared)) / 2;
+    int middleDigits = static_cast<int>(log10(squared)) / 2;
 
     // Extract the middle digits as a substring
     std::string middleStr = squaredStr.substr(squaredStr.length() / 2 - middleDigits, middleDigits);
