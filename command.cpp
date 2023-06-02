@@ -92,7 +92,7 @@ Commands::Commands(string command)
 		if (isdigit(command.at(0)) && isdigit(command.at(1)) && isdigit(command.at(2)) && isdigit(command.at(3)))
 		{
 			// create a new commandType K for customer accounts
-			string createCustomer = "k";
+			string createCustomer = "K";
 			// put the newly created commandType into index 0 of the vector
 			parsedCommand.push_back(createCustomer);
 			// put the rest of the command into the vector
