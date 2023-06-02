@@ -67,7 +67,7 @@ Commands::Commands(string command)
                         // parse command string to the next comma and store in vector
                         parsedCommand.push_back(command.substr(0 + 1, end - 1));
                         // fix command - erase piece just parsed
-                        command = command.substr((end + 1), (command.length() - 2));
+                        command = command.substr(end + 1, command.length());
 
                         //removes any potential carriage returns
                         /*if(!command.empty() && command[command.length() - 1] == '\r')
