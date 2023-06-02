@@ -2,6 +2,9 @@
 #define STORE_CPP
 
 #include "store.h"
+#include <fstream>
+#include <sstream>
+#include <string>
 
 //constructors
 //default -- unused at the moment
@@ -37,7 +40,7 @@ void Store::setStock(){
             Comedy newComedy = Comedy(tempCommand);
 
             if(findComedy(newComedy) == nullptr){
-                inventory.getComedyTree().insert(&newComedy);
+                inventory.getComedyTree() -> insert(&newComedy);
                 increaseTotal();
             }else{
                 if(newComedy == *findComedy(newComedy)){
@@ -48,7 +51,7 @@ void Store::setStock(){
             Drama newDrama = Drama(tempCommand);
 
             if(findDrama(newDrama) == nullptr){
-                inventory.getDramaTree().insert(&newDrama);
+                inventory.getDramaTree() -> insert(&newDrama);
                 increaseTotal();
             }else{
                 if(newDrama == *findDrama(newDrama)){
@@ -59,7 +62,7 @@ void Store::setStock(){
             Classic newClassic = Classic(tempCommand);
 
             if(findClassic(newClassic) == nullptr){
-                inventory.getClassicTree().insert(&newClassic);
+                inventory.getClassicTree() -> insert(&newClassic);
                 increaseTotal();
             }else{
                 if(newClassic == *findClassic(newClassic)){
@@ -180,14 +183,14 @@ Drama* Store::findDrama(Drama& dramaDvd){
     //checks that the first index is D
     //parse through binary tree for dvd
     //search via director then title
-    return inventory.getDramaTree().search(&dramaDvd) -> item;
+    return inventory.getDramaTree() -> search(&dramaDvd) -> item;
 }//close findDrama
 
 //
 Comedy* Store::findComedy(Comedy& comedyDvd){
     //parse through binary tree for dvd
     //search via title then year released
-    return inventory.getComedyTree().search(&comedyDvd) -> item;
+    return inventory.getComedyTree() -> search(&comedyDvd) -> item;
 }//close findComedy
 
 // find a classic dvd and verify that it exists
@@ -195,7 +198,7 @@ Classic* Store::findClassic(Classic& classicDvd){
     //parse through binary tree for dvd
     //search via release date then major actor
 
-    return inventory.getClassicTree().search(&classicDvd) -> item;
+    return inventory.getClassicTree() -> search(&classicDvd) -> item;
 }//close findClassic
 
 
