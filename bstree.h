@@ -53,8 +53,14 @@ private:
 	void deleteTree(BSTree<T>::Node* node);
 };
 
-
 // this is the implementaion for the above tree
+------------------------(BSTree deafult constructor)--------------------------------------
+Description: does nothing
+-------------------------------------------------------------------------------------- */
+BSTree<T>::BSTree()
+{
+}
+
 /* ------------------------------------(~BSTree)--------------------------------------
 Description: have it call a helper delete tree function
 -------------------------------------------------------------------------------------- */
