@@ -17,13 +17,13 @@ BSTree<Classic>* Inventory::getClassicTree()
 	return classic;	
 }
 
-BSTree<Comedy>* Inventory::getComedyTree();
+BSTree<Comedy>* Inventory::getComedyTree()
 {
 	BSTree<Comedy>* comedy = comedyTree;
 	return comedy;	
 }
 
-BSTree<Drama>* Inventory::getDramaTree();
+BSTree<Drama>* Inventory::getDramaTree()
 {
 	BSTree<Drama>* drama = dramaTree;
 	return drama;	
