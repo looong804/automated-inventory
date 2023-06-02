@@ -223,10 +223,10 @@ T* HashPopular<T>::getLowestPopular()
 	// search the whole popular vector for the lowest popular item
 	for (int i = 0; i < 10; i++)
 	{
-		if (popular->at(i).getPopularity() < lowest)
+		if (popular->at(i)->getPopularity() < lowest)
 		{
 			index = i;
-			lowest = popular->at(i).getPopularity();
+			lowest = popular->at(i)->getPopularity();
 		}
 	}
 	// return the lowest popular item
