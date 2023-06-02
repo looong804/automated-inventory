@@ -11,6 +11,7 @@ using namespace std;
 class Commands
 {
 public:
+	~Commands();
 	// does the parsing of the command and assigns to the data members
 	Commands(string command);
 	// print out the correct error message based on the error type put int
