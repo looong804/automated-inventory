@@ -16,9 +16,9 @@ public:
     ~Inventory();
 
     // returns the roots to their respective trees
-    BSTree<Classic> getClassicTree();
-    BSTree<Comedy> getComedyTree();
-    BSTree<Drama> getDramaTree();
+    BSTree<Classic>* getClassicTree();
+    BSTree<Comedy>* getComedyTree();
+    BSTree<Drama>* getDramaTree();
     
     //stream overloads
     // output the whole inventory by going through the vector
