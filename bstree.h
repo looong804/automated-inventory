@@ -108,7 +108,9 @@ void BSTree<T>::insert(T* item)
 	if (this->root == nullptr)
 	{
 		//		cout << "tree is emtpy so set root to passed in item" << endl;
-				// set root movie to item
+		// give root a new node
+		root = new Node;
+		// set root movie to item
 		root->item = item;
 		//increase the tree size
 		size++;
