@@ -216,7 +216,16 @@ returns: bool
 /*----------------------------------------------------------
 bool operator>(const Classic& rhs): 
 
+compares two classic objects, returns true if the classic 
+object on the left (the calling object) is greater than
+the classic object on the right.
 
+Comparison is based off the the release date, and the first major actor
+listed. 
+
+params: const Classic& rhs
+
+returns: bool
 */
 	bool Classic::operator>(const Classic& rhs) const 
     {
@@ -241,6 +250,20 @@ bool operator>(const Classic& rhs):
         }
     }
 
+/*----------------------------------------------------------
+bool operator>(const Classic& rhs): 
+
+compares two classic objects, returns true if the classic 
+object on the left (the calling object) is less than
+the classic object on the right.
+
+Comparison is based off the the release date, and the first major actor
+listed. 
+
+params: const Classic& rhs
+
+returns: bool
+*/
 	bool Classic::operator<(const Classic& rhs) const 
     {
         if (*this != rhs && !(*this > rhs))  
@@ -252,6 +275,9 @@ bool operator>(const Classic& rhs):
         }
     }
 
+/*----------------------------------------------------------
+
+*/
     Classic Classic::operator+ (const Classic& rhs) const 
     {
         Classic classic;
@@ -274,6 +300,11 @@ bool operator>(const Classic& rhs):
 
     }
 
+/*----------------------------------------------------------
+Classic& operator+= (const Classic& rhs): 
+
+
+*/
     Classic& Classic::operator+= (const Classic& rhs) 
     {
         Classic classic = *this + rhs; 
