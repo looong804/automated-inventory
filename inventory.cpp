@@ -55,9 +55,25 @@ the above order is how they are stored in the vector
 -------------------------------------------------------------------------------------- */
 ostream& operator<<(ostream& stream, Inventory& inventory)
 {
-	// call the inordertraversal on all the trees in inventory
-	(*inventory.getClassicTree()).inOrderTraversal();
-	(*inventory.getComedyTree()).inOrderTraversal();
-	(*inventory.getDramaTree()).inOrderTraversal();
- 	return stream;
+	// stringstreams to hold the output of inOrderTraversal
+	stringstream ssclassic;
+	stringstream sscomedy;
+	stringstream ssdrama;
+
+	// call the inordertraversal on all the trees in inventory and put into the stringstreams
+	ssclassic = (*inventory.getClassicTree()).inOrderTraversal();
+	sscomedy = (*inventory.getComedyTree()).inOrderTraversal();
+	ssdrama = (*inventory.getDramaTree()).inOrderTraversal();
+
+	// turn all the stringstreams into strings
+	string sclassic = ssclassic.str();
+	string scomedy = sscomedy.str();
+	string sdrama = ssdrama.str();
+
+	// feed all the strings into the stream
+	stream << sclassic;
+	stream << scomedy;
+	stream << sdrama;
+
+ return stream;
 }
