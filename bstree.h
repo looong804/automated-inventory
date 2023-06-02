@@ -32,9 +32,9 @@ public:
 	~BSTree();
 
 	// traverse the tree in order and print out each item
-	stringstream inOrderTraversal() const;
+	vector<T*> inOrderTraversal() const;
 	// traverse the tree in order and print out each item
-	stringstream inOrderTraversal(stringstream& stream, BSTree<T>::Node* look) const;
+	void inOrderTraversal(vector<T*> str, BSTree<T>::Node* look) const;
 	// inserts a new item into the tree
 	void insert(T* item);
 	// find an item and return a pointer to it
@@ -73,26 +73,36 @@ BSTree<T>::~BSTree()
 }
 
 /* ------------------------------------(inOrderTraversal)--------------------------------------
-Description: Recursive function for traversing the BST and printing out what it contains
+Description: Recursive function for traversing the BST and creating a vector of what it contains
 uses a node as the passed in parameter, mainly for use in the BST functions
 -------------------------------------------------------------------------------------- */
 template <class T>
-stringstream BSTree<T>::inOrderTraversal(stringstream& stream, BSTree<T>::Node* look) const
+void BSTree<T>::inOrderTraversal(vector<T*> str, BSTree<T>::Node* look) const
 {
+
+	//turn stringstream into a string vector, then that can be printed out with a loop from
+	//inventory.
 	if (look != nullptr)
 	{
 		// call inorder again but going to the left
-		inOrderTraversal(look->left);
+		inOrderTraversal(str, look->left);
 		// print out the left node movie
-		stream << (look->left->item) << endl;
+		if (look->left != nullptr) {
+			str.push_back(look->left->item);// << endl;
+		}
 		// print out the current node movie
-		stream << (look->item) << endl;
+		str.push_back(look->item);
+		//stream << (stream, look->item) << endl;
 		// call inorder for the right
-		inOrderTraversal(look->right);
+		inOrderTraversal(str, look->right);
+
+		if (look->right != nullptr) {
+			str.push_back(look->right->item);// << endl;
+		}
 		// print the movie from the right node
-		stream << (look->right->item) << endl;
+	
 	}
-	return stream;
+	//return stream;
 }
 
 /* ------------------------------------(inOrderTraversal)--------------------------------------
@@ -100,13 +110,15 @@ Description: Recursive function for traversing the BST and printing out what it 
 , meant for use outside the class.
 -------------------------------------------------------------------------------------- */
 template <class T>
-stringstream BSTree<T>::inOrderTraversal() const
+vector<T*> BSTree<T>::inOrderTraversal() const
 {
 	// make a stringstream
-	stringstream input;
-	stringstream output;
-	output = inOrderTraversal(input);
-	return output;
+	vector<T*>input;
+	//string output;
+	inOrderTraversal(input, root);
+	//output = input.str();
+	//return output;
+	return input;
 }
 
 /* ------------------------------------(insert)--------------------------------------
@@ -203,7 +215,7 @@ typename BSTree<T>::Node* BSTree<T>::search(T* target) const
 		return nullptr;
 	}
 	// first in tree
-	if (root->item == target)
+	if (*root->item == *target)
 	{
 		//		cout << "is the root " << endl;
 		Node* found = root;
@@ -215,21 +227,21 @@ typename BSTree<T>::Node* BSTree<T>::search(T* target) const
 	//	cout << p_node->item << endl;
 	//	cout << target << endl;
 		// while passed item is greater than traveling pointer's item move right
-	while (((target) > p_node->item) && ((p_node->right) != nullptr))
+	while (((*target) > *p_node->item) && ((p_node->right) != nullptr))
 	{
 		//		cout << "in the moving right while loop in the retrieve function" << endl;
 		p_node = p_node->right;
 		//		cerr << "where is p_node3: " << *p_node->item << endl; 
 	}
 	// while passed item is smaller than traveling pointer's item move right
-	while ((target < p_node->item) && ((p_node->left) != nullptr))
+	while ((*target < *p_node->item) && ((p_node->left) != nullptr))
 	{
 		//		cout << "in the moving left while loop in the retrieve function" << endl;
 		p_node = p_node->left;
 		//		cerr << "where is p_node3: " << *p_node->item << endl; 
 	}
 	// if target is found on the left
-	if (((p_node->left) != nullptr) && target == p_node->left->item)
+	if (((p_node->left) != nullptr) && *target == *p_node->left->item)
 	{
 		Node* found = (p_node->left);
 		// set p_node pointer to nullptr
@@ -238,7 +250,7 @@ typename BSTree<T>::Node* BSTree<T>::search(T* target) const
 		return found;
 	}
 	// if the target is found on the right
-	else if (((p_node->right) != nullptr) && target == p_node->right->item)
+	else if (((p_node->right) != nullptr) && *target == *p_node->right->item)
 	{
 		Node* found = (p_node->right);
 		// set p_node pointer to nullptr
@@ -247,7 +259,7 @@ typename BSTree<T>::Node* BSTree<T>::search(T* target) const
 		return found;
 	}
 	// if the target is found on current node -- if working right should never get here
-	else if (p_node->item == target)
+	else if (*p_node->item == *target)
 	{
 		Node* found = (p_node);
 		// set p_node pointer to nullptr
