@@ -1,3 +1,9 @@
+/* ------------------------------------------------hashAccounts.h----------------------------
+Steven Wenzel: CSS 343 A Spring 2023
+-----------------------------------------------------------------------------------------
+This is the header file for hashAccounts this stores them using hash chaining and is meant to increase
+the speed of account retrival for executing transactions
+--------------------------------------------------------------------------------------*/
 #ifndef HASHACCS_H
 #define HASHACCS_H
 
