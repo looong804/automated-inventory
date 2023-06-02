@@ -65,12 +65,20 @@ Commands::Commands(string command)
 					// parse command string to the next comma and store in vector
 					parsedCommand.push_back(command.substr(0 + 1, end));
 					// fix command - erase piece just parsed 
-					command = command.substr((end + 2), (command.length()));
+					command = command.substr((end + 1), (command.length() - 2));
+
+					//removes any potential carriage returns
+					/*if(!command.empty() && command[command.length() - 1] == '\r') 
+					{
+						cout << "Test print" << endl;
+    					command.erase(command.length() - 1);
+					}*/
 				}
 				// put whole command string into the vector
 				else
 				{
 					parsedCommand.push_back(command);
+					
 					// empty the command ok
 					command.clear();
 				}
