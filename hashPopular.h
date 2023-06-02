@@ -46,6 +46,11 @@ private:
 
 // this is the implementation 
 
+// currently does nothing
+HashPopular()
+{
+}
+
 // set all the item pointers in the popular vector to nullptr
 template <class T>
 HashPopular<T>::~HashPopular()
