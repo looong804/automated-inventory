@@ -20,6 +20,11 @@
         setGenre('D');
     }
 
+    Drama::~Drama() 
+    {
+
+    }
+
 	//comparison overloads - sorted by director then title
 	bool Drama::operator==(const Drama& rhs) const 
     {
@@ -42,7 +47,7 @@
         //director then Title
         if (getDirector() > rhs.getDirector()) 
         {
-            return true;
+                return true;
         } else if (getDirector() == rhs.getDirector() && getTitle() > rhs.getTitle()) {
             return true;
             
