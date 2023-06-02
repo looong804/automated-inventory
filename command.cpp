@@ -63,7 +63,7 @@ Commands::Commands(string command)
 				if (end != -1)
 				{
 					// parse command string to the next comma and store in vector
-					parsedCommand.push_back(command.substr(0 + 1, end));
+					parsedCommand.push_back(command.substr(0 + 1, end - 1));
 					// fix command - erase piece just parsed 
 					command = command.substr((end + 1), (command.length() - 2));
 
