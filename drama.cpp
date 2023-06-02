@@ -23,7 +23,7 @@
 	//comparison overloads - sorted by director then title
 	bool Drama::operator==(const Drama& rhs) const 
     {
-        if (getTitle() == rhs.getTitle(), getDirector() == rhs.getDirector(), getStock() == rhs.getStock(), getYear() == rhs.getYear(), getGenre() == rhs.getGenre()) 
+        if (getTitle() == rhs.getTitle() && getDirector() == rhs.getDirector() && getStock() == rhs.getStock() && getYear() == rhs.getYear() && getGenre() == rhs.getGenre()) 
         {
             return true;
         } else 
