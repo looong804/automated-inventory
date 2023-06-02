@@ -1,3 +1,9 @@
+/* ------------------------------------------------hash.h----------------------------
+Steven Wenzel: CSS 343 A Spring 2023
+-----------------------------------------------------------------------------------------
+This is the header file for the hash abstract parent class for all hash classes. 
+This class is meant to keep all the common data members and a library of premade hash functions
+--------------------------------------------------------------------------------------*/
 #ifndef HASH_H
 #define HASH_H
 
