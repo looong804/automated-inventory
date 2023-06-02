@@ -40,7 +40,7 @@ void Store::setStock(){
             Comedy newComedy = Comedy(tempCommand);
 
             if(findComedy(newComedy) == nullptr){
-                inventory.getComedyTree().insert(&newComedy); //TODO: insert in right index
+                inventory.getComedyTree().insert(&newComedy);
                 increaseTotal();
             }else{
                 if(newComedy == *findComedy(newComedy)){
@@ -51,7 +51,7 @@ void Store::setStock(){
             Drama newDrama = Drama(tempCommand);
 
             if(findDrama(newDrama) == nullptr){
-                inventory.getDramaTree().insert(&newDrama); //TODO: insert in right index
+                inventory.getDramaTree().insert(&newDrama);
                 increaseTotal();
             }else{
                 if(newDrama == *findDrama(newDrama)){
@@ -62,7 +62,7 @@ void Store::setStock(){
             Classic newClassic = Classic(tempCommand);
 
             if(findClassic(newClassic) == nullptr){
-                inventory.getClassicTree().insert(&newClassic); //TODO: insert in right index
+                inventory.getClassicTree().insert(&newClassic);
                 increaseTotal();
             }else{
                 if(newClassic == *findClassic(newClassic)){
@@ -239,7 +239,6 @@ bool Store::returnItem(Command action){
         Comedy tempComedy(action);
 
         //checks if the Item exists
-        //TODO: check if this works
         if(findComedy(tempComedy) == nullptr){
             cout << "Comedy item is unavailable";
             return false;
@@ -262,10 +261,9 @@ bool Store::returnItem(Command action){
         Comedy requestedItem = *findComedy(tempComedy);
 
         //checks if there is a waitlist for Item
-        //TODO: bool function to check if item is on the waitlist or not
         if(waitlist.isInWaitlist(&action)){
             tempCustomer.returnItem(action);
-            Customer waitCustomer = *waitlist.remove(&action);
+            Customer waitCustomer = *accounts.search(waitlist.remove(&action));
             waitCustomer.borrow(action);
 
             return true;
@@ -303,10 +301,9 @@ bool Store::returnItem(Command action){
         Drama requestedItem = *findDrama(tempDrama);
 
         //checks if there is a waitlist for Item
-        //TODO: bool function to check if item is on the waitlist or not
         if(waitlist.isInWaitlist(&action)){
             tempCustomer.returnItem(action);
-            Customer waitCustomer = *waitlist.remove(&action);
+            Customer waitCustomer = *accounts.search(waitlist.remove(&action));
             waitCustomer.borrow(action);
 
             return true;
@@ -344,10 +341,9 @@ bool Store::returnItem(Command action){
         Classic requestedItem = *findClassic(tempClassic);
 
         //checks if there is a waitlist for Item
-        //TODO: bool function to check if item is on the waitlist or not
         if(waitlist.isInWaitlist(&action)){
             tempCustomer.returnItem(action);
-            Customer waitCustomer = *waitlist.remove(&action);
+            Customer waitCustomer = *accounts.search(waitlist.remove(&action));
             waitCustomer.borrow(action);
 
             return true;
@@ -413,30 +409,32 @@ bool Store::borrowItem(Command action){
             }
         }
 
-        Comedy requestedItem = *findComedy(tempComedy);
+        Comedy requestedComedy;
+
+        //retrieve popular item
+        if(popularItems.isPopular(tempComedy)){
+            requestedComedy = popularItems.search(tempComedy);
+        }else{
+            requestedComedy = *findComedy(tempComedy);
+        }
 
         //checks if the Item is available
-        if(requestedItem.getStock() > 0){
+        if(requestedComedy.getStock() > 0){
             tempCustomer.borrow(action);
-            requestedItem.downStock();
-            requestedItem.increasePopularity();
+            requestedComedy.downStock();
+            requestedComedy.increasePopularity();
 
-            //set num of requests for popularity list
-            //TODO: need function to search if item is already in popular list
+            //set comedy item in popularity list
             //not full
             if(!popularItems.isFull()){
                 //item is already in list
-                if(requestedItem != popularItems.search(requestedItem)){
-                    popularItems.insert(requestedItem);
+                if(requestedComedy != popularItems.search(requestedComedy)){
+                    popularItems.insert(requestedComedy);
                 }
             //full
             }else{
-                for(int i = 0; i < popularItems.getSize(); i++){
-                    //TODO: getter for num requests for each item
-                    //TODO: getter for item in the list
-                    if(requestedItem.getPopularity() > popularItems.getLowestPopular() -> getPopularity()){
-                        popularItems.swap(requestedItem, popularItems.getLowestPopular());
-                    }
+                if(requestedComedy.getPopularity() > popularItems.getLowestPopular() -> getPopularity()){
+                    popularItems.swap(requestedComedy, popularItems.getLowestPopular());
                 }
             }
 
@@ -465,30 +463,32 @@ bool Store::borrowItem(Command action){
             }
         }
 
-        Drama requestedItem = *findDrama(tempDrama);
+        Drama requestedDrama;
+
+        //retrieve popular item
+        if(popularItems.isPopular(tempDrama)){
+            requestedDrama = popularItems.search(tempDrama);
+        }else{
+            requestedDrama = *findDrama(tempDrama);
+        }
 
         //checks if the Item is available
-        if(requestedItem.getStock() > 0){
+        if(requestedDrama.getStock() > 0){
             tempCustomer.borrow(action);
-            requestedItem.downStock();
-            requestedItem.increasePopularity();
+            requestedDrama.downStock();
+            requestedDrama.increasePopularity();
 
             //set num of requests for popularity list
-            //TODO: need function to search if item is already in popular list
             //not full
             if(!popularItems.isFull()){
                 //item is already in list
-                if(requestedItem != popularItems.search(requestedItem)){
-                    popularItems.insert(requestedItem);
+                if(requestedDrama != popularItems.search(requestedDrama)){
+                    popularItems.insert(requestedDrama);
                 }
                 //full
             }else{
-                for(int i = 0; i < popularItems.getSize(); i++){
-                    //TODO: getter for num requests for each item
-                    //TODO: getter for item in the list
-                    if(requestedItem.getPopularity() > popularItems.getLowestPopular() -> getPopularity()){
-                        popularItems.swap(requestedItem, popularItems.getLowestPopular());
-                    }
+                if(requestedDrama.getPopularity() > popularItems.getLowestPopular() -> getPopularity()){
+                    popularItems.swap(requestedDrama, popularItems.getLowestPopular());
                 }
             }
 
@@ -517,30 +517,32 @@ bool Store::borrowItem(Command action){
             }
         }
 
-        Classic requestedItem = *findClassic(tempClassic);
+        Classic requestedClassic;
+
+        //retrieve popular item
+        if(popularItems.isPopular(tempClassic)){
+            requestedClassic = popularItems.search(tempClassic);
+        }else{
+            requestedClassic = *findClassic(tempClassic);
+        }
 
         //checks if the Item is available
-        if(requestedItem.getStock() > 0){
+        if(requestedClassic.getStock() > 0){
             tempCustomer.borrow(action);
-            requestedItem.downStock();
-            requestedItem.increasePopularity();
+            requestedClassic.downStock();
+            requestedClassic.increasePopularity();
 
             //set num of requests for popularity list
-            //TODO: need function to search if item is already in popular list
             //not full
             if(!popularItems.isFull()){
                 //item is already in list
-                if(requestedItem != popularItems.search(requestedItem)){
-                    popularItems.insert(requestedItem);
+                if(requestedClassic != popularItems.search(requestedClassic)){
+                    popularItems.insert(requestedClassic);
                 }
                 //full
             }else{
-                for(int i = 0; i < popularItems.getSize(); i++){
-                    //TODO: getter for popularity for each item
-                    //TODO: getter for item in the list
-                    if(requestedItem.getPopularity() > popularItems.getLowestPopular() -> getPopularity()){
-                        popularItems.swap(requestedItem, popularItems.getLowestPopular());
-                    }
+                if(requestedClassic.getPopularity() > popularItems.getLowestPopular() -> getPopularity()){
+                    popularItems.swap(requestedClassic, popularItems.getLowestPopular());
                 }
             }
 
@@ -562,9 +564,7 @@ void Store::accountHistory(int id){
     //use id to find account in hash table
     //retrieve account
     //use account showHistory
-    Customer tempCustomer = *accounts.search(id);
-
-    tempCustomer.showHistory();
+    accounts.search(id) -> showHistory();
 }//close accountHistory
 
 
