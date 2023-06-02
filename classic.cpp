@@ -39,16 +39,16 @@ params: Command command
         //vector<string> actorAndDate = command.spaceSplitter(4);
         string temp = actorAndDate[0] + " " + actorAndDate[1]; 
         addMajorActor(temp); 
-        int month = (stoi(actorAndDate[3]));
+        int month = (stoi(actorAndDate[2]));
         setMonth(month);
-        int year = stoi(actorAndDate[4]);
+        int year = stoi(actorAndDate[3]);
         setYear(year);
     }
 
 
 Classic::~Classic() 
 {
-    
+
 }
     /*void spaceSplitter(vector<string> &splitString, string stringToSplit) 
     {
@@ -148,7 +148,8 @@ returns: none
 */
     void Classic::addMajorActor(string actor) 
     {   
-        majorActors[nextActorIndex] = actor;
+        //majorActors[nextActorIndex] = actor;
+        majorActors.push_back(actor);
         nextActorIndex++;
     }
 
