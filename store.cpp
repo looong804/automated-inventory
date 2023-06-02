@@ -64,18 +64,22 @@ void Store::setStock(){
                 }
             }
         }else if(tempCommand.getVector(0) == "C"){
-            Classic newClassic = Classic(tempCommand);
+            //Classic newClassic = Classic(tempCommand);
 
-            Classic *newClassicPtr = &newClassic;
+            Classic *newClassic = new Classic(tempCommand);//&newClassic;
 
-            if(findClassic(newClassic) == nullptr){
-                inventory.getClassicTree() -> insert(newClassicPtr);
+            Classic *classicFromTree = findClassic(*newClassic);
+
+            if(findClassic(*newClassic) == nullptr){
+                inventory.getClassicTree() -> insert(newClassic);
                 increaseTotal();
             }else{
-                if(newClassic == *findClassic(newClassic)){
-                    *findClassic(newClassic) += newClassic;
+                if(*newClassic == *findClassic(*newClassic)){
+                    *findClassic(*newClassic) += *newClassic;
                 }
             }
+
+            newClassic = nullptr;
         }
 
         stock.erase(stock.begin());
@@ -234,7 +238,9 @@ Classic* Store::findClassic(const Classic& classic){ //search can't be searching
         return nullptr; 
     } else 
     {
-        return ((inventory.getClassicTree()) -> search(&classicDvd)) -> item;
+        //return 
+        Classic *testClassic = ((inventory.getClassicTree()) -> search(&classicDvd)) -> item;
+        return testClassic;
     }
     // -> item;
 }//close findClassic
