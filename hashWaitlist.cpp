@@ -225,19 +225,24 @@ int HashWaitlist::remove(Commands* command)
 					}
 					// get the id from the command
 					int id = stoi(command->spaceParser(1).at(0));
-
-					// delete the temp next data
-					delete temp->next->data;
-					// set temp next data to nullptr
-					temp->next->data = nullptr;
-					// have temp point to temps next next
-					temp->next = temp->next->next;
-					// set temps next to nullptr
-					temp->next = nullptr;
-
+					if (temp->next != nullptr)
+					{
+						// delete the temp next data
+						delete temp->next->data;
+						// set temp next data to nullptr
+						temp->next->data = nullptr;
+						// have temp point to temps next next
+						temp->next = temp->next->next;
+						// set temps next to nullptr
+						temp->next = nullptr;
+					}
 					// search for the account using the id
 					// and return the pointer to the account
 					return id;
+				}
+				else
+				{
+					return -1;
 				}
 			}
 		}
