@@ -1,42 +1,63 @@
+/* ------------------------------------------------(inventory.h)----------------------------
+Steven Wenzel: CSS 343 A Spring 2023
+-----------------------------------------------------------------------------------------
+This is the header file for a inventory object class to contain all the BST 
+that the different types of objects are stored and sorted into, makes for easier printing
+of the whole inventory
+--------------------------------------------------------------------------------------*/
 #include "inventory.h"
 
-// not needed
+/* ------------------------------------(Inventory)--------------------------------------
+Description: does nothing
+-------------------------------------------------------------------------------------- */
 Inventory::Inventory()
 {
 }
 
-// not needed
+/* ------------------------------------(~Inventory)--------------------------------------
+Description: does nothing
+-------------------------------------------------------------------------------------- */
 Inventory::~Inventory()
 {
 }
 
-// returns the roots to their respective trees
+/* ------------------------------------(getClassicTree)--------------------------------------
+Description: returns a pointer to the classic tree
+-------------------------------------------------------------------------------------- */
 BSTree<Classic>* Inventory::getClassicTree()
 {
 	BSTree<Classic>* classic = &classicTree;
 	return classic;	
 }
 
+/* ------------------------------------(getComedyTree)--------------------------------------
+Description: returns a pointer to the comedy tree
+-------------------------------------------------------------------------------------- */
 BSTree<Comedy>* Inventory::getComedyTree()
 {
 	BSTree<Comedy>* comedy = &comedyTree;
 	return comedy;	
 }
 
+/* ------------------------------------(getDramaTree)--------------------------------------
+Description: returns a pointer to the drama tree
+-------------------------------------------------------------------------------------- */
 BSTree<Drama>* Inventory::getDramaTree()
 {
 	BSTree<Drama>* drama = &dramaTree;
 	return drama;	
 }
 
-// output the whole inventory by going through the vector
-// print out the comedy, then drama, then classic
-// the above order is how they are stored in the vector
+/* ------------------------------------(operator<<)--------------------------------------
+Description: output the whole inventory by going through the vector
+print out the comedy, then drama, then classic
+the above order is how they are stored in the vector
+-------------------------------------------------------------------------------------- */
 ostream& operator<<(ostream& stream, Inventory& inventory)
 {
 	// call the inordertraversal on all the trees in inventory
-    (*inventory.getClassicTree()).inOrderTraversal();
+	(*inventory.getClassicTree()).inOrderTraversal();
 	(*inventory.getComedyTree()).inOrderTraversal();
 	(*inventory.getDramaTree()).inOrderTraversal();
- return stream;
+ 	return stream;
 }
