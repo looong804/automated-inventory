@@ -241,7 +241,7 @@ returns: bool
         } else if (getYear() == rhs.getYear() && getMonth() > rhs.getYear()) 
         {
             return true;
-        } else if (actor1 > actor2) 
+        } else if (getYear() == rhs.getYear() && getMonth() == rhs.getYear() && actor1 > actor2) 
         {
             return true;
         } else  
