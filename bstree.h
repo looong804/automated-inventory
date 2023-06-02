@@ -54,7 +54,7 @@ private:
 };
 
 // this is the implementaion for the above tree
-------------------------(BSTree deafult constructor)--------------------------------------
+/* ------------------------(BSTree deafult constructor)--------------------------------------
 Description: does nothing
 -------------------------------------------------------------------------------------- */
 BSTree<T>::BSTree()
