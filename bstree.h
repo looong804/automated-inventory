@@ -92,7 +92,7 @@ stringstream BSTree<T>::inOrderTraversal(stringstream& stream, BSTree<T>::Node* 
 		// print the movie from the right node
 		stream << (look->right->item) << endl;
 	}
-	return stream
+	return stream;
 }
 
 /* ------------------------------------(inOrderTraversal)--------------------------------------
