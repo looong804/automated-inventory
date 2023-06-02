@@ -8,7 +8,7 @@ class Classic : public Dvd
 public:
 	Classic();
 	// passes in a command that contains all the needed data to create a Classic object
-	Classic(Command command);
+	Classic(Commands command);
 	~Classic();
 
 	// return the month
