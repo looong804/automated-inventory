@@ -11,7 +11,7 @@ public:
 	// not needed
 	Customer();
 	// used when reading in the account file
-	explicit Customer(Command createCustomerAccount);
+	Customer(Commands createCustomerAccount);
 	// deletes the command items in the history vector
 	~Customer();
 
@@ -25,18 +25,18 @@ public:
 
 	//Functions
 	void showHistory(); //prints the customer's history
-	void borrow(Command action);
-	void returnItem(Command action);
+	void borrow(Commands action);
+	void returnItem(Commands action);
 
 
 	//stream overloads
 	// display the customer history
 	friend ostream& operator<< (ostream& out, const Customer& cus);
-    bool operator==(const Customer& cus);
-    bool operator!=(const Customer& cus);
+    bool operator==(const Customer& cus) const;
+    bool operator!=(const Customer& cus) const;
 private:
 	// holds the account history
-	vector<Command> history;
+	vector<Commands> history;
     vector<string> itemsOut;
 };
 #endif //CUSTOMER_H

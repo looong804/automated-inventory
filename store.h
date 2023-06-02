@@ -66,7 +66,7 @@ public:
 
     //Creation Functions
     // open an account
-    bool openAccount(Command action);
+    bool openAccount(Commands action);
     // take in a vector to read all files in the vector
     void readFiles();
 
@@ -80,11 +80,11 @@ public:
 	// find a classic dvd and verify that it exists
 	Classic* findClassic(Classic& classicDvd);
 
-    //Command Functions
+    //Commands Functions
 	// return a borrowed item
-	bool returnItem(Command action);
+	bool returnItem(Commands action);
 	// borrow an item
-	bool borrowItem(Command action);
+	bool borrowItem(Commands action);
 	// print out account history given the id number
 	void accountHistory(int id);
 
@@ -94,11 +94,11 @@ public:
 	
 private:
 	// parsed info of the stock to be added
-	vector<Command> stock; 
+	vector<Commands> stock;
 	// parsed info of the customers to be added
-	vector<Command> customers; 
+	vector<Commands> customers;
 	// parsed info of the actions to be executed (borrow, return, etc.)
-	vector<Command> actions;
+	vector<Commands> actions;
 	// contains all the customer accounts
 	HashAccounts accounts;
     // contains top ten most requested items

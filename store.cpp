@@ -34,7 +34,7 @@ void Store::setStock(){
     //
     while(!stock.empty()){
         //Retrieve first item
-        Command tempCommand = stock.at(0);
+        Commands tempCommand = stock.at(0);
 
         if(tempCommand.getVector(0) == "F"){
             Comedy newComedy = Comedy(tempCommand);
@@ -78,7 +78,7 @@ void Store::setStock(){
 //
 void Store::setAccounts() {
     while(!customers.empty()){
-        Command tempCommand = customers.at(0);
+        Commands tempCommand = customers.at(0);
 
         if(tempCommand.getVector(0) == "K"){
             Customer newCustomer = Customer(tempCommand);
@@ -95,7 +95,7 @@ void Store::setAccounts() {
 //
 void Store::executeActions() {
     while(!actions.empty()){
-        Command tempCommand = actions.at(0);
+        Commands tempCommand = actions.at(0);
 
         if(tempCommand.getVector(0) == "B"){
             borrowItem(tempCommand);
@@ -138,7 +138,7 @@ void Store::readFiles(){
             string line;
 
             while(getline(file, line)){
-                Command tempCom(line);
+                Commands tempCom(line);
                 string letter = tempCom.getVector().at(0);
 
                 //checks if this is a movie command
@@ -159,7 +159,7 @@ void Store::readFiles(){
 }//close files
 
 // open an account
-bool Store::openAccount(Command action){
+bool Store::openAccount(Commands action){
     Customer newAcct(action);
 
     //if account already exists
@@ -216,7 +216,7 @@ Classic* Store::findClassic(Classic& classicDvd){
     //do not change stock or request counter
     //if there is no waitlist, return item to shelf
     //increase stock
-bool Store::returnItem(Command action){
+bool Store::returnItem(Commands action){
     vector<string> fields = action.spaceParser(action.getVector(1));
 
     //checks if account exists
@@ -374,7 +374,7 @@ bool Store::returnItem(Command action){
     //if not available, place customer in waitlist
     //consider handing item to customer in waitlist
     //instead of returning to inventory
-bool Store::borrowItem(Command action){
+bool Store::borrowItem(Commands action){
     vector<string> fields = action.spaceParser(action.getVector(1));
 
     //checks if account exists

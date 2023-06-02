@@ -9,7 +9,7 @@ Customer::Customer(){
 }//close default constructor
 
 //
-Customer::Customer(Command createCustomerAccount){
+Customer::Customer(Commands createCustomerAccount){
     stringstream strstrm(createCustomerAccount.getVector(1)); //retrieves account info
     string tempInfo;
 
@@ -85,7 +85,7 @@ void Customer::showHistory(){
 //Pseudocode
 //if available, checks item out to Customer
 //add to history that customer borrowed item
-void Customer::borrow(Command action){
+void Customer::borrow(Commands action){
     itemsOut.push_back(action.getVector(1));
     history.push_back(action);
 }//close borrow
@@ -96,7 +96,7 @@ void Customer::borrow(Command action){
 //checks if Customer has the item checked out
 //add to history that customer returned item
 //remove from itemsOut
-void Customer::returnItem(Command action){
+void Customer::returnItem(Commands action){
     for(auto it = itemsOut.begin(); it < itemsOut.end(); it++){
         if(action.getVector(1) == *it){
             itemsOut.erase(it);
@@ -115,14 +115,14 @@ ostream& operator<<(ostream& out, const Customer& cus){
 }//close operator<<
 
 //
-bool Customer::operator==(const Customer& cus){
+bool Customer::operator==(const Customer& cus) const{
     return this -> getID() == cus.getID() &&
         this -> getLast() == cus.getLast() &&
         this -> getFirst() == cus.getFirst();
 }//close operator==
 
 //
-bool Customer::operator!=(const Customer &cus){
+bool Customer::operator!=(const Customer &cus) const{
     return this -> getID() != cus.getID() ||
         this -> getLast() != cus.getLast() ||
         this -> getFirst() != cus.getFirst();
