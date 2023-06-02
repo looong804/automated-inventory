@@ -22,8 +22,8 @@ public:
 	struct Node
 	{
 		T* item;
-		Node* right;
-		Node* left;
+		Node* right = nullptr;
+		Node* left = nullptr;
 	};
  
 	//default constructor
@@ -84,13 +84,17 @@ void BSTree<T>::inOrderTraversal(BSTree<T>::Node* look) const
 		// call inorder again but going to the left
 		inOrderTraversal(look->left);
 		// print out the left node movie
-		cout << (look->left->item) << endl;
+		if (look->left != nullptr) {
+			cout << (look->left->item) << endl;
+		}
 		// print out the current node movie
 		cout << (look->item) << endl;
 		// call inorder for the right
 		inOrderTraversal(look->right);
 		// print the movie from the right node
-		cout << (look->right->item) << endl;
+		if (look->right != nullptr) {
+			cout << (look->right->item) << endl;
+		}
 	}
 }
 
