@@ -10,7 +10,7 @@
         setGenre('D');
     }
 	// passes in a command that contains all the needed data to create a Drama object
-	Drama::Drama(Command command) 
+	Drama::Drama(Commands command) 
     {
         //setTitle("title");
         setTitle(command.getVector(3));
