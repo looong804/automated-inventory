@@ -3,13 +3,6 @@
 
 #include "item.h"
 
-
-
-
-//make the cpp for this
-
-
-
         Item::Item() 
         {
             setStock(0);
