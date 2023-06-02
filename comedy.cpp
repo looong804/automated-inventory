@@ -43,6 +43,11 @@ char type = 'D'; // Dvd is default if not changed by contructor
 
     }
 	
+    Comedy::~Comedy() 
+    {
+        
+    }
+
 	//comparison overloads - sorted by title then year
 	bool Comedy::operator==(const Comedy& rhs) const 
     {
