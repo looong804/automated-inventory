@@ -14,6 +14,10 @@ Commands::~Commands()
 {
 }
 
+/* ------------------------------------(Commands)--------------------------------------
+Description: takes in the command string and parses it by commas and put into a vector
+having the commandType char in the 0 index
+-------------------------------------------------------------------------------------- */
 Commands::Commands(string command)
 {
 	// check if the first spot is not an int
@@ -93,33 +97,45 @@ Commands::Commands(string command)
 	}
 }
 
-//
+/* ------------------------------------(getCommandTypes)--------------------------------------
+Description: return the vector that holds all the valid command types to be checked against
+allows users to extend and add new valid commands easily
+-------------------------------------------------------------------------------------- */
 vector<char> Commands::getCommandTypes()
 {
 	return this->commandTypes;
 }//close getCommand
 
-// pass in the error message wanted
-// enables lots of error printing without changing the function just adding error messages
+/* ------------------------------------(printErrorMessage)--------------------------------------
+Description: pass in the error message wanted
+ enables lots of error printing without changing the function just adding error messages
+-------------------------------------------------------------------------------------- */ 
 void Commands::printErrorMessage(string errorType)
 {
 	// print out the error message that was passed in
 	cerr << errorType;
 }
 
-// getter for the vector storing the parsed command
+/* ------------------------------------(getVector)--------------------------------------
+Description: getter for the vector storing the parsed command
+-------------------------------------------------------------------------------------- */ 
 vector<string> Commands::getVector()
 {
 	return parsedCommand;
 }
 
-// return the string at the given index in the vector
+/* ------------------------------------(getVector)--------------------------------------
+Description: return the string at the given index in the vector
+-------------------------------------------------------------------------------------- */ 
 string Commands::getVector(int index)
 {
 	return parsedCommand[index];
 }
 
-// parse the passed in string by spaces
+/* ------------------------------------(convertToStringstream)--------------------------------------
+Description: convert the passed in string to a stringstream to make for easier
+string parseing by using >>
+-------------------------------------------------------------------------------------- */ 
 stringstream Commands::convertToStringstream(string stringToSplit)
 {
 	// string stream set equal to the passed string
@@ -128,7 +144,9 @@ stringstream Commands::convertToStringstream(string stringToSplit)
 	return stringStream;
 }
 
-// parse the passed in string by spaces
+/* ------------------------------------(spaceParser)--------------------------------------
+Description: parse the passed in string by spaces
+-------------------------------------------------------------------------------------- */ 
 vector<string> Commands::spaceParser(string stringToSplit)
 {
 	// string stream set equal to the passed string
@@ -149,7 +167,9 @@ vector<string> Commands::spaceParser(string stringToSplit)
 	return parsed;
 }
 
-// use the passed in index to get the string in the parsedCommand vector
+/* ------------------------------------(spaceParser)--------------------------------------
+Description:  use the passed in index to get the string in the parsedCommand vector
+-------------------------------------------------------------------------------------- */ 
 vector<string> Commands::spaceParser(int index)
 {
 	// string stream set equal to the passed string
@@ -170,7 +190,9 @@ vector<string> Commands::spaceParser(int index)
 	return parsed;
 }
 
-// compare all values in the parsed command
+/* ------------------------------------(operator==)--------------------------------------
+Description:  compare all values in the parsed command, return true if equal
+-------------------------------------------------------------------------------------- */ 
 bool Commands::operator==(const Commands& rhs) const
 {
 	// compare the vector sizes first
@@ -193,7 +215,9 @@ bool Commands::operator==(const Commands& rhs) const
 	}
 }
 
-// compare all values in the parsed command
+/* ------------------------------------(operator!=)--------------------------------------
+Description:  compare all values in the parsed command, return true if not equal
+-------------------------------------------------------------------------------------- */ 
 bool Commands::operator!=(const Commands& rhs) const
 {
 	if (!(*this == rhs))
