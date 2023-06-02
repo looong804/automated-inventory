@@ -27,7 +27,7 @@ out all the needed data and inserts into the Classic object.
 
 params: Command command
 */
-	Classic::Classic(Command command) 
+	Classic::Classic(Commands command) 
     {
         setTitle(command.getVector(3));
         setDirector(command.getVector(2)); 
