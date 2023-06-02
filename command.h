@@ -34,6 +34,9 @@ public:
 	//retrieve the command types
 	vector<char> getCommandTypes();
 
+	//returns true if no errors were found and the command is usable
+	bool isValid();
+
 	//comparison overloads - checks for identical command objects
 	bool operator==(const Commands& rhs) const;
 	bool operator!=(const Commands& rhs) const;
@@ -54,6 +57,8 @@ private:
 	char showCustomerHistory = 'H';
 	char checkoutItem = 'B';
 	char givebackItem = 'R';
+
+	bool validCommand = true;
 
 	// vector that stores all accepted command types
 	vector<char> commandTypes{ createComedy, createDrama, createClassic,
