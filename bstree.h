@@ -32,9 +32,9 @@ public:
 	~BSTree();
 
 	// traverse the tree in order and print out each item
-	void inOrderTraversal() const;
+	stringstream inOrderTraversal() const;
 	// traverse the tree in order and print out each item
-	void inOrderTraversal(BSTree<T>::Node* look) const;
+	stringstream inOrderTraversal(stringstream& stream, BSTree<T>::Node* look) const;
 	// inserts a new item into the tree
 	void insert(T* item);
 	// find an item and return a pointer to it
