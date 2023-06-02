@@ -238,7 +238,7 @@ returns: bool
         if (getYear() > rhs.getYear()) 
         {
             return true;
-        } else if (getMonth() > rhs.getYear()) 
+        } else if (getYear() == rhs.getYear() && getMonth() > rhs.getYear()) 
         {
             return true;
         } else if (actor1 > actor2) 
