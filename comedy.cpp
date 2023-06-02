@@ -65,7 +65,7 @@ char type = 'D'; // Dvd is default if not changed by contructor
         if (getTitle() > rhs.getTitle()) 
         {
             return true;
-        } else if (getTitle() == rhs.getTitle(), getYear() > rhs.getYear()) 
+        } else if (getTitle() == rhs.getTitle() && getYear() > rhs.getYear()) 
         {
             return true;
         } else 
