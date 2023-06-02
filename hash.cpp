@@ -4,6 +4,11 @@ Hash::Hash()
 {
 }
 
+// empty the slots of the hash table
+Hash::~Hash()
+{
+}
+
 int Hash::getSize() const
 {
 	return size;
