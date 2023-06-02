@@ -31,7 +31,7 @@ Store::~Store(){
 //Setters
 //
 void Store::setStock(){
-    //
+    ////Commands tempCommand 
     while(!stock.empty()){
         //Retrieve first item
         Commands tempCommand = stock.at(0);
@@ -104,7 +104,10 @@ void Store::executeActions() {
         }else if(tempCommand.getVector(0) == "I"){
             cout << inventory;
         }else if(tempCommand.getVector(0) == "H"){
-            accountHistory(stoi(tempCommand.getVector(1)));
+            //accountHistory(stoi(tempCommand.spaceParser(tempCommand.getVector(1)).at(0)));
+            vector<string> ID = tempCommand.spaceParser(1); 
+            int clearID = stoi(ID[0]);
+            accountHistory(clearID);
         }
 
         actions.erase(actions.begin());
@@ -212,9 +215,11 @@ Comedy* Store::findComedy(Comedy& comedyDvd){
 }//close findComedy
 
 // find a classic dvd and verify that it exists
-Classic* Store::findClassic(Classic& classicDvd){
+Classic* Store::findClassic(const Classic& classic){ //search can't be searching for addres
     //parse through binary tree for dvd
     //search via release date then major actor
+
+    Classic classicDvd = classic;
 
     //return 
     if(((inventory.getClassicTree()) -> search(&classicDvd)) == nullptr)
