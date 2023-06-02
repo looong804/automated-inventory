@@ -240,10 +240,6 @@ int HashWaitlist::remove(Commands* command)
 					return id;
 				}
 			}
-			else
-			{
-				return -1;
-			}
 		}
 		else
 		{
