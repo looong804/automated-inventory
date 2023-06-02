@@ -18,7 +18,7 @@ public:
 	bool operator>(const Comedy& rhs) const;
 	bool operator<(const Comedy& rhs) const;
 
-
+	Comedy& operator=(const Comedy& rhs);
 	Comedy operator+ (const Comedy& rhs) const;
 	Comedy& operator+= (const Comedy& rhs);
 	
