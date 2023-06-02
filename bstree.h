@@ -67,6 +67,7 @@ BSTree<T>::~BSTree()
 
 /* ------------------------------------(inOrderTraversal)--------------------------------------
 Description: Recursive function for traversing the BST and printing out what it contains
+uses a node as the passed in parameter, mainly for use in the BST functions
 -------------------------------------------------------------------------------------- */
 template <class T>
 void BSTree<T>::inOrderTraversal(BSTree<T>::Node* look) const
@@ -85,6 +86,7 @@ void BSTree<T>::inOrderTraversal(BSTree<T>::Node* look) const
 		cout << (look->right->item) << endl;
 	}
 }
+
 
 template <class T>
 void BSTree<T>::inOrderTraversal() const
