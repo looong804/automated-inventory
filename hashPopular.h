@@ -47,7 +47,7 @@ private:
 // this is the implementation 
 
 // currently does nothing
-HashPopular()
+HashPopular::HashPopular()
 {
 }
 
