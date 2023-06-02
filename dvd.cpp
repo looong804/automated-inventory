@@ -11,6 +11,11 @@
         setItemType('D');
     }
 
+    // does nothing
+    Dvd::~Dvd() 
+    {
+    }
+
 	// addition overloads (combines the stock for most DVDs, except for classic also )
 	Dvd Dvd::operator+ (const Dvd& rhs) const 
     {
