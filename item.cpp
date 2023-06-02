@@ -9,6 +9,11 @@
             setTitle("");
         }
 
+        // does nothing
+        Item::~Item() 
+	{
+        }
+
         void Item::setItemType(char const item) 
         {
             itemType = item; 
