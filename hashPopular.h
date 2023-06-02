@@ -73,7 +73,9 @@ HashPopular<T>::~HashPopular()
 }
 
 /* ------------------------------------(hashFunction)--------------------------------------
-Description: 
+Description: uses item title to create the hash, 
+call some other premade hashFunction that returns the hashIndex, converts used items into
+usable types for premade hash functions, mostly for inside use
 -------------------------------------------------------------------------------------- */
 template <class T>
 int HashPopular<T>::hashFunction(T* item)
@@ -89,6 +91,9 @@ int HashPopular<T>::hashFunction(T* item)
 	return hashStringFold(title, popular->size());
 }
 
+/* ------------------------------------(insert)--------------------------------------
+Description: using the hash index, insert key and value into the hashed vector
+-------------------------------------------------------------------------------------- */
 template <class T>
 void HashPopular<T>::insert(T* item)
 {
@@ -108,7 +113,11 @@ void HashPopular<T>::insert(T* item)
 	}
 }
 
-// go to the hashIndex and check if the item is there
+/* ------------------------------------(search)--------------------------------------
+Description: searches for the passsed in item and 
+returns a pointer because the account object needs to be edited,
+returns nullptr if not found, mostly for inside use
+-------------------------------------------------------------------------------------- */
 template <class T>
 T* HashPopular<T>::search(T* item)
 {
@@ -142,8 +151,10 @@ T* HashPopular<T>::search(T* item)
 	}
 }
 
-// find the passed in item if its in the popular vector
-// return its index if found
+/* ------------------------------------(searchForSwap)--------------------------------------
+Description: searches for the passsed in item and return its index if found,
+mostly for inside use and is a helper function for swap()
+-------------------------------------------------------------------------------------- */
 template <class T>
 int HashPopular<T>::searchForSwap(T* item)
 {
@@ -177,7 +188,9 @@ int HashPopular<T>::searchForSwap(T* item)
 	}
 }
 
-// swap out an old popular item with a new one
+/* ------------------------------------(swap)--------------------------------------
+Description: swap out an old popular item with a new one, only works if the popular hash is already full
+-------------------------------------------------------------------------------------- */
 template <class T>
 void HashPopular<T>::swap(T* oldItem, T* newItem)
 {
@@ -196,6 +209,9 @@ void HashPopular<T>::swap(T* oldItem, T* newItem)
 	}
 }
 
+/* ------------------------------------(isFull)--------------------------------------
+Description: checks if the hash is full, returns true if its full
+-------------------------------------------------------------------------------------- */
 template <class T>
 bool HashPopular<T>::isFull()
 {
@@ -209,7 +225,9 @@ bool HashPopular<T>::isFull()
 	}
 }
 
-// check if the passed in item is in the hash
+/* ------------------------------------(isPopular)--------------------------------------
+Description: check if the passed in item is in the hash, return true if found
+-------------------------------------------------------------------------------------- */
 template <class T>
 bool HashPopular<T>::isPopular(T* item)
 {
@@ -224,7 +242,9 @@ bool HashPopular<T>::isPopular(T* item)
 	}
 }
 
-// return the lowest popular item in the hash
+/* ------------------------------------(getLowestPopular)--------------------------------------
+Description: return the lowest popular item in the hash
+-------------------------------------------------------------------------------------- */
 template <class T>
 T* HashPopular<T>::getLowestPopular()
 {
