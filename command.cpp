@@ -1,5 +1,15 @@
+/* ------------------------------------------------command.cpp----------------------------
+Steven Wenzel: CSS 343 A Spring 2023
+-----------------------------------------------------------------------------------------
+This is an object class to parse the command lines take from the text files into objects by commas 
+and has multiple functions to help functions in store to parse the commands further based off of 
+the full knowledge that the store class has
+--------------------------------------------------------------------------------------*/
 #include "command.h"
 
+/* ------------------------------------(~Commands)--------------------------------------
+Description: does nothing no dynamic memory 
+-------------------------------------------------------------------------------------- */
 Commands::~Commands()
 {
 }
