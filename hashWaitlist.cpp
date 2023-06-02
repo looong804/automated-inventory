@@ -233,8 +233,11 @@ int HashWaitlist::remove(Commands* command)
 						temp->next->data = nullptr;
 						// have temp point to temps next next
 						temp->next = temp->next->next;
-						// set temps next to nullptr
-						temp->next = nullptr;
+						if (temp->next != nullptr)
+						{
+							// set temps next to nullptr
+							temp->next = nullptr;
+						}
 					}
 					// search for the account using the id
 					// and return the pointer to the account
