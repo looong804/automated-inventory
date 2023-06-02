@@ -1,4 +1,5 @@
 #include "store.h"
+#include <vector>
 
 int main(int argc, char* argv[])
 {
@@ -27,14 +28,22 @@ int main(int argc, char* argv[])
 	
 	// should probably add just a couple text files to contain the input commands to test everything
 	// create a store using given input files
-	Store stuff(givenFile1, givenFile2, givenFile3);
+
+	vector<string> files; 
+	files.push_back("data4commands.txt");
+	files.push_back("data4customers.txt");
+	files.push_back("data4movies.txt");
+
+
+	Store store(files);
+	//Store stuff(givenFile1, givenFile2, givenFile3);
 	cout << "Finished running the given input files." << endl;
 	// create a store using our test files
-	Store treasureTrove(testFile1, testFile2, testFile3);
-	cout << "Finished running the test files." << endl;
+	//Store treasureTrove(testFile1, testFile2, testFile3);
+	//cout << "Finished running the test files." << endl;
 	
 	// Testing for Command class - covered a couple that should fail and others that should work 
-	Command fail0("Z 1000 D C 10 1941 Humphrey Bogart");
+	/*Command fail0("Z 1000 D C 10 1941 Humphrey Bogart");
 	Command fail1("X");
 	Command fail2("Z, 10, Frank Capra, It's a Wonderful Life, James Steward 11 1946");
 	Command work0("I");
@@ -80,5 +89,6 @@ int main(int argc, char* argv[])
 		// - could add prices to all the items in the inventoy
 		// - could add discounting functions that will discount all the prices of items 
 		// depending on their catagories and types, and after a certain time return them to full price
+		*/
 	return 0;
 }
