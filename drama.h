@@ -9,7 +9,7 @@ class Drama : public Dvd
 public:
 	Drama();
 	// passes in a command that contains all the needed data to create a Drama object
-	Drama(Command command);
+	Drama(Commands command);
 	~Drama();
 
 	//void setTitle(string title);
