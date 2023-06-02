@@ -1,3 +1,8 @@
+/* ------------------------------------------------command.h----------------------------
+Steven Wenzel: CSS 343 A Spring 2023
+-----------------------------------------------------------------------------------------
+This is the header file for the command object meant to help with command string parsing
+--------------------------------------------------------------------------------------*/
 #ifndef COMMAND_H
 #define COMMAND_H
 
