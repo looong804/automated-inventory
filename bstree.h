@@ -89,7 +89,7 @@ void BSTree<T>::inOrderTraversal(BSTree<T>::Node* look) const
 template <class T>
 void BSTree<T>::inOrderTraversal() const
 {
-  cout << inOrderTraversal(root);
+  inOrderTraversal(root);
 }
 
 template<class T>
