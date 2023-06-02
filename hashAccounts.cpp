@@ -1,11 +1,21 @@
+/* ------------------------------------------------hashAccounts.cpp----------------------------
+Steven Wenzel: CSS 343 A Spring 2023
+-----------------------------------------------------------------------------------------
+This is hash class for Accounts this stores them using hash chaining and is meant to increase
+the speed of account retrival for executing transactions
+--------------------------------------------------------------------------------------*/
 #include "hashAccounts.h"
 
-// currently does nothing
+/* ------------------------------------HashAccounts--------------------------------------
+Description: does nothing
+-------------------------------------------------------------------------------------- */
 HashAccounts::HashAccounts()
 {
 }
 
-// set all the account pointers in the vector to nullptr
+/* ------------------------------------(~HashAccounts)--------------------------------------
+Description: set all the account pointers in the vector to nullptr
+-------------------------------------------------------------------------------------- */
 HashAccounts::~HashAccounts()
 {
 	// go through each index in the vector
@@ -47,8 +57,11 @@ HashAccounts::~HashAccounts()
 	}
 }
 
-// uses the accountID to create the hash
-// call some other premade hashFunction that returns the hashIndex
+/* ------------------------------------(hashFunction)--------------------------------------
+Description: uses the accountID to create the hash, 
+call some other premade hashFunction that returns the hashIndex, converts used items into
+usable types for premade hash functions, mostly for inside use
+-------------------------------------------------------------------------------------- */
 int HashAccounts::hashFunction(Customer* account)
 {
 	// check if the item pointer is empty
@@ -62,8 +75,11 @@ int HashAccounts::hashFunction(Customer* account)
 	return hashMidSquare(ID, accounts->size());
 }
 
-// uses the accountID to create the hash
-// call some other premade hashFunction that returns the hashIndex
+/* ------------------------------------(hashFunction)--------------------------------------
+Description: uses the accountID to create the hash
+call some other premade hashFunction that returns the hashIndex converts used items into
+usable types for premade hash functions, mostly for outside use
+-------------------------------------------------------------------------------------- */
 int HashAccounts::hashFunction(int id)
 {
 	// check if the id is too small
@@ -75,7 +91,9 @@ int HashAccounts::hashFunction(int id)
 	return hashMidSquare(id, accounts->size());
 }
 
-//using the hash index, insert key and value into the hashed vector
+/* ------------------------------------(insert)--------------------------------------
+Description: using the hash index, insert key and value into the hashed vector
+-------------------------------------------------------------------------------------- */
 void HashAccounts::insert(Customer* account)
 {
 	// check if the account pointer is empty
@@ -129,8 +147,11 @@ void HashAccounts::insert(Customer* account)
 	}
 }
 
-// returns a pointer because the account object needs to be edited
-// returns nullptr if not found
+/* ------------------------------------(search)--------------------------------------
+Description: searches for the passsed in account and 
+returns a pointer because the account object needs to be edited,
+returns nullptr if not found, mostly for inside use
+-------------------------------------------------------------------------------------- */
 Customer* HashAccounts::search(Customer* account)
 {
 	// check if the account pointer is empty
@@ -174,8 +195,11 @@ Customer* HashAccounts::search(Customer* account)
 	}
 }
 
-// returns a pointer because the account object needs to be edited
-// returns nullptr if not found
+/* ------------------------------------(search)--------------------------------------
+Description: searches for the account that matches the passed in id and 
+returns a pointer because the account object needs to be edited
+returns nullptr if not found, mostly for outside use
+-------------------------------------------------------------------------------------- */
 Customer* HashAccounts::search(int id)
 {
 	// check if the id is too small
@@ -219,7 +243,10 @@ Customer* HashAccounts::search(int id)
 	}
 }
 
-// check if the passed account exists 
+/* ------------------------------------(isAccount)--------------------------------------
+Description: check if the passed in id is used by an account that exists, return true if it does,
+mostly for outside use
+-------------------------------------------------------------------------------------- */
 bool HashAccounts::isAccount(int id)
 {
 	if (search(id) != nullptr)
@@ -232,7 +259,9 @@ bool HashAccounts::isAccount(int id)
 	}
 }
 
-// check if the passed account exists 
+/* ------------------------------------(isAccount)--------------------------------------
+Description: check if the passed account exists, return true if it does, mostly for inside use
+-------------------------------------------------------------------------------------- */
 bool HashAccounts::isAccount(Customer* account)
 {
 	if (search(account) != nullptr)
