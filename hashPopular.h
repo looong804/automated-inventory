@@ -52,7 +52,8 @@ private:
 /* ------------------------------------HashPopular--------------------------------------
 Description: does nothing
 -------------------------------------------------------------------------------------- */
-HashPopular::HashPopular()
+template <class T>
+HashPopular<T>::HashPopular()
 {
 }
 
