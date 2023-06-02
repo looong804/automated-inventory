@@ -1,21 +1,37 @@
+/* ------------------------------------------------hash.cpp----------------------------
+Steven Wenzel: CSS 343 A Spring 2023
+-----------------------------------------------------------------------------------------
+This is the parent class for all the hash classes and contains the premade hash functions
+used in all the other hash classes and contains the hash size data member 
+--------------------------------------------------------------------------------------*/
 #include "hash.h"
 
+/* ------------------------------------Hash--------------------------------------
+Description: does nothing this is an abstract class
+-------------------------------------------------------------------------------------- */
 Hash::Hash()
 {
 }
 
-// empty the slots of the hash table
+/* ------------------------------------(~Hash)--------------------------------------
+Description: does nothing this is an abstract class
+-------------------------------------------------------------------------------------- */
 Hash::~Hash()
 {
 }
 
+/* ------------------------------------(getSize)--------------------------------------
+Description: return the size of the hash
+-------------------------------------------------------------------------------------- */
 int Hash::getSize() const
 {
 	return size;
 }
 
-
-// hash function using folding on a string, summed 4 bytes at a time
+/* ------------------------------------(hashStringFold)--------------------------------------
+Description: hash function using folding on a string, summed 4 bytes at a time.
+this is a common premade hash function found online by instructor permission
+-------------------------------------------------------------------------------------- */
 int Hash::hashStringFold(string key, int tableSize)
 {
 	long sum = 0, mul = 1;
@@ -26,7 +42,10 @@ int Hash::hashStringFold(string key, int tableSize)
 	return (int)(abs(sum) % tableSize);
 }
 
-// hash function using mid square method for ints
+/* ------------------------------------(hashMidSquare)--------------------------------------
+Description: hash function using mid square method for ints.
+this is a common premade hash function found online by instructor permission
+-------------------------------------------------------------------------------------- */
 int Hash::hashMidSquare(int key, int tableSize)
 {
     // Square the key
