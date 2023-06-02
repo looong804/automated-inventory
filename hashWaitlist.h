@@ -15,22 +15,22 @@ public:
 	~HashWaitlist();
 
 	// insert key and value into the hashed vector after hasing the key
-	void insert(Command* command);
+	void insert(Commands* command);
 	// check the waitlist using the hashIndex for the item title
-	Command* search(Command* command);
+	Commands* search(Commands* command);
 	// check the waitlist using the hashIndex for the item title
 	// return a customer pointer for customer editing
-	int searchGiveCustomer(Command* command);
+	int searchGiveCustomer(Commands* command);
 	// using the value, hash the key stored in the value, then search the given slot for the value 
 	// returns a customer pointer for sending the requested item straight to the customer
-	int remove(Command* command);
+	int remove(Commands* command);
 	// check if the passed in command is in the waitlist
-	bool isInWaitlist(Command* command);
+	bool isInWaitlist(Commands* command);
 
 private:
 	// returns the index for the hash; Key: item title; Value: command
-	int hashFunction(Command* command);
+	int hashFunction(Commands* command);
 	// vector holding the failed borrow commands
-	vector<NodeData<Command>> waitlist[25];
+	vector<NodeData<Commands>> waitlist[25];
 };
 #endif
