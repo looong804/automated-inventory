@@ -47,6 +47,7 @@ Commands::Commands(string command)
 		{
 			printErrorMessage(error1);
 			cerr << command << endl;
+			validCommand = false;
 		}
 		else if (valid)
 		{
@@ -93,6 +94,7 @@ Commands::Commands(string command)
 		{
 			printErrorMessage(error1);
 			cerr << command << endl;
+			validCommand = false;
 		}
 	}
 }
@@ -130,6 +132,14 @@ Description: return the string at the given index in the vector
 string Commands::getVector(int index)
 {
 	return parsedCommand[index];
+}
+
+/* ------------------------------------(getVector)--------------------------------------
+Description: return true if the commands object is valid
+-------------------------------------------------------------------------------------- */ 
+bool Commands::isValid() 
+{
+	return validCommand;
 }
 
 /* ------------------------------------(convertToStringstream)--------------------------------------
