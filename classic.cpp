@@ -276,10 +276,10 @@ returns: bool
         if (getYear() > rhs.getYear()) 
         {
             return true;
-        } else if (getYear() == rhs.getYear() && getMonth() > rhs.getYear()) 
+        } else if (getYear() == rhs.getYear() && getMonth() > rhs.getMonth())
         {
             return true;
-        } else if (getYear() == rhs.getYear() && getMonth() == rhs.getYear() && actor1 > actor2) 
+        } else if (getYear() == rhs.getYear() && getMonth() == rhs.getMonth() && actor1 > actor2)
         {
             return true;
         } else  
@@ -310,18 +310,18 @@ returns: bool
         rhs.getMajorActor(0, actor2);
 
 
-        if (getYear() > rhs.getYear()) 
-        {
-            return false;
-        } else if (getYear() == rhs.getYear() && getMonth() > rhs.getYear()) 
-        {
-            return false;
-        } else if (getYear() == rhs.getYear() && getMonth() == rhs.getYear() && actor1 > actor2) 
-        {
-            return false;
-        } else  
+        if (getYear() < rhs.getYear())
         {
             return true;
+        } else if (getYear() == rhs.getYear() && getMonth() < rhs.getMonth())
+        {
+            return true;
+        } else if (getYear() == rhs.getYear() && getMonth() == rhs.getMonth() && actor1 < actor2)
+        {
+            return true;
+        } else  
+        {
+            return false;
         }
     }
 

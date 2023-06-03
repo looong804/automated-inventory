@@ -78,7 +78,7 @@ public:
 	// find a comedy dvd and verify that it exists
 	Comedy* findComedy(Comedy& comedyDvd);
 	// find a classic dvd and verify that it exists
-	Classic* findClassic(const Classic& classic);
+	Classic* findClassic(Classic& classic);
 
     //Commands Functions
 	// return a borrowed item
