@@ -23,6 +23,7 @@ public:
 	Comedy operator+ (const Comedy& rhs) const;
 	Comedy& operator+= (const Comedy& rhs);
 	
+	bool isEqual(const Comedy& rhs) const;
 
 	//stream overloads
 	// display all the info 
