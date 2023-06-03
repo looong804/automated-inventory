@@ -26,6 +26,7 @@ public:
     	Drama& operator+= (const Drama& rhs); 
 	Drama& operator=(const Drama& rhs);
 
+	bool isEqual(const Drama& rhs) const;
 
 	//stream overloads
 	// display all the info 
