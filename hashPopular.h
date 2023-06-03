@@ -41,7 +41,9 @@ private:
 	int hashFunction(T* item);
 
 	// vector holding the failed borrow commands
-	vector<T*> popular[10];
+	//vector<T*> popular[10];
+	const static int PopularSize = 10;
+	T* popular[PopularSize];
 	// check the popular vector for the item and return its index if found
 	int searchForSwap(T* item);
 };
@@ -64,10 +66,10 @@ template <class T>
 HashPopular<T>::~HashPopular()
 {
 	// go through each index in the vector
-	for (int i = 0; i < popular->size(); i++)
+	for (int i = 0; i < PopularSize; i++)
 	{
 		// a temp pointer for traversing the popular vector
-		T* temp = popular->at(i);
+		T* temp = popular[i];
 		// set temp to nullptr
 		temp = nullptr;
 	}
@@ -89,7 +91,7 @@ int HashPopular<T>::hashFunction(T* item)
 	// get the item title from the item object
 	string title = item->getTitle();
 	// call and return the hashMidSqaure on the id
-	return hashStringFold(title, popular->size());
+	return hashStringFold(title, PopularSize);
 }
 
 /* ------------------------------------(insert)--------------------------------------
@@ -107,7 +109,7 @@ void HashPopular<T>::insert(T* item)
 			// get the hashIndex from the hashFunction
 			int hashIndex = hashFunction(item);
 			// set the item pointer at the hashIndex to the passed in item 
-			popular->at(hashIndex) = item;
+			popular[hashIndex] = item;
 			// up the slots taken
 			size++;
 		}
@@ -132,9 +134,9 @@ T* HashPopular<T>::search(T* item)
 	int hashIndex = hashFunction(item);
 
 	// go to the hashIndex in the popular vector and compare with the passed in item
-	if (popular->at(hashIndex) == item)
+	if (popular[hashIndex] == item)
 	{
-		return popular->at(hashIndex);
+		return popular[hashIndex];
 	}
 	// if not found at hashIndex
 	else
@@ -142,9 +144,9 @@ T* HashPopular<T>::search(T* item)
 		// search the whole popular vector linearly
 		for (int i = 0; i < 10; i++)
 		{
-			if (popular->at(i) == item)
+			if (popular[i] == item)
 			{
-				return popular->at(i);
+				return popular[i];
 			}
 		}
 		// if not found in the popular vector
@@ -169,7 +171,7 @@ int HashPopular<T>::searchForSwap(T* item)
 	int hashIndex = hashFunction(item);
 
 	// go to the hashIndex in the popular vector and compare with the passed in item
-	if (popular->at(hashIndex) == item)
+	if (popular[hashIndex] == item)
 	{
 		return hashIndex;
 	}
@@ -179,7 +181,7 @@ int HashPopular<T>::searchForSwap(T* item)
 		// search the whole popular vector linearly
 		for (int i = 0; i < 10; i++)
 		{
-			if (popular->at(i) == item)
+			if (popular[i] == item)
 			{
 				return i;
 			}
@@ -204,7 +206,7 @@ void HashPopular<T>::swap(T* oldItem, T* newItem)
 			// check if the oldItem is in the popular vector
 			if (index != -1)
 			{
-				popular->at(index) = newItem;
+				popular[index] = newItem;
 			}
 		}
 	}
@@ -259,13 +261,13 @@ T* HashPopular<T>::getLowestPopular()
 	// search the whole popular vector for the lowest popular item
 	for (int i = 0; i < 10; i++)
 	{
-		if (popular->at(i)->getPopularity() < lowest)
+		if (popular[i]->getPopularity() < lowest)
 		{
 			index = i;
-			lowest = popular->at(i)->getPopularity();
+			lowest = popular[i]->getPopularity();
 		}
 	}
 	// return the lowest popular item
-	return popular->at(index);
+	return popular[index];
 }
 #endif
