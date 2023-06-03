@@ -271,6 +271,10 @@ bool Store::returnItem(Commands &action){
     //checks if command requests DVD
     if(fields[1] != "D"){
         cout << "Item is unavailable";
+
+        tempCustomer = nullptr;
+        delete tempCustomer;
+
         return false;
     }
 
@@ -292,6 +296,10 @@ bool Store::returnItem(Commands &action){
         //checks if the Item exists
         if(findComedy(tempComedy) == nullptr){
             cout << "Comedy item is unavailable";
+
+            tempCustomer = nullptr;
+            delete tempCustomer;
+
             return false;
         }
 
@@ -306,6 +314,10 @@ bool Store::returnItem(Commands &action){
         //if item is not borrowed, do not return
         if(!borrowed){
             cout << "This item is not checked out to this account";
+
+            tempCustomer = nullptr;
+            delete tempCustomer;
+
             return false;
         }
 
@@ -317,11 +329,21 @@ bool Store::returnItem(Commands &action){
             Customer *waitCustomer = accounts.search(waitlist.remove(&action));
             waitCustomer -> borrow(action);
 
+            tempCustomer = nullptr;
+            delete tempCustomer;
+            requestedItem = nullptr;
+            delete requestedItem;
+
             return true;
         //no waitlist for Item
         }else{
             tempCustomer -> returnItem(action);
             requestedItem -> upStock();
+
+            tempCustomer = nullptr;
+            delete tempCustomer;
+            requestedItem = nullptr;
+            delete requestedItem;
 
             return true;
         }
@@ -339,6 +361,10 @@ bool Store::returnItem(Commands &action){
         //checks if the Item exists
         if(findDrama(tempDrama) == nullptr){
             cout << "Drama item is unavailable";
+
+            tempCustomer = nullptr;
+            delete tempCustomer;
+
             return false;
         }
 
@@ -353,6 +379,10 @@ bool Store::returnItem(Commands &action){
         //if item is not borrowed, do not return
         if(!borrowed){
             cout << "This item is not checked out to this account";
+
+            tempCustomer = nullptr;
+            delete tempCustomer;
+
             return false;
         }
 
@@ -364,11 +394,21 @@ bool Store::returnItem(Commands &action){
             Customer *waitCustomer = accounts.search(waitlist.remove(&action));
             waitCustomer -> borrow(action);
 
+            tempCustomer = nullptr;
+            delete tempCustomer;
+            requestedItem = nullptr;
+            delete requestedItem;
+
             return true;
             //no waitlist for Item
         }else{
             tempCustomer -> returnItem(action);
             requestedItem -> upStock();
+
+            tempCustomer = nullptr;
+            delete tempCustomer;
+            requestedItem = nullptr;
+            delete requestedItem;
 
             return true;
         }
@@ -382,6 +422,10 @@ bool Store::returnItem(Commands &action){
         //checks if the Item exists
         if(findClassic(tempClassic) == nullptr){
             cout << "Classic item is unavailable";
+
+            tempCustomer = nullptr;
+            delete tempCustomer;
+
             return false;
         }
 
@@ -396,6 +440,10 @@ bool Store::returnItem(Commands &action){
         //if item is not borrowed, do not return
         if(!borrowed){
             cout << "This item is not checked out to this account";
+
+            tempCustomer = nullptr;
+            delete tempCustomer;
+
             return false;
         }
 
@@ -407,16 +455,30 @@ bool Store::returnItem(Commands &action){
             Customer *waitCustomer = accounts.search(waitlist.remove(&action));
             waitCustomer -> borrow(action);
 
+            tempCustomer = nullptr;
+            delete tempCustomer;
+            requestedItem = nullptr;
+            delete requestedItem;
+
             return true;
             //no waitlist for Item
         }else{
             tempCustomer -> returnItem(action);
             requestedItem -> upStock();
 
+            tempCustomer = nullptr;
+            delete tempCustomer;
+            requestedItem = nullptr;
+            delete requestedItem;
+
             return true;
         }
     }else{
         cout << "Item requested is not recognized";
+
+        tempCustomer = nullptr;
+        delete tempCustomer;
+
         return false;
     }
 }//close returnItem
@@ -452,6 +514,10 @@ bool Store::borrowItem(){
     //checks if command requests DVD
     if(fields[1] != "D"){
         cout << "Item is not recognized";
+
+        tempCustomer = nullptr;
+        delete tempCustomer;
+
         return false;
     }
 
@@ -483,6 +549,10 @@ bool Store::borrowItem(){
         //if (findComedy(tempComedy)) {
         {
             cout << "Comedy item is unavailable";
+
+            tempCustomer = nullptr;
+            delete tempCustomer;
+
             return false;
         }
         
@@ -492,6 +562,10 @@ bool Store::borrowItem(){
             //replace vector(1) for all the data smushed together except a
             if(action.getVector(1) == tempCustomer -> getItemsOut(i)){
                 cout << "Account has already checked this comedy item out";
+
+                tempCustomer = nullptr;
+                delete tempCustomer;
+
                 return false;
             }
         }
@@ -546,7 +620,6 @@ bool Store::borrowItem(){
     }else if(fields[2] == "D"){
         string director = fields[3] + " " + fields[4];
 
-
         //vector<string> yearVector = (action.spaceParser(action.getVector(2)));
         //int year = stoi(yearVector[0]);
 
@@ -560,6 +633,10 @@ bool Store::borrowItem(){
         //if (findComedy(tempComedy)) {
         {
             cout << "Drama item is unavailable";
+
+            tempCustomer = nullptr;
+            delete tempCustomer;
+
             return false;
         }
 
@@ -577,6 +654,10 @@ bool Store::borrowItem(){
         for(int i = 0; i < tempCustomer -> getItemsOut().size(); i++){
             if(action.getVector(1) == tempCustomer -> getItemsOut(i)){
                 cout << "Account has already checked this drama item out";
+
+                tempCustomer = nullptr;
+                delete tempCustomer;
+
                 return false;
             }
         }
@@ -645,21 +726,34 @@ bool Store::borrowItem(){
         //if (findComedy(tempComedy)) {
         {
             cout << "Classic item is unavailable";
+
+            tempCustomer = nullptr;
+            delete tempCustomer;
+
             return false;
         }
 
         //Classic tempClassic(action);
 
+        //Duplicate checker
         //checks if the Item exists
-        if(findClassic(tempClassic) == nullptr){
+        /*if(findClassic(tempClassic) == nullptr){
             cout << "Classic item is unavailable";
+
+            tempCustomer = nullptr;
+            delete tempCustomer;
+
             return false;
-        }
+        }*/
 
         //checks if Customer has already borrowed this Item
         for(int i = 0; i < tempCustomer -> getItemsOut().size(); i++){
             if(action.getVector(1) == tempCustomer -> getItemsOut(i)){
                 cout << "Account has already checked this classic item out";
+
+                tempCustomer = nullptr;
+                delete tempCustomer;
+
                 return false;
             }
         }
@@ -714,6 +808,10 @@ bool Store::borrowItem(){
         }
     }else{
         cout << "Item requested is not recognized";
+
+        tempCustomer = nullptr;
+        delete tempCustomer;
+
         return false;
     }
 }//close borrowItem

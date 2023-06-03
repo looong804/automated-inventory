@@ -250,40 +250,32 @@ Customer* HashAccounts::search(int id)
 	// nodeData equal to the first node in the linked list 
 	NodeData<Customer> start = accounts[hashFunction(id)];
 
-	// check if its the first node
-	if (start.data -> getID() == id)
-	{
-		return start.data;
-	}
-	// go through the whole list
-	else
-	{
-		// nodeData pointer to traverse the list starting at the second node
-		NodeData<Customer> *looky;
-		looky = &*start.next;
+    if(start.data != nullptr){
+        // check if its the first node
+        if(start.data->getID() == id){
+            return start.data;
+        }
+        // go through the whole list
+        else{
+            // nodeData pointer to traverse the list starting at the second node
+            NodeData <Customer> *looky = start.next;
 
-		// while the account isn't found
-		if (looky != nullptr) {
-			while (true)
-			{
-				// check if the account ID matches the one being looked for  
-				if (looky->data != nullptr && looky->data->getID() == id)
-				{
-					// return the found account
-					return looky->data;
-				}
-				else if(looky->next != nullptr)
-				{
-					looky = looky->next;
-				}
-				else
-				{
-					return nullptr;
-				}
-			}
-		}
-		return nullptr;
-	}
+            // while the account isn't found
+            if(looky != nullptr){
+                while (looky->next != nullptr) {
+                    // check if the account ID matches the one being looked for
+                    if (looky->data != nullptr && looky->data->getID() == id) {
+                        // return the found account
+                        return looky->data;
+                    }
+
+                    looky = looky->next;
+                }
+            }
+        }
+    }
+
+    return nullptr;
 }
 
 /* ------------------------------------(isAccount)--------------------------------------

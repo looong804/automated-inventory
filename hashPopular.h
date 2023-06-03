@@ -145,11 +145,11 @@ T* HashPopular<T>::search(T* item)
             return popular[hashIndex];
         }else{
             // search the whole popular vector linearly
-            for(int i = 0; i < 10; i++)
-            {
-                if(*popular[i] == *item)
-                {
-                    return popular[i];
+            for(int i = 0; i < 10; i++) {
+                if(popular[i] != nullptr){
+                    if(*popular[i] == *item){
+                        return popular[i];
+                    }
                 }
             }
         }
