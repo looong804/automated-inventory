@@ -452,10 +452,12 @@ bool Store::borrowItem(){
         //I don't think we need to check if it's in the bstree, we can just check if
         //it's in history. 
 
-        string title = fields[3];
-        for (int i = 4; i < fields.size(); i++) {
-            title += " " + fields[i];
+        string title;
+        for (int i = 3; i < fields.size() - 1; i++) {
+            title += fields[i] + " ";
         }
+
+        title += fields[fields.size() - 1];
 
         vector<string> yearVector = (action.spaceParser(action.getVector(2)));
         int year = stoi(yearVector[0]);
@@ -463,20 +465,20 @@ bool Store::borrowItem(){
         Comedy tempComedy(title, year);
 
         //checks if the Item exists
-        //if(findComedy(tempComedy) == nullptr){
-        if (findComedy(tempComedy)) {
+        if(findComedy(tempComedy) == nullptr){
+        //if (findComedy(tempComedy)) {
             cout << "Comedy item is unavailable";
             return false;
         }
         
 
         //checks if Customer has already borrowed this Item
-        for(int i = 0; i < tempCustomer.getItemsOut().size(); i++){
-            if(action.getVector(1) == tempCustomer.getItemsOut(i)){ //replace vector(1) for all the data smushed together except a 
+        //for(int i = 0; i < tempCustomer.getItemsOut().size(); i++){
+            if(action.getVector(1) == tempCustomer.getItemsOut(1)){ //replace vector(1) for all the data smushed together except a
                 cout << "Account has already checked this comedy item out";
                 return false;
             }
-        }
+        //}
 
         Comedy requestedComedy;
 
