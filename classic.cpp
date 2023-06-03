@@ -33,7 +33,7 @@ params: Command command
         setDirector(command.getVector(2)); 
         setStock(stoi(command.getVector(1)));
         //setYear(command.getVector(4));
-        setGenre('D');
+        setGenre('C');
 
         vector<string> actorAndDate = command.spaceParser(command.getVector(4));
         //vector<string> actorAndDate = command.spaceSplitter(4);
@@ -44,6 +44,14 @@ params: Command command
         int year = stoi(actorAndDate[3]);
         setYear(year);
     }
+
+Classic::Classic(int month, int year, string firstName, string lastName) 
+{
+    setMonth(month);
+    setYear(year);
+    string actor = firstName + " " + lastName;
+    addMajorActor(actor);
+}
 
 
 Classic::~Classic() 
@@ -272,10 +280,22 @@ returns: bool
 */
 	bool Classic::operator<(const Classic& rhs) const 
     {
-        if (*this != rhs && !(*this > rhs))  
+        string actor1;
+        string actor2;
+        getMajorActor(0, actor1);
+        rhs.getMajorActor(0, actor2);
+
+
+        if (getYear() > rhs.getYear()) 
         {
-            return true;
-        } else 
+            return false;
+        } else if (getYear() == rhs.getYear() && getMonth() > rhs.getYear()) 
+        {
+            return false;
+        } else if (getYear() == rhs.getYear() && getMonth() == rhs.getYear() && actor1 > actor2) 
+        {
+            return false;
+        } else  
         {
             return false;
         }
