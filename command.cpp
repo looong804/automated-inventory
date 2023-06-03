@@ -52,33 +52,68 @@ Commands::Commands(string command)
 		else if (valid)
 		{
             if(commandType != showInventory){
-                // cut off the commandType from command string
-                command = command.substr(2, command.length());
+                if(commandType == createComedy || commandType == createDrama || commandType == createClassic){
+                    // cut off the commandType from command string
+                    command = command.substr(2, command.length());
 
-                // finish parsing the command string and storing in vector
-                while (!command.empty()) {
-                    // find next comma index
-                    int end = command.find(",");
-                    // check if a comma was found
-                    if (end != -1) {
-                        // parse command string to the next comma and store in vector
-                        parsedCommand.push_back(command.substr(0, end));
-                        // fix command - erase piece just parsed
-                        command = command.substr(end + 1, command.length());
+                    // finish parsing the command string and storing in vector
+                    while (!command.empty()){
+                        // find next comma index
+                        int end = command.find(",");
+                        // check if a comma was found
+                        if (end != -1){
+                            // parse command string to the next comma and store in vector
+                            parsedCommand.push_back(command.substr(1, end - 1));
+                            // fix command - erase piece just parsed
+                            command = command.substr(end + 1, command.length());
 
-                        //removes any potential carriage returns
-                        /*if(!command.empty() && command[command.length() - 1] == '\r')
-                        {
-                            cout << "Test print" << endl;
-                            command.erase(command.length() - 1);
-                        }*/
-                    }
+                            //removes any potential carriage returns
+                            /*if(!command.empty() && command[command.length() - 1] == '\r')
+                            {
+                                cout << "Test print" << endl;
+                                command.erase(command.length() - 1);
+                            }*/
+                        }
                         // put whole command string into the vector
-                    else {
-                        parsedCommand.push_back(command);
+                        else{
+                            command = command.substr(1, command.length());
+                            parsedCommand.push_back(command);
 
-                        // empty the command ok
-                        command.clear();
+                            // empty the command ok
+                            command.clear();
+                        }
+                    }
+                }else if(commandType == showCustomerHistory || commandType == checkoutItem
+                    || commandType == givebackItem){
+                    // cut off the commandType from command string
+                    command = command.substr(1, command.length());
+
+                    // finish parsing the command string and storing in vector
+                    while (!command.empty()){
+                        // find next comma index
+                        int end = command.find(",");
+                        // check if a comma was found
+                        if (end != -1){
+                            // parse command string to the next comma and store in vector
+                            parsedCommand.push_back(command.substr(1, end - 1));
+                            // fix command - erase piece just parsed
+                            command = command.substr(end + 1, command.length());
+
+                            //removes any potential carriage returns
+                            /*if(!command.empty() && command[command.length() - 1] == '\r')
+                            {
+                                cout << "Test print" << endl;
+                                command.erase(command.length() - 1);
+                            }*/
+                        }
+                            // put whole command string into the vector
+                        else{
+                            command = command.substr(1, command.length());
+                            parsedCommand.push_back(command);
+
+                            // empty the command ok
+                            command.clear();
+                        }
                     }
                 }
             }

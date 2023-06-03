@@ -39,7 +39,11 @@ vector<string> Customer::getItemsOut()
 
 //
 string Customer::getItemsOut(int index){
-    return itemsOut[index];
+    if(!itemsOut.empty()){
+        return itemsOut[index];
+    }else{
+        return "";
+    }//close empty check
 }//close getItemsOut index
 
 //
@@ -70,6 +74,7 @@ void Customer::showHistory(){
     //print out oldest transaction to most recent
 
     //parse through vector history
+    cout << "Hisotry of " << getFirst() << " " << getLast() << endl;
     for(int i = 0; i < history.size(); i++){
         string transaction;
 
@@ -79,6 +84,11 @@ void Customer::showHistory(){
 
         cout << transaction << endl;
     }
+
+    if (history.size() == 0) 
+    {
+        cout << "No History... yet." << endl;
+    }
 }//close showHistory
 
 //
@@ -86,7 +96,7 @@ void Customer::showHistory(){
 //if available, checks item out to Customer
 //add to history that customer borrowed item
 void Customer::borrow(Commands action){
-    itemsOut.push_back(action.getVector(1));
+    itemsOut.push_back(action.getVector(1)); //come back to this
     history.push_back(action);
 }//close borrow
 

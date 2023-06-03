@@ -73,7 +73,7 @@ char type = 'D'; // Dvd is default if not changed by contructor
             return false;
         }
 
-         if (getTitle() == rhs.getTitle() && getYear() == rhs.getYear() && getGenre() == rhs.getGenre()) 
+         if (getTitle() == rhs.getTitle() && getYear() == rhs.getYear())
         {
             return true;
         } else 
