@@ -43,6 +43,22 @@
         }
     }
 
+
+    bool Drama::isEqual(const Drama& rhs) const 
+    {
+        if (&rhs == nullptr) 
+        {
+            return false;
+        }
+
+        if (getTitle() == rhs.getTitle() && getDirector() == rhs.getDirector()) {
+            return true;
+        } else 
+        {
+            return false;
+        }
+    }
+
 	bool Drama::operator!=(const Drama& rhs) const 
     {
         return !(*this == rhs);
