@@ -40,6 +40,7 @@ public:
     Classic& operator+= (const Classic& rhs); 
 	Classic& operator=(const Classic& rhs); 
 
+	bool isEqual(const Classic& rhs) const;
 private:
 	// major actor's first name
 	//string first = "";
