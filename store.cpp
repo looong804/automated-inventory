@@ -444,7 +444,7 @@ bool Store::borrowItem(){
 
     //checks request for comedy
     if(fields[2] == "F"){
-        Comedy tempComedy(action); //This doesn't work, at all  
+        //Comedy tempComedy(action); //This doesn't work, at all  
         //how to get data for comedy:
         //starting at the 3 index of feilds combine everthing together, 
         //action[3] is the date (it was seperated by a comma)
@@ -452,12 +452,23 @@ bool Store::borrowItem(){
         //I don't think we need to check if it's in the bstree, we can just check if
         //it's in history. 
 
+        string title = fields[3];
+        for (int i = 4; i < fields.size(); i++) {
+            title += " " + fields[i];
+        }
+
+        vector<string> yearVector = (action.spaceParser(action.getVector(3)));
+        int year = stoi(yearVector[0]);
+
+        Comedy tempComedy(title, year);
 
         //checks if the Item exists
-        if(findComedy(tempComedy) == nullptr){
+        //if(findComedy(tempComedy) == nullptr){
+        if (findComedy(tempComedy)) {
             cout << "Comedy item is unavailable";
             return false;
         }
+        
 
         //checks if Customer has already borrowed this Item
         for(int i = 0; i < tempCustomer.getItemsOut().size(); i++){
@@ -504,7 +515,7 @@ bool Store::borrowItem(){
             return false;
         }
     //checks request for drama
-    }else if(fields[2] == "D"){
+    } else if(fields[2] == "D"){
         Drama tempDrama(action);
 
         //checks if the Item exists
