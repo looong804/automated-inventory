@@ -152,15 +152,10 @@ T* HashPopular<T>::search(T* item)
                     return popular[i];
                 }
             }
-            // if not found in the popular vector
-            return nullptr;
         }
 	}
-	// if hash index is null
-	else
-	{
-        return nullptr;
-	}
+
+    return nullptr; // if hash index is null or not found in the popular vector
 }
 
 /* ------------------------------------(searchForSwap)--------------------------------------

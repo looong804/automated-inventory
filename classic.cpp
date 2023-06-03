@@ -181,7 +181,7 @@ returns: none
 /*----------------------------------------------------------
 operator==(const Classic& rhs) const:
 
-checks if two classic obejcts are equal. This is a comparison
+checks if two classic objects are equal. This is a comparison
 of the director, the title, and the month and year date.
 Does not consider the major actors, as there might
 be two lines for the same classic movie but featuring a
@@ -193,39 +193,40 @@ params: const Classic& rhs
 
 returns: bool
 */
-	bool Classic::operator==(const Classic& rhs) const 
-    {
-        if(getDirector() == rhs.getDirector() && getTitle() == rhs.getTitle() && getYear() == rhs.getYear() && getMonth() == rhs.getMonth()) 
+	bool Classic::operator==(const Classic& rhs) const {
+        if(&rhs != nullptr)
         {
-            return true; 
-        } else 
-        {
-            return false;
+            if(getDirector() == rhs.getDirector() && getTitle() == rhs.getTitle()
+                && getYear() == rhs.getYear() && getMonth() == rhs.getMonth())
+            {
+                return true;
+            }
         }
+
+        return false;
     }
 
 
     bool Classic::isEqual(const Classic& rhs) const 
     {
-        if (&rhs == nullptr) 
+        if(&rhs != nullptr)
         {
-            return false;
-        }
-
-        if(getYear() == rhs.getYear() && getMonth() == rhs.getMonth()) 
-        {
-            for (int i = 0; i < rhs.getNumberOfActors(); i++) 
+            if(getYear() == rhs.getYear() && getMonth() == rhs.getMonth())
             {
-                string actor; 
-                rhs.getMajorActor(i, actor);
-                if (majorActors[0] == actor) {
-                    return true;
+                for(int i = 0; i < rhs.getNumberOfActors(); i++)
+                {
+                    string actor;
+                    rhs.getMajorActor(i, actor);
+
+                    if (majorActors[0] == actor)
+                    {
+                        return true;
+                    }
                 }
             }
-        } else 
-        {
-            return false;
         }
+
+        return false;
     }
 
 /*----------------------------------------------------------
@@ -320,7 +321,7 @@ returns: bool
             return false;
         } else  
         {
-            return false;
+            return true;
         }
     }
 

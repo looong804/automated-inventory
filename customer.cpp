@@ -74,7 +74,7 @@ void Customer::showHistory(){
     //print out oldest transaction to most recent
 
     //parse through vector history
-    cout << "Hisotry of " << getFirst() << " " << getLast() << endl;
+    cout << "History of " << getFirst() << " " << getLast() << endl;
     for(int i = 0; i < history.size(); i++){
         string transaction;
 
@@ -85,7 +85,7 @@ void Customer::showHistory(){
         cout << transaction << endl;
     }
 
-    if (history.size() == 0) 
+    if(history.empty())
     {
         cout << "No History... yet." << endl;
     }

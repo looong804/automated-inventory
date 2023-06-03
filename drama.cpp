@@ -32,31 +32,29 @@
     }
 
 	//comparison overloads - sorted by director then title
-	bool Drama::operator==(const Drama& rhs) const 
-    {
-        if (getTitle() == rhs.getTitle() && getDirector() == rhs.getDirector() && getStock() == rhs.getStock() && getYear() == rhs.getYear() && getGenre() == rhs.getGenre()) 
-        {
-            return true;
-        } else 
-        {
-            return false;
+	bool Drama::operator==(const Drama& rhs) const {
+        if(&rhs != nullptr){
+            if (getTitle() == rhs.getTitle() && getDirector() == rhs.getDirector()
+                && getStock() == rhs.getStock() && getYear() == rhs.getYear()
+                    && getGenre() == rhs.getGenre()) {
+                return true;
+            }
         }
+
+        return false;
     }
 
 
     bool Drama::isEqual(const Drama& rhs) const 
     {
-        if (&rhs == nullptr) 
+        if(&rhs != nullptr)
         {
-            return false;
+            if (getTitle() == rhs.getTitle() && getDirector() == rhs.getDirector()) {
+                return true;
+            }
         }
 
-        if (getTitle() == rhs.getTitle() && getDirector() == rhs.getDirector()) {
-            return true;
-        } else 
-        {
-            return false;
-        }
+        return false;
     }
 
 	bool Drama::operator!=(const Drama& rhs) const 
