@@ -31,16 +31,16 @@ void HashWaitlist::insert(Commands* command)
 		// get the hashIndex from the hashFunction
 		int hashIndex = hashFunction(command);
 		// if the slot is empty
-		if (waitlist->at(hashIndex).data == nullptr)
+		if (waitlist[hashIndex].data == nullptr)
 		{
 			// set the data pointer in the NodeData in the waitlist vector at the hashIndex
-			waitlist->at(hashIndex).data = command;
+			waitlist[hashIndex].data = command;
 		}
 		// if the slot is not empty
 		else
 		{
 			// create a nodedata equal to the first node in the linked list
-			NodeData<Commands> start = waitlist->at(hashIndex);
+			NodeData<Commands> start = waitlist[hashIndex];
 			// create a pointer to traverse the linked list starting at the 2 node
 			NodeData<Commands>* temp = start.next;
 
@@ -84,44 +84,39 @@ returns nullptr if not found, mostly for inside use
 Commands* HashWaitlist::search(Commands* command)
 {
 	// check if the command pointer is empty
-	if (command == nullptr)
+	if(command == nullptr)
 	{
 		return nullptr;
 	}
 
 	// nodeData equal to the first node in the linked list 
-	NodeData<Commands> start = waitlist->at(hashFunction(command));
+	NodeData<Commands> start = waitlist[hashFunction(command)];
 
-	// check if its the first node
-	if (start.data == command)
-	{
-		return start.data;
-	}
-	// go through the whole list
-	else
-	{
-		// nodeData pointer to traverse the list starting at the second node
-		NodeData<Commands>* looky = start.next;
 
-		// while the account isn't found
-		while (true)
-		{
-			// check if the command matches the one being looked for  
-			if (looky->data == command && looky->data != nullptr)
-			{
-				// return the found command
-				return looky->data;
-			}
-			else if (looky->next != nullptr)
-			{
-				looky = looky->next;
-			}
-			else
-			{
-				return nullptr;
-			}
-		}
-	}
+    // check if its the first node
+    if(start.data == command){
+        return start.data;
+    }
+    // go through the whole list
+    else{
+        // nodeData pointer to traverse the list starting at the second node
+        NodeData <Commands> *looky = start.next;
+
+        if(looky != nullptr){
+            // while the account isn't found
+            for(int i = 0; i < WAITLISTSIZE; i++){
+                // check if the command matches the one being looked for
+                if(looky->data == command && looky->data != nullptr){
+                    // return the found command
+                    return looky->data;
+                }else if (looky->next != nullptr){
+                    looky = looky->next;
+                }
+            }
+        }
+
+        return nullptr;
+    }
 }
 
 /* ------------------------------------(searchGiveCustomer)--------------------------------------
@@ -137,7 +132,7 @@ int HashWaitlist::searchGiveCustomer(Commands* command)
 	}
 
 	// nodeData equal to the first node in the linked list 
-	NodeData<Commands> start = waitlist->at(hashFunction(command));
+	NodeData<Commands> start = waitlist[hashFunction(command)];
 
 	// check if its the first node
 	if (start.data == command)
@@ -193,7 +188,7 @@ int HashWaitlist::remove(Commands* command)
 			// find the hashindex
 			int hashIndex = hashFunction(command);
 			// create a nodedata equal to the first node in the linked list
-			NodeData<Commands> start = waitlist->at(hashIndex);
+			NodeData<Commands> start = waitlist[hashIndex];
 			// create a pointer to traverse the linked list starting at the 2 node
 			NodeData<Commands>* temp = start.next;
 
@@ -204,7 +199,7 @@ int HashWaitlist::remove(Commands* command)
 				int id = stoi(command->spaceParser(1).at(0));
 
 				// insert start's next into the slot in the vector
-				waitlist->at(hashIndex) = *start.next;
+				waitlist[hashIndex] = *start.next;
 				// delete the start data
 				delete start.data;
 				// set start data to nullptr
@@ -327,7 +322,7 @@ int HashWaitlist::hashFunction(Commands* command)
 		// get the major actor name
 		string fullName = index1[5] + " " + index1[6];
 		// hash the major actor name 
-		return hashStringFold(fullName, waitlist->size());
+		return hashStringFold(fullName, WAITLISTSIZE);
 	}
 	// if a comedy
 	else if (genreType == 'F')
@@ -335,7 +330,7 @@ int HashWaitlist::hashFunction(Commands* command)
 		// get the first and last words of the movie title
 		string title = index1[3] + " " + index1[index1.size() - 1];
 		// hash the title from above
-		return hashStringFold(title, waitlist->size());
+		return hashStringFold(title, WAITLISTSIZE);
 	}
 	// if a drama
 	else if (genreType == 'D')
@@ -343,7 +338,7 @@ int HashWaitlist::hashFunction(Commands* command)
 		// grab the title from the 2 index from the command vector
 		string title = command->getVector(2);
 		// hash the title from above
-		return hashStringFold(title, waitlist->size());
+		return hashStringFold(title, WAITLISTSIZE);
 	}
 	// if not valid
 	else

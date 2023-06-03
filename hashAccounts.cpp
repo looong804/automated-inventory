@@ -19,7 +19,7 @@ Description: set all the account pointers in the vector to nullptr
 HashAccounts::~HashAccounts()
 {
 	// go through each index in the vector
-	for (int i = 0; i < AccountsSize; i++)
+	for (int i = 0; i < ACCOUNTSIZE; i++)
 	{
 		// nodeData equal to the first node in the linked list 
 		NodeData<Customer> start = accounts[i];
@@ -73,7 +73,7 @@ int HashAccounts::hashFunction(Customer* account)
 	int ID = account->getID();
 	// call and return the hashMidSqaure on the id
 	//return hashMidSquare(ID, accounts->size());
-	return hashMidSquare(ID, AccountsSize);
+	return hashMidSquare(ID, ACCOUNTSIZE);
 }
 
 /* ------------------------------------(hashFunction)--------------------------------------
@@ -90,7 +90,7 @@ int HashAccounts::hashFunction(int id)
 	}
 	// call and return the hashMidSqaure on the id
 	//return hashMidSquare(id, accounts->size());
-	return hashMidSquare(id, AccountsSize);
+	return hashMidSquare(id, ACCOUNTSIZE);
 }
 
 /* ------------------------------------(insert)--------------------------------------
@@ -242,7 +242,7 @@ Customer* HashAccounts::search(int id)
 	if (id < 0000 && id > 9999) 
 	{
 		return nullptr;
-	} else if (hashFunction(id) > AccountsSize || hashFunction(id) < 0) //work on this and the hash function, not in index
+	} else if (hashFunction(id) > ACCOUNTSIZE || hashFunction(id) < 0) //work on this and the hash function, not in index
 	{
 		return nullptr;
 	}

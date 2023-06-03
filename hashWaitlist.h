@@ -36,7 +36,9 @@ public:
 private:
 	// returns the index for the hash; Key: item title; Value: command
 	int hashFunction(Commands* command);
+    // max waitlist size
+    const static int WAITLISTSIZE = 25;
 	// vector holding the failed borrow commands
-	vector<NodeData<Commands>> waitlist[25];
+	NodeData<Commands> waitlist[WAITLISTSIZE];
 };
 #endif

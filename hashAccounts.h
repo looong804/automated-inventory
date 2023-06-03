@@ -39,9 +39,9 @@ public:
 
 private:
 	// vector holding the linked lists of accounts
-	const static int AccountsSize = 20; 
-	//vector<NodeData<Customer>> accounts(AccountsSize);
-	NodeData<Customer> accounts[AccountsSize];
+	const static int ACCOUNTSIZE = 20;
+	//vector<NodeData<Customer>> accounts(ACCOUNTSIZE);
+	NodeData<Customer> accounts[ACCOUNTSIZE];
 	
 };
 #endif
