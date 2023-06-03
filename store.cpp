@@ -457,7 +457,7 @@ bool Store::borrowItem(){
             title += " " + fields[i];
         }
 
-        vector<string> yearVector = (action.spaceParser(action.getVector(3)));
+        vector<string> yearVector = (action.spaceParser(action.getVector(2)));
         int year = stoi(yearVector[0]);
 
         Comedy tempComedy(title, year);
