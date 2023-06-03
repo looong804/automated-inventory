@@ -78,13 +78,14 @@ public:
 	// find a comedy dvd and verify that it exists
 	Comedy* findComedy(Comedy& comedyDvd);
 	// find a classic dvd and verify that it exists
-	Classic* findClassic(Classic& classicDvd);
+	Classic* findClassic(const Classic& classic);
 
     //Commands Functions
 	// return a borrowed item
-	bool returnItem(Commands action);
+	bool returnItem(Commands &action);
 	// borrow an item
-	bool borrowItem(Commands action);
+	//bool borrowItem(Commands &action);
+	bool borrowItem();
 	// print out account history given the id number
 	void accountHistory(int id);
 
