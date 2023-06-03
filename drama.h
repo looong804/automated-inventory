@@ -10,6 +10,7 @@ public:
 	Drama();
 	// passes in a command that contains all the needed data to create a Drama object
 	Drama(Commands command);
+	Drama(string director, string title); 
 	~Drama();
 
 	//void setTitle(string title);
