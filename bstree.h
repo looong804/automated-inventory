@@ -21,7 +21,7 @@ public:
 
 	struct Node
 	{
-		T* item;
+		T* item = nullptr;
 		Node* right = nullptr;
 		Node* left = nullptr;
 	};
@@ -34,7 +34,7 @@ public:
 	// traverse the tree in order and print out each item
 	vector<T*> inOrderTraversal() const;
 	// traverse the tree in order and print out each item
-	void inOrderTraversal(vector<T*> str, BSTree<T>::Node* look) const;
+	void inOrderTraversal(vector<T*> &str, BSTree<T>::Node* look) const;
 	// inserts a new item into the tree
 	void insert(T* item);
 	// find an item and return a pointer to it
@@ -77,7 +77,7 @@ Description: Recursive function for traversing the BST and creating a vector of 
 uses a node as the passed in parameter, mainly for use in the BST functions
 -------------------------------------------------------------------------------------- */
 template <class T>
-void BSTree<T>::inOrderTraversal(vector<T*> str, BSTree<T>::Node* look) const
+void BSTree<T>::inOrderTraversal(vector<T*> &str, BSTree<T>::Node* look) const
 {
 
 	//turn stringstream into a string vector, then that can be printed out with a loop from
@@ -88,7 +88,7 @@ void BSTree<T>::inOrderTraversal(vector<T*> str, BSTree<T>::Node* look) const
 		inOrderTraversal(str, look->left);
 		// print out the left node movie
 		if (look->left != nullptr) {
-			str.push_back(look->left->item);// << endl;
+			//str.push_back(look->left->item);// << endl;
 		}
 		// print out the current node movie
 		str.push_back(look->item);
@@ -97,7 +97,7 @@ void BSTree<T>::inOrderTraversal(vector<T*> str, BSTree<T>::Node* look) const
 		inOrderTraversal(str, look->right);
 
 		if (look->right != nullptr) {
-			str.push_back(look->right->item);// << endl;
+			//str.push_back(look->right->item);// << endl;
 		}
 		// print the movie from the right node
 	
@@ -126,10 +126,10 @@ Description: inserts the passed in genre object into the tree in its correct loc
 that the object being passed in has comparators overloaded
 -------------------------------------------------------------------------------------- */
 template<class T>
-void BSTree<T>::insert(T* item)
+void BSTree<T>::insert(T* item) //FIX THIS, NEEEDS DEFERENCING
 {
 	// if the tree is empty
-	if (this->root == nullptr)
+	if (root == nullptr)
 	{
 		//		cout << "tree is emtpy so set root to passed in item" << endl;
 		// give root a new node
@@ -141,7 +141,7 @@ void BSTree<T>::insert(T* item)
 		return;
 	}
 	// if equal to the root
-	if (root->item == item)
+	else if (*(root->item) == *item)
 	{
 		//			cerr << "duplicate item" << endl;
 		return;
@@ -154,50 +154,61 @@ void BSTree<T>::insert(T* item)
 	//	cerr << "what is p_node->next->data1: " << *p_node->next->data << endl;
 	//	cerr << "what is data1: " << *data << endl;
 		// while passed item is greater than traveling pointer's item move right
-	while ((item > p_node->item) && ((p_node->right) != nullptr))
+
+	bool found = false;	
+	while (!found)//p_node->left != nullptr || p_node->right != nullptr) 
 	{
-		//		cout << "inside the move right while loop" << endl;
-		p_node = p_node->right;
-		//		cerr << "where is p_node3: " << *p_node->data << endl; 
+		while ((*item > *(p_node->item)) && ((p_node->right) != nullptr))
+		{
+			//		cout << "inside the move right while loop" << endl;
+			p_node = p_node->right;
+			//		cerr << "where is p_node3: " << *p_node->data << endl; 
+		}
+		// while passed item is smaller than traveling pointer's item move right
+		while ((*item < *(p_node->item)) && ((p_node->left) != nullptr))
+		{
+			//		cout << "inside the move left while loop" << endl;
+			p_node = p_node->left;
+			//		cerr << "where is p_node3: " << *p_node->data << endl; 
+		}
+	
+		// placing new node in tree
+		// if passed in item is greater
+		if ((*item > *(p_node->item)) && (p_node->right) == nullptr)
+		{
+			//		cout << "the item is greater than the current node put in right" << endl;
+					// create new node
+			Node* insert_node = new Node;
+			// set item pointer in new node to passed in item
+			(insert_node->item) = item;
+			// have p_node's right point to the new node
+			p_node->right = insert_node;
+			//increase the tree size
+			size++;
+			found = true;
+			return;
+		}
+		// if passed in item is less than
+		else if ((*item < *(p_node->item)) && (p_node->left) == nullptr)
+		{
+			//		cout << "the id is smaller than the current node put in the left" << endl;
+			// create new node
+			Node* insert_node = new Node;
+			// set item pointer in new node to passed in item
+			(insert_node->item) = item;
+			// have p_node's right point to the new node
+			p_node->left = insert_node;
+			//increase the tree size
+			size++;
+			found = true;
+			return;
+		} else if (*item == *(p_node->item)) {
+		// should only get here if its a duplicate
+			found = true;
+			cout << "ended due to insert being a duplicate. This means there is a bug in the checking for creating the genre objects" << endl;
+		}
+
 	}
-	// while passed item is smaller than traveling pointer's item move right
-	while ((item < p_node->item) && ((p_node->left) != nullptr))
-	{
-		//		cout << "inside the move left while loop" << endl;
-		p_node = p_node->left;
-		//		cerr << "where is p_node3: " << *p_node->data << endl; 
-	}
-	// placing new node in tree
-	// if passed in item is greater
-	if ((item > p_node->item) && (p_node->right) == nullptr)
-	{
-		//		cout << "the item is greater than the current node put in right" << endl;
-				// create new node
-		Node* insert_node = new Node;
-		// set item pointer in new node to passed in item
-		(insert_node->item) = item;
-		// have p_node's right point to the new node
-		p_node->right = insert_node;
-		//increase the tree size
-		size++;
-		return;
-	}
-	// if passed in item is less than
-	else if ((item < p_node->item) && (p_node->left) == nullptr)
-	{
-		//		cout << "the id is smaller than the current node put in the left" << endl;
-		// create new node
-		Node* insert_node = new Node;
-		// set item pointer in new node to passed in item
-		(insert_node->item) = item;
-		// have p_node's right point to the new node
-		p_node->left = insert_node;
-		//increase the tree size
-		size++;
-		return;
-	}
-	// should only get here if its a duplicate
-	cout << "ended due to insert being a duplicate. This means there is a bug in the checking for creating the genre objects" << endl;
 	return;
 }
 
