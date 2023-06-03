@@ -9,7 +9,8 @@ class Comedy : public Dvd
 public:
 	Comedy();
 	// passes in a command that contains all the needed data to create a Comedy object
-	Comedy(Commands command); //build the item with the data from the comand object. 
+	Comedy(Commands command); //build the item with the data from the comand object.
+	Comedy(string title, int year); 
 	~Comedy();
 	
 	//comparison overloads - sorted by title then year
