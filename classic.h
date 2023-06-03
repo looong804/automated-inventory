@@ -9,6 +9,7 @@ public:
 	Classic();
 	// passes in a command that contains all the needed data to create a Classic object
 	Classic(Commands command);
+	Classic(int month, int year, string firstName, string lastName); 
 	~Classic();
 
 	// return the month
