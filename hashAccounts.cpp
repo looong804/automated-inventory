@@ -113,12 +113,43 @@ void HashAccounts::insert(Customer* account)
 		else
 		{
 			// create a nodedata equal to the first node in the linked list
-			NodeData<Customer> start = accounts[hashIndex];
+			NodeData<Customer> *start = &accounts[hashIndex];
 			// create a pointer to traverse the linked list starting at the 2 node
-			NodeData<Customer>* temp = start.next;
+			NodeData<Customer> *temp;
+			temp = &*start;
 
+			if (start->next == nullptr) 
+			{
+				start->next = new NodeData<Customer>;
+				// set the new node data to passed account
+				start->next->data = account;
+				// set the new node's next pointer to nullptr
+				start->next->next = nullptr;
+			} else {
+
+				while (start->next != nullptr) 
+				{
+					start = start->next; 
+				}
+
+				start->next = new NodeData<Customer>;
+				start->next->data = account;
+				start->next->next = nullptr;
+				/*while (temp->next != nullptr) 
+				{
+					temp = temp->next;
+				}
+
+				NodeData<Customer> *newData = new NodeData<Customer>;
+				temp->next = newData;//NodeData<Customer>;
+					// set the new node data to passed account
+				temp->next->data = account;
+					// set the new node's next pointer to nullptr
+				temp->next = nullptr;*/
+			}
+			/*
 			// if temp is not empty
-			if (temp != nullptr)
+			if (temp != nullptr) //Doesn't look like this is linking correctly
 			{
 				// go to the end of the linked list
 				while (temp->next != nullptr)
@@ -142,7 +173,7 @@ void HashAccounts::insert(Customer* account)
 				start.next->data = account;
 				// set the new node's next pointer to nullptr
 				start.next->next = nullptr;
-			}
+			}*/
 		}
 		// up the size
 		size++;
@@ -211,7 +242,7 @@ Customer* HashAccounts::search(int id)
 	if (id < 0000 && id > 9999) 
 	{
 		return nullptr;
-	} else if (hashFunction(id) > AccountsSize || hashFunction(id) < AccountsSize) //work on this and the hash function, not in index
+	} else if (hashFunction(id) > AccountsSize || hashFunction(id) < 0) //work on this and the hash function, not in index
 	{
 		return nullptr;
 	}
@@ -228,26 +259,30 @@ Customer* HashAccounts::search(int id)
 	else
 	{
 		// nodeData pointer to traverse the list starting at the second node
-		NodeData<Customer>* looky = start.next;
+		NodeData<Customer> *looky;
+		looky = &*start.next;
 
 		// while the account isn't found
-		while (true)
-		{
-			// check if the account ID matches the one being looked for  
-			if (looky->data != nullptr && looky->data->getID() == id)
+		if (looky != nullptr) {
+			while (true)
 			{
-				// return the found account
-				return looky->data;
-			}
-			else if(looky->next != nullptr)
-			{
-				looky = looky->next;
-			}
-			else
-			{
-				return nullptr;
+				// check if the account ID matches the one being looked for  
+				if (looky->data != nullptr && looky->data->getID() == id)
+				{
+					// return the found account
+					return looky->data;
+				}
+				else if(looky->next != nullptr)
+				{
+					looky = looky->next;
+				}
+				else
+				{
+					return nullptr;
+				}
 			}
 		}
+		return nullptr;
 	}
 }
 
