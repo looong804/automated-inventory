@@ -57,7 +57,7 @@ char type = 'D'; // Dvd is default if not changed by contructor
 	//comparison overloads - sorted by title then year
 	bool Comedy::operator==(const Comedy& rhs) const 
     {
-        if (getTitle() == rhs.getTitle() && getYear() == rhs.getYear())// && getDirector() == rhs.getDirector() && getStock() == rhs.getStock() && getYear() == rhs.getYear() && getGenre() == rhs.getGenre()) 
+        if (getTitle() == rhs.getTitle() && getDirector() == rhs.getDirector() && getStock() == rhs.getStock() && getYear() == rhs.getYear() && getGenre() == rhs.getGenre()) 
         {
             return true;
         } else 
@@ -87,7 +87,10 @@ char type = 'D'; // Dvd is default if not changed by contructor
 
 	bool Comedy::operator<(const Comedy& rhs) const
     {
-        if (*this > rhs || *this == rhs) 
+        if (getTitle() > rhs.getTitle()) 
+        {
+            return false;
+        } else if (getTitle() == rhs.getTitle() && getYear() > rhs.getYear()) 
         {
             return false;
         } else 
