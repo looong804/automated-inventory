@@ -20,6 +20,12 @@
         setGenre('D');
     }
 
+    Drama::Drama(string director, string title)
+    {
+        setDirector(director);
+        setTitle(title);
+    }
+
     Drama::~Drama() 
     {
 
@@ -58,12 +64,14 @@
 
 	bool Drama::operator<(const Drama& rhs) const 
     {
-        if (!(*this > rhs) && *this != rhs) 
+       if (getDirector() > rhs.getDirector()) 
         {
-            return true;
-        } else 
-        {
+                return false;
+        } else if (getDirector() == rhs.getDirector() && getTitle() > rhs.getTitle()) {
             return false;
+            
+        } else {
+            return true;
         }
     }
 
