@@ -33,7 +33,7 @@ char type = 'D'; // Dvd is default if not changed by contructor
     }
 
 	// passes in a command that contains all the needed data to create a Comedy object
-	Comedy::Comedy(Commands command) //build the item with the data from the comand object. 
+	Comedy::Comedy(Commands command) //build the item with the data from the command object. 
     {
         setTitle(command.getVector(3));
         setDirector(command.getVector(2)); 
@@ -43,6 +43,12 @@ char type = 'D'; // Dvd is default if not changed by contructor
 
     }
 	
+    Comedy::Comedy(string title, int year) 
+    {
+        setTitle(title);
+        setYear(year);
+    }
+
     Comedy::~Comedy() 
     {
         
