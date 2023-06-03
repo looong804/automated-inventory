@@ -205,6 +205,29 @@ returns: bool
     }
 
 
+    bool Classic::isEqual(const Classic& rhs) const 
+    {
+        if (&rhs == nullptr) 
+        {
+            return false;
+        }
+
+        if(getYear() == rhs.getYear() && getMonth() == rhs.getMonth()) 
+        {
+            for (int i = 0; i < rhs.getNumberOfActors(); i++) 
+            {
+                string actor; 
+                rhs.getMajorActor(i, actor);
+                if (majorActors[0] == actor) {
+                    return true;
+                }
+            }
+        } else 
+        {
+            return false;
+        }
+    }
+
 /*----------------------------------------------------------
 operator!=(const Classic& rhs) const:
 
