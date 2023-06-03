@@ -39,6 +39,8 @@ public:
 	void insert(T* item);
 	// find an item and return a pointer to it
 	Node* search(T* target) const;
+	//search with limited data
+	Node* minorSearch(T* target) const;
 	// return the root of the tree
 	Node* getRoot() const;
 	// return the size
@@ -226,6 +228,77 @@ typename BSTree<T>::Node* BSTree<T>::search(T* target) const
 		return nullptr;
 	}
 	// first in tree
+	if (*root->item.isEqual(*target))
+	{
+		//		cout << "is the root " << endl;
+		Node* found = root;
+		return found;
+	}
+	// traverse the rest of the tree
+//	cout << "going through the rest of the tree " << endl;
+	Node* p_node = root;
+	//	cout << p_node->item << endl;
+	//	cout << target << endl;
+		// while passed item is greater than traveling pointer's item move right
+	while (((*target) > *p_node->item) && ((p_node->right) != nullptr))
+	{
+		//		cout << "in the moving right while loop in the retrieve function" << endl;
+		p_node = p_node->right;
+		//		cerr << "where is p_node3: " << *p_node->item << endl; 
+	}
+	// while passed item is smaller than traveling pointer's item move right
+	while ((*target < *p_node->item) && ((p_node->left) != nullptr))
+	{
+		//		cout << "in the moving left while loop in the retrieve function" << endl;
+		p_node = p_node->left;
+		//		cerr << "where is p_node3: " << *p_node->item << endl; 
+	}
+	// if target is found on the left
+	if (((p_node->left) != nullptr) && *target.isEqual(*p_node->left->item))
+	{
+		Node* found = (p_node->left);
+		// set p_node pointer to nullptr
+		p_node = nullptr;
+		// return pointer to item location
+		return found;
+	}
+	// if the target is found on the right
+	else if (((p_node->right) != nullptr) && *targetisEqual(*p_node->right->item))
+	{
+		Node* found = (p_node->right);
+		// set p_node pointer to nullptr
+		p_node = nullptr;
+		// return pointer to item location
+		return found;
+	}
+	// if the target is found on current node -- if working right should never get here
+	else if (*p_node->itemisEqual(*target))
+	{
+		Node* found = (p_node);
+		// set p_node pointer to nullptr
+		p_node = nullptr;
+		// return pointer to item location
+		return found;
+	}
+	// should never get here but if it does return nullptr
+	return nullptr;
+}
+
+
+/* ------------------------------------(search)--------------------------------------
+Description: take in a genre type object and find if its in the BST tree and return a pointer to it
+-------------------------------------------------------------------------------------- */
+template<class T>
+typename BSTree<T>::Node* BSTree<T>::minorSearch(T* target) const
+{
+	//cout << root->item;
+	// if empty tree
+	if (root == nullptr)
+	{
+		//		cout << "tree is empty" << endl;
+		return nullptr;
+	}
+	// first in tree
 	if (*root->item == *target)
 	{
 		//		cout << "is the root " << endl;
@@ -281,6 +354,10 @@ typename BSTree<T>::Node* BSTree<T>::search(T* target) const
 	// should never get here but if it does return nullptr
 	return nullptr;
 }
+
+
+
+
 
 /* ------------------------------------(deleteTree)--------------------------------------
 Description: recursive helper function for the destructor to delete the tree
