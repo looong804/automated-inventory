@@ -57,6 +57,9 @@ Description: does nothing
 template <class T>
 HashPopular<T>::HashPopular()
 {
+    for(int i = 0; i < PopularSize; i++){
+        popular[i] = nullptr;
+    }
 }
 
 /* ------------------------------------(~HashPopular)--------------------------------------
@@ -133,24 +136,30 @@ T* HashPopular<T>::search(T* item)
 	// find the hashIndex of the passed in item 
 	int hashIndex = hashFunction(item);
 
-	// go to the hashIndex in the popular vector and compare with the passed in item
-	if (popular[hashIndex] == item)
+	// checks if the hash index is null
+	if(popular[hashIndex] != nullptr)
 	{
-		return popular[hashIndex];
+        // go to the hashIndex in the popular vector and compare with the passed in item
+        if(*popular[hashIndex] == *item)
+        {
+            return popular[hashIndex];
+        }else{
+            // search the whole popular vector linearly
+            for(int i = 0; i < 10; i++)
+            {
+                if(*popular[i] == *item)
+                {
+                    return popular[i];
+                }
+            }
+            // if not found in the popular vector
+            return nullptr;
+        }
 	}
-	// if not found at hashIndex
+	// if hash index is null
 	else
 	{
-		// search the whole popular vector linearly
-		for (int i = 0; i < 10; i++)
-		{
-			if (popular[i] == item)
-			{
-				return popular[i];
-			}
-		}
-		// if not found in the popular vector
-		return nullptr;
+        return nullptr;
 	}
 }
 
@@ -171,7 +180,7 @@ int HashPopular<T>::searchForSwap(T* item)
 	int hashIndex = hashFunction(item);
 
 	// go to the hashIndex in the popular vector and compare with the passed in item
-	if (popular[hashIndex] == item)
+	if (*popular[hashIndex] == *item)
 	{
 		return hashIndex;
 	}
@@ -181,7 +190,7 @@ int HashPopular<T>::searchForSwap(T* item)
 		// search the whole popular vector linearly
 		for (int i = 0; i < 10; i++)
 		{
-			if (popular[i] == item)
+			if(*popular[i] == *item)
 			{
 				return i;
 			}
