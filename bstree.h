@@ -228,7 +228,7 @@ typename BSTree<T>::Node* BSTree<T>::minorSearch(T* target) const
 		return nullptr;
 	}
 	// first in tree
-	if (*root->item->isEqual(*target))
+	if (root->item->isEqual(*target))
 	{
 		//		cout << "is the root " << endl;
 		Node* found = root;
@@ -254,7 +254,7 @@ typename BSTree<T>::Node* BSTree<T>::minorSearch(T* target) const
 		//		cerr << "where is p_node3: " << *p_node->item << endl; 
 	}
 	// if target is found on the left
-	if (((p_node->left) != nullptr) && *target->isEqual(*p_node->left->item))
+	if (((p_node->left) != nullptr) && target->isEqual(*p_node->left->item))
 	{
 		Node* found = (p_node->left);
 		// set p_node pointer to nullptr
@@ -263,7 +263,7 @@ typename BSTree<T>::Node* BSTree<T>::minorSearch(T* target) const
 		return found;
 	}
 	// if the target is found on the right
-	else if (((p_node->right) != nullptr) && *target->isEqual(*p_node->right->item))
+	else if (((p_node->right) != nullptr) && target->isEqual(*p_node->right->item))
 	{
 		Node* found = (p_node->right);
 		// set p_node pointer to nullptr
@@ -272,9 +272,9 @@ typename BSTree<T>::Node* BSTree<T>::minorSearch(T* target) const
 		return found;
 	}
 	// if the target is found on current node -- if working right should never get here
-	else if (*p_node->itemisEqual(*target))
+	else if (p_node->item->isEqual(*target))
 	{
-		Node* found = (p_node);
+		Node* found = p_node;
 		// set p_node pointer to nullptr
 		p_node = nullptr;
 		// return pointer to item location
