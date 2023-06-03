@@ -214,11 +214,11 @@ void BSTree<T>::insert(T* item) //FIX THIS, NEEEDS DEFERENCING
 	return;
 }
 
-/* ------------------------------------(search)--------------------------------------
+/* ------------------------------------(minorSearch)--------------------------------------
 Description: take in a genre type object and find if its in the BST tree and return a pointer to it
 -------------------------------------------------------------------------------------- */
 template<class T>
-typename BSTree<T>::Node* BSTree<T>::search(T* target) const
+typename BSTree<T>::Node* BSTree<T>::minorSearch(T* target) const
 {
 	//cout << root->item;
 	// if empty tree
@@ -228,7 +228,7 @@ typename BSTree<T>::Node* BSTree<T>::search(T* target) const
 		return nullptr;
 	}
 	// first in tree
-	if (*root->item.isEqual(*target))
+	if (*root->item->isEqual(*target))
 	{
 		//		cout << "is the root " << endl;
 		Node* found = root;
@@ -254,7 +254,7 @@ typename BSTree<T>::Node* BSTree<T>::search(T* target) const
 		//		cerr << "where is p_node3: " << *p_node->item << endl; 
 	}
 	// if target is found on the left
-	if (((p_node->left) != nullptr) && *target.isEqual(*p_node->left->item))
+	if (((p_node->left) != nullptr) && *target->isEqual(*p_node->left->item))
 	{
 		Node* found = (p_node->left);
 		// set p_node pointer to nullptr
@@ -263,7 +263,7 @@ typename BSTree<T>::Node* BSTree<T>::search(T* target) const
 		return found;
 	}
 	// if the target is found on the right
-	else if (((p_node->right) != nullptr) && *targetisEqual(*p_node->right->item))
+	else if (((p_node->right) != nullptr) && *target->isEqual(*p_node->right->item))
 	{
 		Node* found = (p_node->right);
 		// set p_node pointer to nullptr
@@ -289,7 +289,7 @@ typename BSTree<T>::Node* BSTree<T>::search(T* target) const
 Description: take in a genre type object and find if its in the BST tree and return a pointer to it
 -------------------------------------------------------------------------------------- */
 template<class T>
-typename BSTree<T>::Node* BSTree<T>::minorSearch(T* target) const
+typename BSTree<T>::Node* BSTree<T>::search(T* target) const
 {
 	//cout << root->item;
 	// if empty tree
