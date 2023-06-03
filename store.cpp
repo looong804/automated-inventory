@@ -72,7 +72,7 @@ void Store::setStock(){
 
             Classic *classicFromTree = findClassic(*newClassic);
 
-            if(findClassic(*newClassic) == nullptr){
+            if(findClassic(*newClassic) == nullptr){ //things are being entered twice
                 inventory.getClassicTree() -> insert(newClassic);
                 increaseTotal();
             }else{
@@ -82,7 +82,7 @@ void Store::setStock(){
             }
 
             newClassic = nullptr;
-        }
+        } 
 
         stock.erase(stock.begin());
     }
@@ -94,10 +94,10 @@ void Store::setAccounts() {
         Commands tempCommand = customers.at(0);
 
         if(tempCommand.getVector(0) == "K"){
-            Customer newCustomer = Customer(tempCommand);
+            Customer *newCustomer = new Customer(tempCommand);
 
-            if(!accounts.isAccount(&newCustomer)){
-                accounts.insert(&newCustomer);
+            if(!accounts.isAccount(newCustomer)){
+                accounts.insert(newCustomer);
             }
         }
 
@@ -111,13 +111,15 @@ void Store::executeActions() {
         Commands tempCommand = actions.at(0);
 
         if(tempCommand.getVector(0) == "B"){
-            borrowItem(tempCommand);
+            //borrowItem(tempCommand);
+            borrowItem();
         }else if(tempCommand.getVector(0) == "R"){
             returnItem(tempCommand);
         }else if(tempCommand.getVector(0) == "I"){
             cout << inventory;
         }else if(tempCommand.getVector(0) == "H"){
             //accountHistory(stoi(tempCommand.spaceParser(tempCommand.getVector(1)).at(0)));
+            //"Error: printing history, invalid ID.";
             vector<string> ID = tempCommand.spaceParser(1); 
             int clearID = stoi(ID[0]);
             accountHistory(clearID);
@@ -262,7 +264,7 @@ Classic* Store::findClassic(const Classic& classic){ //search can't be searching
     //do not change stock or request counter
     //if there is no waitlist, return item to shelf
     //increase stock
-bool Store::returnItem(Commands action){
+bool Store::returnItem(Commands &action){
     vector<string> fields = action.spaceParser(action.getVector(1));
 
     //checks if account exists
@@ -420,7 +422,10 @@ bool Store::returnItem(Commands action){
     //if not available, place customer in waitlist
     //consider handing item to customer in waitlist
     //instead of returning to inventory
-bool Store::borrowItem(Commands action){
+//bool Store::borrowItem(Commands &action){
+bool Store::borrowItem(){
+    Commands action = actions.at(0);
+
     vector<string> fields = action.spaceParser(action.getVector(1));
 
     //checks if account exists
@@ -610,7 +615,12 @@ void Store::accountHistory(int id){
     //use id to find account in hash table
     //retrieve account
     //use account showHistory
-    accounts.search(id) -> showHistory();
+    if ( accounts.search(id) != nullptr) {
+        accounts.search(id) -> showHistory();
+    } else 
+    {
+        cout << "Error: AccountHistory, id given doesn't exist." << endl;
+    }
 }//close accountHistory
 
 
