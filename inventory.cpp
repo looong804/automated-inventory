@@ -58,22 +58,22 @@ ostream& operator<<(ostream& stream, Inventory& inventory)
 	// call the inordertraversal on all the trees in inventory
 	//NOT WORKING
 
-	vector<Classic*> classic = ((*inventory.getClassicTree()).inOrderTraversal());
-	for (int i = 0; i < classic.size(); i++) 
-	{
-		stream << *classic[i];
-	}
-	
 	vector<Comedy*> comedy = (*inventory.getComedyTree()).inOrderTraversal();
 	for (int i = 0; i < comedy.size(); i++) 
 	{
-		stream << *comedy[i];
+		stream << *comedy[i] << endl;
 	}
 
 	vector<Drama*> drama = (*inventory.getDramaTree()).inOrderTraversal();
 	for (int i = 0; i < drama.size(); i++) 
 	{
-		stream << *drama[i];
+		stream << *drama[i] << endl;
+	}
+
+	vector<Classic*> classic = ((*inventory.getClassicTree()).inOrderTraversal());
+	for (int i = 0; i < classic.size(); i++) 
+	{
+		stream << *classic[i] << endl;
 	}
 	//stream << ((*inventory.getClassicTree()).inOrderTraversal()).str();
 	//stream << (*inventory.getComedyTree()).inOrderTraversal();
