@@ -429,22 +429,29 @@ bool Store::borrowItem(){
     vector<string> fields = action.spaceParser(action.getVector(1));
 
     //checks if account exists
-    if(!accounts.isAccount(stoi(fields[1]))){
+    if(!accounts.isAccount(stoi(fields[0]))){
         cout << "Account does not exist";
         return false;
     }
 
-    Customer tempCustomer = *accounts.search(stoi(fields[1]));
+    Customer tempCustomer = *accounts.search(stoi(fields[0]));
 
     //checks if command requests DVD
-    if(fields[2] != "D"){
+    if(fields[1] != "D"){
         cout << "Item is not recognized";
         return false;
     }
 
     //checks request for comedy
-    if(fields[3] == "F"){
-        Comedy tempComedy(action);
+    if(fields[2] == "F"){
+        Comedy tempComedy(action); //This doesn't work, at all  
+        //how to get data for comedy:
+        //starting at the 3 index of feilds combine everthing together, 
+        //action[3] is the date (it was seperated by a comma)
+
+        //I don't think we need to check if it's in the bstree, we can just check if
+        //it's in history. 
+
 
         //checks if the Item exists
         if(findComedy(tempComedy) == nullptr){
@@ -454,7 +461,7 @@ bool Store::borrowItem(){
 
         //checks if Customer has already borrowed this Item
         for(int i = 0; i < tempCustomer.getItemsOut().size(); i++){
-            if(action.getVector(1) == tempCustomer.getItemsOut(i)){
+            if(action.getVector(1) == tempCustomer.getItemsOut(i)){ //replace vector(1) for all the data smushed together except a 
                 cout << "Account has already checked this comedy item out";
                 return false;
             }
@@ -497,7 +504,7 @@ bool Store::borrowItem(){
             return false;
         }
     //checks request for drama
-    }else if(fields[3] == "D"){
+    }else if(fields[2] == "D"){
         Drama tempDrama(action);
 
         //checks if the Item exists
@@ -551,7 +558,7 @@ bool Store::borrowItem(){
             return false;
         }
     //checks request for classic
-    }else if(fields[3] == "C"){
+    }else if(fields[2] == "C"){
         Classic tempClassic(action);
 
         //checks if the Item exists
