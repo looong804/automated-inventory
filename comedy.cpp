@@ -66,6 +66,17 @@ char type = 'D'; // Dvd is default if not changed by contructor
         }
     }
 
+    bool Comedy::isEqual(const Comedy& rhs) const 
+    {
+         if (getTitle() == rhs.getTitle() && getYear() == rhs.getYear() && getGenre() == rhs.getGenre()) 
+        {
+            return true;
+        } else 
+        {
+            return false;
+        }
+    }
+
 	bool Comedy::operator!=(const Comedy& rhs) const 
     {
         return !(*this == rhs);
