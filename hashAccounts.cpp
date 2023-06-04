@@ -205,30 +205,28 @@ Customer* HashAccounts::search(Customer* account)
 	else
 	{
 		// nodeData pointer to traverse the list starting at the second node
-		NodeData<Customer>* looky = start.next;
+        NodeData <Customer> *looky = start.next;
 
-		// while the account isn't found
-		if (looky != nullptr) {
-			while (true)
-			{
-				// check if the account ID matches the one being looked for  
-				if (looky->data != nullptr && looky->data == account)
-				{
-					// return the found account
-					return looky->data;
-				}
-				else if(looky->next != nullptr)
-				{
-					looky = looky->next;
-				}
-				else
-				{
-					return nullptr;
-				}
-			}
-		}
-		return nullptr;
-	}
+        // while the account isn't found
+        if(looky != nullptr){
+            if (looky->data != nullptr && looky->data->getID() == account -> getID()) {
+                // return the found account
+                return looky->data;
+            }
+
+            while (looky->next != nullptr) {
+                // check if the account ID matches the one being looked for
+                if (looky->data != nullptr && looky->data->getID() == account -> getID()) {
+                    // return the found account
+                    return looky->data;
+                }
+
+                looky = looky->next;
+            }
+        }
+    }
+
+    return nullptr;
 }
 
 /* ------------------------------------(search)--------------------------------------
@@ -239,7 +237,7 @@ returns nullptr if not found, mostly for outside use
 Customer* HashAccounts::search(int id)
 {
 	// check if the id is too small
-	if (id < 0000 && id > 9999) 
+	if (id < 0000 && id > 9999)
 	{
 		return nullptr;
 	} else if (hashFunction(id) > ACCOUNTSIZE || hashFunction(id) < 0) //work on this and the hash function, not in index
@@ -262,6 +260,11 @@ Customer* HashAccounts::search(int id)
 
             // while the account isn't found
             if(looky != nullptr){
+                if (looky->data != nullptr && looky->data->getID() == id) {
+                    // return the found account
+                    return looky->data;
+                }
+
                 while (looky->next != nullptr) {
                     // check if the account ID matches the one being looked for
                     if (looky->data != nullptr && looky->data->getID() == id) {
@@ -270,6 +273,11 @@ Customer* HashAccounts::search(int id)
                     }
 
                     looky = looky->next;
+                }
+
+                if (looky->data != nullptr && looky->data->getID() == id) {
+                    // return the found account
+                    return looky->data;
                 }
             }
         }
