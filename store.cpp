@@ -270,7 +270,7 @@ bool Store::returnItem(Commands &action){
 
     //checks if command requests DVD
     if(fields[1] != "D"){
-        cout << "Item is unavailable" << endl;
+        cout << "Item " << fields[1] << " is unavailable" << endl;
 
         tempCustomer = nullptr;
         delete tempCustomer;
@@ -474,7 +474,7 @@ bool Store::returnItem(Commands &action){
             return true;
         }
     }else{
-        cout << "Item requested is not recognized" << endl;
+        cout << "Item " << fields[2] << " requested is not recognized" << endl;
 
         tempCustomer = nullptr;
         delete tempCustomer;
@@ -513,7 +513,7 @@ bool Store::borrowItem(){
 
     //checks if command requests DVD
     if(fields[1] != "D"){
-        cout << "Item is not recognized" << endl;
+        cout << "Item " << fields[1] << " is not recognized" << endl;
 
         tempCustomer = nullptr;
         delete tempCustomer;
@@ -807,7 +807,7 @@ bool Store::borrowItem(){
             return false;
         }
     }else{
-        cout << "Item requested is not recognized" << endl;
+        cout << "Item " << fields[2] << " requested is not recognized" << endl;
 
         tempCustomer = nullptr;
         delete tempCustomer;
